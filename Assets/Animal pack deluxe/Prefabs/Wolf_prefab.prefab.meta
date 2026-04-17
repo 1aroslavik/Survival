@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: da37689a75e9c624986793d1aaa199fe
+labels:
+- animals
+timeCreated: 1503921164
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 99702
+  packageName: Animal pack deluxe
+  packageVersion: 1.0
+  assetPath: Assets/Animal pack deluxe/Prefabs/Wolf_prefab.prefab
+  uploadId: 259818

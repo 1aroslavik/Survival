@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: 3fc6d0828954f0d408ef76b84b2e0099
+labels:
+- animals
+timeCreated: 1503919462
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 99702
+  packageName: Animal pack deluxe
+  packageVersion: 1.0
+  assetPath: Assets/Animal pack deluxe/Prefabs/Deer_male_prefab.prefab
+  uploadId: 259818
