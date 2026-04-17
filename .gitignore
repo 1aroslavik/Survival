@@ -1,0 +1,48 @@
+# Unity generated
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Ll]ogs/
+.vs/
+.vscode/
+.vsconfig
+*.sln
+*.csproj
+Assembly-CSharp
+Assembly-CSharp-Editor
+UserSettings/
+
+# Asset Store / third-party
+Assets/Recovery/
+Assets/Abandoned World/
+Assets/AllSkyFree/
+Assets/ALP_Assets/
+Assets/ammo_box/
+Assets/Army Bunker/
+Assets/Boat/
+Assets/Forst/
+Assets/H&L Assets/
+Assets/MicroVerse-Extras/
+Assets/PBR_Grass_Textures/
+Assets/RockFree/
+Assets/Rocks and Boulders 2/
+Assets/Survival Tools/
+Assets/Survival Props/
+Assets/YughuesFreeBushes2018/
+Assets/TerrainSampleAssets/
+Assets/TextMesh Pro/
+Assets/_Project/Particles/
+Assets/_Project/Settings/
+Assets/_Project/Terrain_Textures/
+Assets//Wolf/
+Assets//UnityTechnologies/
+Assets/TutorialInfo/
+Assets/_Project/Water/
+Packages/
+
+
+# Unity local settings
+UserSettings/
+
+# Keep only project code/content
+!Assets/_Project/**
