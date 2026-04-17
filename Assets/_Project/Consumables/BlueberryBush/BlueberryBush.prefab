@@ -1,0 +1,648 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2357826863919742600
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8704154039897254760}
+  - component: {fileID: 8646426223156993503}
+  m_Layer: 0
+  m_Name: BlueberryBush
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
+--- !u!4 &8704154039897254760
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2357826863919742600}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 472.93442, y: 194.72644, z: 611.25446}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4172508191052223249}
+  - {fileID: 9160724286290333634}
+  - {fileID: 6969916804934673243}
+  - {fileID: 3493091027835273935}
+  - {fileID: 5052736608042956586}
+  - {fileID: 7300677895567111915}
+  - {fileID: 2393207165000595715}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!205 &8646426223156993503
+LODGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2357826863919742600}
+  serializedVersion: 2
+  m_LocalReferencePoint: {x: 0.02339065, y: 0.6878628, z: 0.25022483}
+  m_Size: 2.9406595
+  m_FadeMode: 0
+  m_AnimateCrossFading: 0
+  m_LastLODIsBillboard: 0
+  m_LODs:
+  - screenRelativeHeight: 0.25
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 4775584167831339261}
+  - screenRelativeHeight: 0.125
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 6375091847576304528}
+  - screenRelativeHeight: 0.01
+    fadeTransitionWidth: 0
+    renderers:
+    - renderer: {fileID: 5028865623305871290}
+  m_Enabled: 1
+--- !u!1 &3591034302350986030
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6969916804934673243}
+  - component: {fileID: 8518009246274781012}
+  - component: {fileID: 5028865623305871290}
+  m_Layer: 0
+  m_Name: BlueberryBush_LOD2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
+--- !u!4 &6969916804934673243
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3591034302350986030}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8704154039897254760}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &8518009246274781012
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3591034302350986030}
+  m_Mesh: {fileID: -6508145978520098661, guid: ad31394920d11ec4c89629fe5de8f5e7, type: 3}
+--- !u!23 &5028865623305871290
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3591034302350986030}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: d95223efa5c5a6645aae4a50f26b5bcb, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &7125200089761765894
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9160724286290333634}
+  - component: {fileID: 392302854735151900}
+  - component: {fileID: 6375091847576304528}
+  m_Layer: 0
+  m_Name: BlueberryBush_LOD1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
+--- !u!4 &9160724286290333634
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7125200089761765894}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8704154039897254760}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &392302854735151900
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7125200089761765894}
+  m_Mesh: {fileID: 4975446853789990248, guid: ad31394920d11ec4c89629fe5de8f5e7, type: 3}
+--- !u!23 &6375091847576304528
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7125200089761765894}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 162a052afddf26e4399abe9d1a27f0e7, type: 2}
+  - {fileID: 2100000, guid: d95223efa5c5a6645aae4a50f26b5bcb, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &8458787444503511986
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4172508191052223249}
+  - component: {fileID: 3326564461706569124}
+  - component: {fileID: 4775584167831339261}
+  m_Layer: 0
+  m_Name: BlueberryBush_LOD0
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 2147483647
+  m_IsActive: 1
+--- !u!4 &4172508191052223249
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8458787444503511986}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8704154039897254760}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &3326564461706569124
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8458787444503511986}
+  m_Mesh: {fileID: 1220213517325622695, guid: ad31394920d11ec4c89629fe5de8f5e7, type: 3}
+--- !u!23 &4775584167831339261
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8458787444503511986}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
+  m_ForceMeshLod: -1
+  m_MeshLodSelectionBias: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 162a052afddf26e4399abe9d1a27f0e7, type: 2}
+  - {fileID: 2100000, guid: d95223efa5c5a6645aae4a50f26b5bcb, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_GlobalIlluminationMeshLod: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_MaskInteraction: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1001 &317174660610104577
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 8704154039897254760}
+    m_Modifications:
+    - target: {fileID: 6842361655457291128, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+      propertyPath: m_Name
+      value: Blueberries_Inventory (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6842361655457291128, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005317823790148586, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005317823790148586, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005317823790148586, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005317823790148586, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.498
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005317823790148586, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.633
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005317823790148586, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.095
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005317823790148586, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9269539
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005317823790148586, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005317823790148586, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005317823790148586, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.37517515
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005317823790148586, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005317823790148586, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005317823790148586, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 44.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505915211358689279, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+      propertyPath: m_Radius
+      value: 0.29
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+--- !u!4 &7300677895567111915 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7005317823790148586, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+  m_PrefabInstance: {fileID: 317174660610104577}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &2821802435255360704
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 8704154039897254760}
+    m_Modifications:
+    - target: {fileID: 6842361655457291128, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+      propertyPath: m_Name
+      value: Blueberries_Inventory (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005317823790148586, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.215
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005317823790148586, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.355
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005317823790148586, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.433
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005317823790148586, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9269539
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005317823790148586, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005317823790148586, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005317823790148586, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.37517515
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005317823790148586, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005317823790148586, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005317823790148586, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 44.07
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+--- !u!4 &5052736608042956586 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7005317823790148586, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+  m_PrefabInstance: {fileID: 2821802435255360704}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &4612110762616214249
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 8704154039897254760}
+    m_Modifications:
+    - target: {fileID: 6842361655457291128, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+      propertyPath: m_Name
+      value: Blueberries_Inventory (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6842361655457291128, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005317823790148586, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005317823790148586, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005317823790148586, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005317823790148586, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.156
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005317823790148586, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.703
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005317823790148586, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.747
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005317823790148586, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9269539
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005317823790148586, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005317823790148586, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005317823790148586, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.37517515
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005317823790148586, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005317823790148586, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005317823790148586, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 44.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505915211358689279, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+      propertyPath: m_Radius
+      value: 0.29
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+--- !u!4 &2393207165000595715 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7005317823790148586, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+  m_PrefabInstance: {fileID: 4612110762616214249}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &5858638555022141733
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 8704154039897254760}
+    m_Modifications:
+    - target: {fileID: 6842361655457291128, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+      propertyPath: m_Name
+      value: Blueberries_Inventory
+      objectReference: {fileID: 0}
+    - target: {fileID: 6842361655457291128, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005317823790148586, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005317823790148586, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005317823790148586, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005317823790148586, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.282
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005317823790148586, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.868
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005317823790148586, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.0075683594
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005317823790148586, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.9269539
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005317823790148586, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005317823790148586, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005317823790148586, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.37517515
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005317823790148586, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005317823790148586, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7005317823790148586, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 44.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 7505915211358689279, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+      propertyPath: m_Radius
+      value: 0.29
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+--- !u!4 &3493091027835273935 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7005317823790148586, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
+  m_PrefabInstance: {fileID: 5858638555022141733}
+  m_PrefabAsset: {fileID: 0}

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea7ed53daaa6c4d4180aaa7137eadcf2, type: 3}
+  m_Name: BonfireData
+  m_EditorClassIdentifier: Assembly-CSharp::BuildingData
+  constructionPrefab: {fileID: 4157539498077675507, guid: 53c39186803168c4aa382bdac1051287, type: 3}
+  finishedPrefab: {fileID: 4157539498077675507, guid: fd75b2f39964aa24caa7d5ddbdb9db43, type: 3}
+  resources:
+  - type: 2
+    requiredAmount: 5
+    currentAmount: 0
+    buildPrefab: {fileID: 3243393611864451931, guid: b5e8b1ef7904b514f932225b2b788f02, type: 3}
+    dropPrefab: {fileID: 3243393611864451931, guid: b8553dc7d22c5be4e94f87b5a781351e, type: 3}

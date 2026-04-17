@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea7ed53daaa6c4d4180aaa7137eadcf2, type: 3}
+  m_Name: L_ShapedStairsData
+  m_EditorClassIdentifier: Assembly-CSharp::BuildingData
+  constructionPrefab: {fileID: 5235910418481698706, guid: 068854bd3c064b141a1a71a055337b4f, type: 3}
+  finishedPrefab: {fileID: 5235910418481698706, guid: 6edacccdb1303dc4faad33e2f29f4fb2, type: 3}
+  resources:
+  - type: 0
+    requiredAmount: 30
+    currentAmount: 0
+    buildPrefab: {fileID: 421135329707430855, guid: 597325a94f6b4a04e982715bb4e5e43b, type: 3}
+    dropPrefab: {fileID: 421135329707430855, guid: 597325a94f6b4a04e982715bb4e5e43b, type: 3}

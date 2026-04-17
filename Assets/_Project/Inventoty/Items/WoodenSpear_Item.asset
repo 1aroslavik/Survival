@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee068d734ff63ca49864da26bbe487bb, type: 3}
+  m_Name: WoodenSpear_Item
+  m_EditorClassIdentifier: Assembly-CSharp::ItemData
+  itemName: WoodenSpear
+  description: 
+  itemType: 5
+  isStackable: 1
+  maxStack: 3
+  hungerRestore: 0
+  thirstRestore: 0
+  healthRestore: 0
+  inventoryPrefab: {fileID: 681920341298687110, guid: 1d26b6b577252fd489532e773561ffc7, type: 3}
+  handPrefab: {fileID: 3647616786848641024, guid: f3fb95659fe69a44aa84d4632e5f9698, type: 3}
+  weaponAnimator: {fileID: 9100000, guid: 11317c3429ad9174dbe1773224870d24, type: 2}
