@@ -141,6 +141,14 @@ public class EnemySpawnZone : MonoBehaviour
             if (!TryGetSpawnPosition(out Vector3 pos)) continue;
             GameObject prefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Count)];
             GameObject enemy = Instantiate(prefab, pos, Quaternion.Euler(0f, Random.Range(0f, 360f), 0f));
+
+            var enemyAgent = enemy.GetComponent<NavMeshAgent>();
+            if (enemyAgent != null && !enemyAgent.isOnNavMesh)
+            {
+                if (NavMesh.SamplePosition(pos, out NavMeshHit nmHit, 5f, NavMesh.AllAreas))
+                    enemyAgent.Warp(nmHit.position);
+            }
+
             ConfigureEnemy(enemy);
             spawnedEnemies.Add(enemy);
         }
