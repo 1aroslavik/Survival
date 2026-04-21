@@ -7,20 +7,34 @@ using UnityEngine.AI;
 /// На объекте должен быть Collider с IsTrigger=true, покрывающий "зону входа" игрока.
 /// spawnRadius — радиус, в котором случайно размещаются враги внутри зоны.
 /// </summary>
-[RequireComponent(typeof(Collider))]
+[RequireComponent(typeof(SphereCollider))]
 public class EnemySpawnZone : MonoBehaviour
 {
     [Header("Enemy Prefabs")]
     public List<GameObject> enemyPrefabs;
 
+    [Header("Trigger (зона входа игрока)")]
+    [Tooltip("Авто-настройка SphereCollider на объекте (isTrigger + radius).")]
+    public bool autoConfigureTrigger = true;
+    [Tooltip("Радиус триггера, в котором игрок 'входит' в зону.")]
+    public float triggerRadius = 40f;
+
     [Header("Spawn Settings")]
     [Tooltip("Сколько врагов создать при первом входе игрока.")]
     public int spawnCount = 3;
     [Tooltip("Радиус вокруг центра зоны, в котором размещаются враги.")]
-    public float spawnRadius = 15f;
+    public float spawnRadius = 30f;
     public float spawnHeightOffset = 0f;
     public bool spawnOnGround = true;
     public LayerMask groundMask = ~0;
+    [Tooltip("Спавнить врагов только на NavMesh (исключает воду и не-забейканные области).")]
+    public bool requireNavMesh = true;
+    [Tooltip("Маска областей NavMesh для спавна. По умолчанию AllAreas. Можно исключить area 'Water'.")]
+    public int navMeshAreaMask = NavMesh.AllAreas;
+    [Tooltip("Допуск при поиске ближайшей точки NavMesh.")]
+    public float navMeshSampleDistance = 3f;
+    [Tooltip("Сколько попыток найти валидную точку на одного врага.")]
+    public int spawnAttempts = 15;
 
     [Header("Patrol")]
     [Tooltip("Если true — враги патрулируют внутри spawnRadius этой зоны (patrolCenter/Radius у врага перезаписываются).")]
@@ -51,6 +65,15 @@ public class EnemySpawnZone : MonoBehaviour
     {
         var col = GetComponent<Collider>();
         if (col != null) col.isTrigger = true;
+    }
+
+    void Awake()
+    {
+        if (!autoConfigureTrigger) return;
+        var sphere = GetComponent<SphereCollider>();
+        sphere.isTrigger = true;
+        sphere.radius = triggerRadius;
+        sphere.center = Vector3.zero;
     }
 
     void OnTriggerEnter(Collider other)
@@ -115,7 +138,7 @@ public class EnemySpawnZone : MonoBehaviour
 
         for (int i = 0; i < spawnCount; i++)
         {
-            Vector3 pos = GetSpawnPosition();
+            if (!TryGetSpawnPosition(out Vector3 pos)) continue;
             GameObject prefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Count)];
             GameObject enemy = Instantiate(prefab, pos, Quaternion.Euler(0f, Random.Range(0f, 360f), 0f));
             ConfigureEnemy(enemy);
@@ -144,9 +167,8 @@ public class EnemySpawnZone : MonoBehaviour
             var ai = e.GetComponent<EnemyAI>();
             if (ai != null && ai.IsDead) continue;
 
-            if (repositionOnReentry)
+            if (repositionOnReentry && TryGetSpawnPosition(out Vector3 pos))
             {
-                Vector3 pos = GetSpawnPosition();
                 var agent = e.GetComponent<NavMeshAgent>();
                 if (agent != null && agent.enabled) agent.Warp(pos);
                 else e.transform.position = pos;
@@ -190,22 +212,38 @@ public class EnemySpawnZone : MonoBehaviour
         return alive == 0;
     }
 
-    Vector3 GetSpawnPosition()
+    bool TryGetSpawnPosition(out Vector3 result)
     {
-        Vector2 circle = Random.insideUnitCircle * spawnRadius;
-        Vector3 pos = transform.position + new Vector3(circle.x, 0f, circle.y);
-
-        if (spawnOnGround)
+        for (int attempt = 0; attempt < Mathf.Max(1, spawnAttempts); attempt++)
         {
-            Vector3 rayOrigin = pos + Vector3.up * 50f;
-            if (Physics.Raycast(rayOrigin, Vector3.down, out RaycastHit hit, 200f, groundMask, QueryTriggerInteraction.Ignore))
+            Vector2 circle = Random.insideUnitCircle * spawnRadius;
+            Vector3 pos = transform.position + new Vector3(circle.x, 0f, circle.y);
+
+            if (spawnOnGround)
             {
-                pos.y = hit.point.y;
+                Vector3 rayOrigin = pos + Vector3.up * 50f;
+                if (Physics.Raycast(rayOrigin, Vector3.down, out RaycastHit hit, 200f, groundMask, QueryTriggerInteraction.Ignore))
+                    pos.y = hit.point.y;
             }
+
+            pos.y += spawnHeightOffset;
+
+            if (requireNavMesh)
+            {
+                if (NavMesh.SamplePosition(pos, out NavMeshHit nmHit, navMeshSampleDistance, navMeshAreaMask))
+                {
+                    result = nmHit.position;
+                    return true;
+                }
+                continue;
+            }
+
+            result = pos;
+            return true;
         }
 
-        pos.y += spawnHeightOffset;
-        return pos;
+        result = Vector3.zero;
+        return false;
     }
 
     void ClearAll()

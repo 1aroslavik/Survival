@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 /// <summary>
 /// Родительский менеджер зон спавна врагов.
@@ -34,24 +35,76 @@ public class EnemyZoneManager : MonoBehaviour
     [Header("Placement — Random Area (fallback / если anchorPoints пуст)")]
     public float randomAreaRadius = 200f;
     public LayerMask groundMask = ~0;
-    public int randomPlacementAttempts = 20;
+    public int randomPlacementAttempts = 30;
+
+    [Header("NavMesh")]
+    [Tooltip("Размещать зоны только на NavMesh (исключает воду и не-забейканные области).")]
+    public bool requireNavMesh = true;
+    [Tooltip("Маска областей NavMesh. По умолчанию AllAreas. Можно исключить area 'Water'.")]
+    public int navMeshAreaMask = NavMesh.AllAreas;
+    [Tooltip("Допуск при поиске ближайшей точки NavMesh.")]
+    public float navMeshSampleDistance = 5f;
 
     [Header("Constraints")]
     [Tooltip("Минимальная дистанция между центрами зон.")]
-    public float minDistanceBetweenZones = 40f;
+    public float minDistanceBetweenZones = 60f;
     [Tooltip("Минимальная дистанция до игрока при появлении новой зоны (чтобы не спавнилась на глазах).")]
-    public float minDistanceFromPlayer = 50f;
+    public float minDistanceFromPlayer = 80f;
     public string playerTag = "Player";
+
+    [Header("Debug / Testing")]
+    [Tooltip("Первая зона появляется рядом с игроком (игнорирует minDistanceFromPlayer). Удобно для тестов.")]
+    public bool spawnFirstNearPlayer = true;
+    [Tooltip("Радиус вокруг игрока, в котором появится первая зона.")]
+    public float firstZoneMinDistance = 15f;
+    public float firstZoneMaxDistance = 40f;
 
     readonly List<EnemySpawnZone> activeZones = new List<EnemySpawnZone>();
     readonly Dictionary<EnemySpawnZone, float> clearedAt = new Dictionary<EnemySpawnZone, float>();
     readonly HashSet<Transform> usedAnchors = new HashSet<Transform>();
     Transform player;
 
+    bool firstZoneSpawned = false;
+
     void Start()
     {
         AcquirePlayer();
-        for (int i = 0; i < targetActiveZones; i++) TryCreateZone();
+
+        if (spawnFirstNearPlayer && player != null && TrySpawnNearPlayer())
+            firstZoneSpawned = true;
+
+        for (int i = activeZones.Count; i < targetActiveZones; i++) TryCreateZone();
+    }
+
+    bool TrySpawnNearPlayer()
+    {
+        if (zoneTemplate == null || player == null) return false;
+
+        for (int i = 0; i < randomPlacementAttempts; i++)
+        {
+            Vector2 c = Random.insideUnitCircle.normalized * Random.Range(firstZoneMinDistance, firstZoneMaxDistance);
+            Vector3 candidate = player.position + new Vector3(c.x, 0f, c.y);
+            Vector3 rayOrigin = candidate + Vector3.up * 100f;
+            if (Physics.Raycast(rayOrigin, Vector3.down, out RaycastHit hit, 300f, groundMask, QueryTriggerInteraction.Ignore))
+                candidate.y = hit.point.y;
+
+            if (!TryProject(candidate, out Vector3 projected)) continue;
+
+            // Игнорируем minDistanceFromPlayer, но между зонами расстояние всё равно держим.
+            bool tooCloseToOther = false;
+            foreach (var z in activeZones)
+            {
+                if (z == null) continue;
+                if (Vector3.Distance(projected, z.transform.position) < minDistanceBetweenZones) { tooCloseToOther = true; break; }
+            }
+            if (tooCloseToOther) continue;
+
+            var inst = Instantiate(zoneTemplate, projected, Quaternion.identity, transform);
+            inst.gameObject.SetActive(true);
+            activeZones.Add(inst);
+            return true;
+        }
+        return false;
     }
 
     void Update()
@@ -131,9 +184,9 @@ public class EnemyZoneManager : MonoBehaviour
         Shuffle(free);
         foreach (var a in free)
         {
-            if (IsPositionValid(a.position))
+            if (TryProject(a.position, out Vector3 projected) && IsPositionValid(projected))
             {
-                pos = a.position;
+                pos = projected;
                 usedAnchor = a;
                 return true;
             }
@@ -145,19 +198,30 @@ public class EnemyZoneManager : MonoBehaviour
             Vector3 candidate = transform.position + new Vector3(c.x, 0f, c.y);
             Vector3 rayOrigin = candidate + Vector3.up * 100f;
             if (Physics.Raycast(rayOrigin, Vector3.down, out RaycastHit hit, 300f, groundMask, QueryTriggerInteraction.Ignore))
-            {
                 candidate.y = hit.point.y;
-                if (IsPositionValid(candidate))
-                {
-                    pos = candidate;
-                    usedAnchor = null;
-                    return true;
-                }
+
+            if (TryProject(candidate, out Vector3 projected) && IsPositionValid(projected))
+            {
+                pos = projected;
+                usedAnchor = null;
+                return true;
             }
         }
 
         pos = Vector3.zero;
         usedAnchor = null;
+        return false;
+    }
+
+    bool TryProject(Vector3 p, out Vector3 result)
+    {
+        if (!requireNavMesh) { result = p; return true; }
+        if (NavMesh.SamplePosition(p, out NavMeshHit hit, navMeshSampleDistance, navMeshAreaMask))
+        {
+            result = hit.position;
+            return true;
+        }
+        result = p;
         return false;
     }
 

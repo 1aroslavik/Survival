@@ -1415,6 +1415,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 236193124}
+  - component: {fileID: 236193125}
   m_Layer: 0
   m_Name: EnemyZoneManager
   m_TagString: Untagged
@@ -1431,12 +1432,39 @@ Transform:
   m_GameObject: {fileID: 236193123}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 687.98004, y: -0.00001, z: 470.54282}
+  m_LocalPosition: {x: 687, y: 187, z: 611}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &236193125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 236193123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abd84a088c578417c8ebb0df3f563fee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyZoneManager
+  zoneTemplate: {fileID: 8825789978555564337}
+  targetActiveZones: 4
+  replaceDelay: 5
+  anchorPoints: []
+  randomAreaRadius: 200
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  randomPlacementAttempts: 20
+  requireNavMesh: 1
+  navMeshAreaMask: -1
+  navMeshSampleDistance: 5
+  minDistanceBetweenZones: 40
+  minDistanceFromPlayer: 50
+  playerTag: Player
 --- !u!4 &251851862 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: f282d9fb9b399dd4384b20aba08642fb, type: 3}
@@ -15384,6 +15412,10 @@ MonoBehaviour:
   groundMask:
     serializedVersion: 2
     m_Bits: 4294967295
+  requireNavMesh: 1
+  navMeshAreaMask: -1
+  navMeshSampleDistance: 3
+  spawnAttempts: 15
   overrideEnemyPatrol: 1
   patrolRadius: 0
   playerTag: Player
@@ -15448,5 +15480,5 @@ SceneRoots:
   - {fileID: 3544368076659811395}
   - {fileID: 334509516}
   - {fileID: 1511778115}
-  - {fileID: 8825789978555564335}
   - {fileID: 236193124}
+  - {fileID: 8825789978555564335}
