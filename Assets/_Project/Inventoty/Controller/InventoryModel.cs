@@ -60,6 +60,19 @@ public class InventoryModel : MonoBehaviour
         Debug.Log("🚫 INVENTORY FULL, remaining = " + remaining);
         return false;
     }
+    public bool HasItem(ResourceType type)
+    {
+        foreach (var slot in slots)
+        {
+            if (slot.isEmpty)
+                continue;
+
+            if (slot.data.resourceType == type && slot.amount > 0)
+                return true;
+        }
+
+        return false;
+    }
     public bool IsFull()
     {
         foreach (var slot in slots)

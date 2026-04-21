@@ -167,7 +167,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 6fcd4ef4b0dd5df49a09e341d846c3d2, type: 2}
+  m_Motion: {fileID: 7400000, guid: 023ba7c88a8307c44850cc4c889a863e, type: 2}
   m_Tag: 
   m_SpeedParameter: Equip Speed
   m_MirrorParameter: 
@@ -193,7 +193,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 1cee0a70c42f89f44ba4b62f9490d37d, type: 2}
+  m_Motion: {fileID: 7400000, guid: 2e2ab30851566f44fb410a849af30b74, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -219,7 +219,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 4966c1d6c082a3d46a96afb0b9716e91, type: 2}
+  m_Motion: {fileID: 7400000, guid: 25deccf00c4495b4ba0f5a92d39b94ee, type: 2}
   m_Tag: 
   m_SpeedParameter: Holster Speed
   m_MirrorParameter: 

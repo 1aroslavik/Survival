@@ -1653,6 +1653,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AnimalHealth
   health: 50
   animator: {fileID: 0}
+  meatPrefab: {fileID: 1425171790764893731, guid: 0066d271627d09b48a11f99ec3cef5be, type: 3}
+  meatCount: 2
 --- !u!1 &1852420776143842
 GameObject:
   m_ObjectHideFlags: 0

@@ -79,6 +79,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7647025183826762711, guid: 1d509227a8e692f46b5abef7b3d50c4c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 1d509227a8e692f46b5abef7b3d50c4c, type: 3}
       propertyPath: m_Name
       value: FP_Bow
@@ -144,5 +148,13 @@ MonoBehaviour:
   animator: {fileID: 4378631224524521122}
   arrowPrefab: {fileID: 911210957420550073, guid: 63c920134f375144daa2a1c811ecb337, type: 3}
   arrowSpawn: {fileID: 2016593937638407246}
+  arrowVisual: {fileID: 8669111883640153882}
   shootForce: 40
   shootDelay: 0.2
+  inventory: {fileID: 0}
+  arrowType: 0
+--- !u!1 &8669111883640153882 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -7647025183826762711, guid: 1d509227a8e692f46b5abef7b3d50c4c, type: 3}
+  m_PrefabInstance: {fileID: 7903413068010816307}
+  m_PrefabAsset: {fileID: 0}

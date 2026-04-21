@@ -45,11 +45,28 @@ public class Dryer : MonoBehaviour
         meat.transform.localPosition = Vector3.zero;
         meat.transform.localRotation = Quaternion.identity;
 
-        DryingMeat drying = meat.GetComponent<DryingMeat>();
+        // 🔥 ВЫКЛЮЧАЕМ ФИЗИКУ
+        Rigidbody rb = meat.GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.isKinematic = true;   // 👈 главное
+            rb.useGravity = false;   // 👈 чтобы не падало
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+        }
 
+        // (опционально) отключаем коллайдер, если мешает
+        Collider col = meat.GetComponent<Collider>();
+        if (col != null)
+        {
+            col.enabled = false;
+        }
+
+        // 🔥 ВКЛЮЧАЕМ СУШКУ
+        DryingMeat drying = meat.GetComponent<DryingMeat>();
         if (drying != null)
         {
-            drying.isOnDryer = true; // 🔥 ВКЛЮЧАЕМ СУШКУ
+            drying.isOnDryer = true;
         }
     }
 }

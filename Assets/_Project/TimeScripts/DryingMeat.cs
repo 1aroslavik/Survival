@@ -2,25 +2,31 @@
 
 public class DryingMeat : MonoBehaviour
 {
-    public float dryTime = 20f;
+    [Header("Dry Time Settings")]
+    public float dryerTime = 20f;   // 🪵 сушилка
+    public float fireTime = 8f;     // 🔥 костёр
+
     public GameObject driedMeatPrefab;
 
     [Header("State")]
-    public bool isOnDryer = false; // 🔥 ГЛАВНОЕ
+    public bool isOnDryer = false;
+    public bool isOnFire = false;
 
     private float timer;
     private bool replaced;
 
     void Update()
     {
-        // ❗ ЕСЛИ НЕ НА СУШИЛКЕ — НЕ СУШИМ
-        if (!isOnDryer) return;
-
         if (replaced) return;
+
+        // ❌ нигде не находится
+        if (!isOnDryer && !isOnFire) return;
 
         timer += Time.deltaTime;
 
-        if (timer >= dryTime)
+        float currentDryTime = isOnFire ? fireTime : dryerTime;
+
+        if (timer >= currentDryTime)
         {
             Replace();
         }
