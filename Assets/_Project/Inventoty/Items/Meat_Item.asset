@@ -18,7 +18,7 @@ MonoBehaviour:
   resourceType: 0
   isStackable: 1
   maxStack: 5
-  hungerRestore: 70
+  hungerRestore: 20
   thirstRestore: 0
   healthRestore: 0
   inventoryPrefab: {fileID: 1425171790764893731, guid: 6f1701dfb81598b498872062844ed383, type: 3}

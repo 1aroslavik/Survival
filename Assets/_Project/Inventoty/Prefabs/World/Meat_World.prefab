@@ -102,6 +102,7 @@ GameObject:
   - component: {fileID: -528836508278384389}
   - component: {fileID: -862971980917676617}
   - component: {fileID: -6627440092412954918}
+  - component: {fileID: 6661079231920403773}
   m_Layer: 11
   m_Name: Meat_World
   m_TagString: Untagged
@@ -173,3 +174,17 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.24689066, y: 0.101621844, z: 0.37733012}
   m_Center: {x: -0.011558026, y: 0.054952275, z: -0.026634753}
+--- !u!114 &6661079231920403773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1425171790764893731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5286e08e78a1bd14f9f771f41647adf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DryingMeat
+  dryTime: 1
+  driedMeatPrefab: {fileID: 1425171790764893731, guid: 7039e0a9330f21d4f91501ecb00ef3c4, type: 3}

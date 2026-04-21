@@ -3,60 +3,53 @@
 public class Dryer : MonoBehaviour
 {
     public Transform[] slots;
-    public GameObject meatPrefab;
 
-    public ResourceType meatType; // ← используем ResourceType
-
-    private bool[] occupied;
-
-    void Start()
-    {
-        occupied = new bool[slots.Length];
-    }
+    [Header("Meat Settings")]
+    public ItemData meatInventory;
+    public GameObject meatWorld;
 
     public bool TryAddMeat(InventoryModel inventory)
     {
-        // 🔹 проверяем есть ли мясо
-        bool hasMeat = false;
-
+        // 🔹 ищем мясо в инвентаре
         foreach (var slot in inventory.slots)
         {
-            if (!slot.isEmpty && slot.data.resourceType == meatType)
+            if (!slot.isEmpty && slot.data == meatInventory)
             {
-                hasMeat = true;
-                break;
-            }
-        }
-
-        if (!hasMeat)
-        {
-            Debug.Log("Нет мяса");
-            return false;
-        }
-
-        // 🔹 ищем свободный слот сушилки
-        for (int i = 0; i < slots.Length; i++)
-        {
-            if (!occupied[i])
-            {
-                // удаляем 1 мясо
-                if (inventory.TryRemoveOne(meatType))
+                // 🔹 ищем реально пустой слот
+                for (int i = 0; i < slots.Length; i++)
                 {
-                    SpawnMeat(i);
-                    occupied[i] = true;
-                    return true;
+                    if (slots[i].childCount == 0) // ✅ единственная проверка
+                    {
+                        slot.amount--;
+
+                        if (slot.amount <= 0)
+                            slot.Clear();
+
+                        SpawnMeat(i);
+                        return true;
+                    }
                 }
+
+                Debug.Log("Сушилка заполнена");
+                return false;
             }
         }
 
-        Debug.Log("Сушилка заполнена");
+        Debug.Log("Нет мяса");
         return false;
     }
 
     void SpawnMeat(int index)
     {
-        GameObject meat = Instantiate(meatPrefab, slots[index]);
+        GameObject meat = Instantiate(meatWorld, slots[index]);
         meat.transform.localPosition = Vector3.zero;
         meat.transform.localRotation = Quaternion.identity;
+
+        DryingMeat drying = meat.GetComponent<DryingMeat>();
+
+        if (drying != null)
+        {
+            drying.isOnDryer = true; // 🔥 ВКЛЮЧАЕМ СУШКУ
+        }
     }
 }

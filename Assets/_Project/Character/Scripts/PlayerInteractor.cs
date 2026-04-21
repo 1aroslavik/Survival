@@ -2,14 +2,11 @@
 
 public class PlayerInteractor : MonoBehaviour
 {
-    [Header("Settings")]
     public float interactDistance = 3f;
     public Camera playerCamera;
-
-    [Header("References")]
     public InventoryModel inventory;
 
-    private void Update()
+    void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
@@ -23,16 +20,23 @@ public class PlayerInteractor : MonoBehaviour
 
         if (Physics.Raycast(ray, out RaycastHit hit, interactDistance))
         {
-            // 🔹 Сушилка
-            Dryer dryer = hit.collider.GetComponent<Dryer>();
+            // 🔥 сначала мясо (если оно есть)
+            DryingMeat meat = hit.collider.GetComponentInParent<DryingMeat>();
+
+            if (meat != null)
+            {
+                Destroy(meat.gameObject);
+                return;
+            }
+
+            // 🔥 потом сушилка
+            Dryer dryer = hit.collider.GetComponentInParent<Dryer>();
 
             if (dryer != null)
             {
                 dryer.TryAddMeat(inventory);
                 return;
             }
-
-            
         }
     }
 }
