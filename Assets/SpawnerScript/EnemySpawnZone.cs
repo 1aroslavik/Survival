@@ -1,6 +1,12 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
+/// <summary>
+/// Зона спавна врагов. Поставьте несколько на сцену — каждая работает независимо.
+/// На объекте должен быть Collider с IsTrigger=true, покрывающий "зону входа" игрока.
+/// spawnRadius — радиус, в котором случайно размещаются враги внутри зоны.
+/// </summary>
 [RequireComponent(typeof(Collider))]
 public class EnemySpawnZone : MonoBehaviour
 {
@@ -8,24 +14,38 @@ public class EnemySpawnZone : MonoBehaviour
     public List<GameObject> enemyPrefabs;
 
     [Header("Spawn Settings")]
+    [Tooltip("Сколько врагов создать при первом входе игрока.")]
     public int spawnCount = 3;
+    [Tooltip("Радиус вокруг центра зоны, в котором размещаются враги.")]
     public float spawnRadius = 15f;
     public float spawnHeightOffset = 0f;
     public bool spawnOnGround = true;
     public LayerMask groundMask = ~0;
 
+    [Header("Patrol")]
+    [Tooltip("Если true — враги патрулируют внутри spawnRadius этой зоны (patrolCenter/Radius у врага перезаписываются).")]
+    public bool overrideEnemyPatrol = true;
+    [Tooltip("Радиус патрулирования. Если <=0 — используется spawnRadius.")]
+    public float patrolRadius = 0f;
+
     [Header("Behavior")]
     public string playerTag = "Player";
+    [Tooltip("Деактивировать живых врагов после выхода игрока (HP сохраняется).")]
     public bool despawnOnExit = true;
     public float despawnDelay = 2f;
-    public bool respawnOnReentry = true;
-    public float respawnCooldown = 30f;
+    [Tooltip("Репозиционировать живых врагов внутри зоны при повторном входе игрока.")]
+    public bool repositionOnReentry = true;
+    [Tooltip("Если все враги мертвы — через это время зона возродит новых. <0 — никогда.")]
+    public float respawnAllDeadCooldown = 60f;
 
-    private readonly List<GameObject> spawnedEnemies = new List<GameObject>();
-    private bool playerInside = false;
-    private bool hasSpawned = false;
-    private float exitTimer = 0f;
-    private float lastSpawnTime = -Mathf.Infinity;
+    readonly List<GameObject> spawnedEnemies = new List<GameObject>();
+    bool playerInside = false;
+    bool hasSpawned = false;
+
+    public bool HasSpawned => hasSpawned;
+    public bool IsCleared => hasSpawned && AllDead();
+    float exitTimer = 0f;
+    float allDeadTimer = -1f;
 
     void Reset()
     {
@@ -40,10 +60,14 @@ public class EnemySpawnZone : MonoBehaviour
         playerInside = true;
         exitTimer = 0f;
 
-        bool cooldownOk = Time.time - lastSpawnTime >= respawnCooldown;
-        if (!hasSpawned || (respawnOnReentry && cooldownOk))
+        if (!hasSpawned)
         {
-            SpawnEnemies();
+            SpawnFresh();
+        }
+        else
+        {
+            ReactivateSurvivors();
+            MaybeRespawnIfAllDead();
         }
     }
 
@@ -60,14 +84,32 @@ public class EnemySpawnZone : MonoBehaviour
             exitTimer += Time.deltaTime;
             if (exitTimer >= despawnDelay)
             {
-                DespawnEnemies();
+                DeactivateSurvivors();
+                exitTimer = 0f;
             }
+        }
+
+        // Таймер полного респавна запускается, когда все умерли.
+        if (hasSpawned && respawnAllDeadCooldown >= 0f && AllDead())
+        {
+            if (allDeadTimer < 0f) allDeadTimer = respawnAllDeadCooldown;
+            allDeadTimer -= Time.deltaTime;
+            if (allDeadTimer <= 0f)
+            {
+                ClearAll();
+                if (playerInside) SpawnFresh();
+                allDeadTimer = -1f;
+            }
+        }
+        else
+        {
+            allDeadTimer = -1f;
         }
     }
 
-    void SpawnEnemies()
+    void SpawnFresh()
     {
-        DespawnEnemies();
+        ClearAll();
 
         if (enemyPrefabs == null || enemyPrefabs.Count == 0) return;
 
@@ -76,11 +118,76 @@ public class EnemySpawnZone : MonoBehaviour
             Vector3 pos = GetSpawnPosition();
             GameObject prefab = enemyPrefabs[Random.Range(0, enemyPrefabs.Count)];
             GameObject enemy = Instantiate(prefab, pos, Quaternion.Euler(0f, Random.Range(0f, 360f), 0f));
+            ConfigureEnemy(enemy);
             spawnedEnemies.Add(enemy);
         }
 
         hasSpawned = true;
-        lastSpawnTime = Time.time;
+    }
+
+    void ConfigureEnemy(GameObject enemy)
+    {
+        if (!overrideEnemyPatrol) return;
+        var ai = enemy.GetComponent<EnemyAI>();
+        if (ai == null) return;
+        ai.patrolCenter = transform;
+        ai.patrolRadius = patrolRadius > 0f ? patrolRadius : spawnRadius;
+    }
+
+    void ReactivateSurvivors()
+    {
+        for (int i = spawnedEnemies.Count - 1; i >= 0; i--)
+        {
+            var e = spawnedEnemies[i];
+            if (e == null) { spawnedEnemies.RemoveAt(i); continue; }
+
+            var ai = e.GetComponent<EnemyAI>();
+            if (ai != null && ai.IsDead) continue;
+
+            if (repositionOnReentry)
+            {
+                Vector3 pos = GetSpawnPosition();
+                var agent = e.GetComponent<NavMeshAgent>();
+                if (agent != null && agent.enabled) agent.Warp(pos);
+                else e.transform.position = pos;
+            }
+
+            if (!e.activeSelf) e.SetActive(true);
+        }
+    }
+
+    void DeactivateSurvivors()
+    {
+        foreach (var e in spawnedEnemies)
+        {
+            if (e == null) continue;
+            var ai = e.GetComponent<EnemyAI>();
+            if (ai != null && ai.IsDead) continue;
+            if (e.activeSelf) e.SetActive(false);
+        }
+    }
+
+    void MaybeRespawnIfAllDead()
+    {
+        if (AllDead() && respawnAllDeadCooldown < 0f)
+        {
+            // Полностью заблокировано — ничего не делаем.
+            return;
+        }
+        // Если все мертвы, таймер обработает в Update. Здесь только первоначальное
+        // ре-активирование уже сделано выше; живым — хватит.
+    }
+
+    bool AllDead()
+    {
+        int alive = 0;
+        foreach (var e in spawnedEnemies)
+        {
+            if (e == null) continue;
+            var ai = e.GetComponent<EnemyAI>();
+            if (ai == null || !ai.IsDead) alive++;
+        }
+        return alive == 0;
     }
 
     Vector3 GetSpawnPosition()
@@ -101,7 +208,7 @@ public class EnemySpawnZone : MonoBehaviour
         return pos;
     }
 
-    void DespawnEnemies()
+    void ClearAll()
     {
         foreach (var e in spawnedEnemies)
         {
@@ -118,6 +225,10 @@ public class EnemySpawnZone : MonoBehaviour
         Gizmos.DrawSphere(transform.position, spawnRadius);
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, spawnRadius);
+
+        float pr = patrolRadius > 0f ? patrolRadius : spawnRadius;
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(transform.position, pr);
 
         var col = GetComponent<Collider>();
         if (col != null)
