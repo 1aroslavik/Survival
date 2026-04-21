@@ -46,6 +46,8 @@ public class EnemyAI : MonoBehaviour
     bool isDead = false;
     bool attackQueued = false;
 
+    public bool IsDead => isDead;
+
     Vector3 spawnPoint;
     State currentState;
 
