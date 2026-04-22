@@ -15,6 +15,7 @@ MonoBehaviour:
   itemName: WoodenSpear
   description: 
   itemType: 5
+  resourceType: 20
   isStackable: 1
   maxStack: 3
   hungerRestore: 0

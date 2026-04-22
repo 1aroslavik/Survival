@@ -15,6 +15,7 @@ MonoBehaviour:
   itemName: Spear
   description: 
   itemType: 5
+  resourceType: 15
   isStackable: 0
   maxStack: 1
   hungerRestore: 0
@@ -22,3 +23,4 @@ MonoBehaviour:
   healthRestore: 0
   inventoryPrefab: {fileID: 4529049542669806326, guid: a722b37ad84dcaf4580f6ce67df66614, type: 3}
   handPrefab: {fileID: 0}
+  weaponAnimator: {fileID: 0}

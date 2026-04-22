@@ -152,7 +152,7 @@ MonoBehaviour:
   shootForce: 40
   shootDelay: 0.2
   inventory: {fileID: 0}
-  arrowType: 0
+  arrowType: 6
 --- !u!1 &8669111883640153882 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -7647025183826762711, guid: 1d509227a8e692f46b5abef7b3d50c4c, type: 3}

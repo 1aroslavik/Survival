@@ -15,6 +15,7 @@ MonoBehaviour:
   itemName: Apple
   description: 
   itemType: 1
+  resourceType: 5
   isStackable: 1
   maxStack: 10
   hungerRestore: 15
@@ -22,3 +23,4 @@ MonoBehaviour:
   healthRestore: 0
   inventoryPrefab: {fileID: 3893244131966969671, guid: 7f338ee1121c0704684d43936b7d9bde, type: 3}
   handPrefab: {fileID: 0}
+  weaponAnimator: {fileID: 0}

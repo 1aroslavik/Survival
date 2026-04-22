@@ -15,6 +15,7 @@ MonoBehaviour:
   itemName: WoodenBow
   description: 
   itemType: 5
+  resourceType: 19
   isStackable: 0
   maxStack: 1
   hungerRestore: 0

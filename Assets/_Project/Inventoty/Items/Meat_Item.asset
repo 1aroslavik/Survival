@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName: Meat
   description: 
   itemType: 1
-  resourceType: 0
+  resourceType: 12
   isStackable: 1
   maxStack: 5
   hungerRestore: 20

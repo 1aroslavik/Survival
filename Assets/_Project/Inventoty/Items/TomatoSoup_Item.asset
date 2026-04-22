@@ -15,6 +15,7 @@ MonoBehaviour:
   itemName: Tomato Soup
   description: 
   itemType: 1
+  resourceType: 17
   isStackable: 1
   maxStack: 5
   hungerRestore: 40
@@ -22,3 +23,4 @@ MonoBehaviour:
   healthRestore: 0
   inventoryPrefab: {fileID: 2480711523850051260, guid: 565737c5334094c40896bf32b0f32424, type: 3}
   handPrefab: {fileID: 0}
+  weaponAnimator: {fileID: 0}

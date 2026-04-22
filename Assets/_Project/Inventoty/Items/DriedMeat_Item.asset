@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName: DriedMeat
   description: 
   itemType: 1
-  resourceType: 0
+  resourceType: 10
   isStackable: 1
   maxStack: 5
   hungerRestore: 50

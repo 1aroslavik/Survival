@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName: CannedFood
   description: 
   itemType: 1
-  resourceType: 0
+  resourceType: 9
   isStackable: 1
   maxStack: 2
   hungerRestore: 50

@@ -14,8 +14,6 @@ public class ItemPickUp : MonoBehaviour
     [Header("UI")]
     public GameObject pickupHint;
     public LogPickup logPickup;
-
-    // 🔥 ОДНА СТРОКА ДЛЯ ВСЕХ СООБЩЕНИЙ
     public TMP_Text infoText;
 
     [Header("Settings")]
@@ -26,11 +24,19 @@ public class ItemPickUp : MonoBehaviour
 
     void Start()
     {
+        Debug.Log("START ItemPickUp");
+
         if (playerCamera == null)
+        {
             playerCamera = Camera.main;
+            Debug.Log("Camera auto assigned: " + playerCamera);
+        }
 
         if (inventory == null)
+        {
             inventory = FindObjectOfType<InventoryModel>();
+            Debug.Log("Inventory found: " + inventory);
+        }
 
         if (pickupHint != null)
             pickupHint.SetActive(false);
@@ -45,14 +51,22 @@ public class ItemPickUp : MonoBehaviour
 
         if (Input.GetKeyDown(pickupKey))
         {
-            // 🔹 сначала стройка
-            if (logPickup != null && logPickup.TryAddToConstruction())
-                return;
+            Debug.Log("KEY PRESSED");
 
-            // 🔹 потом подбор
+            if (logPickup != null && logPickup.TryAddToConstruction())
+            {
+                Debug.Log("Added to construction");
+                return;
+            }
+
             if (currentItem != null)
             {
+                Debug.Log("Trying pickup...");
                 TryPickUp();
+            }
+            else
+            {
+                Debug.Log("NO CURRENT ITEM");
             }
         }
     }
@@ -63,10 +77,14 @@ public class ItemPickUp : MonoBehaviour
 
         if (Physics.Raycast(ray, out RaycastHit hit, pickupDistance, pickupLayer))
         {
+            Debug.Log("RAY HIT: " + hit.collider.name);
+
             WorldItem item = hit.collider.GetComponentInParent<WorldItem>();
 
             if (item != null)
             {
+                Debug.Log("FOUND ITEM: " + item.name);
+
                 Highlightable newHighlight = item.GetComponentInChildren<Highlightable>();
 
                 if (newHighlight != currentHighlight)
@@ -103,15 +121,36 @@ public class ItemPickUp : MonoBehaviour
 
     void TryPickUp()
     {
-        if (currentItem == null || inventory == null)
-            return;
+        Debug.Log("=== TRY PICKUP START ===");
 
-        if (currentItem.data == null || currentItem.amount <= 0)
+        if (currentItem == null)
+        {
+            Debug.Log("❌ currentItem NULL");
             return;
+        }
 
-        // 🔥 ПРОВЕРКА НА ПОЛНЫЙ ИНВЕНТАРЬ
+        Debug.Log("Item object: " + currentItem.name);
+
+        if (currentItem.data == null)
+        {
+            Debug.Log("❌ DATA IS NULL");
+            return;
+        }
+
+        Debug.Log("Item DATA: " + currentItem.data.name);
+        Debug.Log("Amount: " + currentItem.amount);
+
+        if (inventory == null)
+        {
+            Debug.Log("❌ INVENTORY NULL");
+            return;
+        }
+
+        Debug.Log("Inventory ID: " + inventory.GetInstanceID());
+
         if (inventory.IsFull())
         {
+            Debug.Log("❌ INVENTORY FULL");
             ShowMessage("INVENTORY IS FULL", 2f, Color.red);
             return;
         }
@@ -121,7 +160,7 @@ public class ItemPickUp : MonoBehaviour
 
         bool added = inventory.TryAdd(data, amount);
 
-        Debug.Log($"TryAdd: {added} | Item: {data.name}");
+        Debug.Log($"TryAdd RESULT: {added} | ITEM: {data.name}");
 
         if (!added)
         {
@@ -129,21 +168,28 @@ public class ItemPickUp : MonoBehaviour
             return;
         }
 
-        // ✅ УСПЕШНО
+        Debug.Log("✅ ITEM ADDED SUCCESS");
+
         Destroy(currentItem.gameObject);
 
         if (inventoryView != null)
+        {
             inventoryView.Render();
+            Debug.Log("Inventory UI updated");
+        }
 
-        // 🔥 МОЖНО ПОКАЗАТЬ ДРУГОЕ СООБЩЕНИЕ
         ShowMessage("Picked up: " + data.name, 1.5f, Color.green);
+
+        Debug.Log("=== TRY PICKUP END ===");
     }
 
-    // 🔥 УНИВЕРСАЛЬНАЯ ФУНКЦИЯ
     void ShowMessage(string message, float time, Color color)
     {
         if (infoText == null)
+        {
+            Debug.Log("No infoText assigned");
             return;
+        }
 
         StopAllCoroutines();
         StartCoroutine(ShowMessageRoutine(message, time, color));
