@@ -15,6 +15,7 @@ MonoBehaviour:
   itemName: Axe
   description: 
   itemType: 5
+  resourceType: 7
   isStackable: 0
   maxStack: 1
   hungerRestore: 0

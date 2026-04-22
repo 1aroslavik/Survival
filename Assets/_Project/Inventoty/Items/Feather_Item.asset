@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName: Feather
   description: 
   itemType: 4
-  resourceType: 0
+  resourceType: 4
   isStackable: 1
   maxStack: 20
   hungerRestore: 0

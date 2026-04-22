@@ -15,6 +15,7 @@ MonoBehaviour:
   itemName: Arrow
   description: 
   itemType: 6
+  resourceType: 6
   isStackable: 1
   maxStack: 20
   hungerRestore: 0
@@ -22,3 +23,4 @@ MonoBehaviour:
   healthRestore: 0
   inventoryPrefab: {fileID: 911210957420550073, guid: 1feba9254a63d384182945c030dd0fa1, type: 3}
   handPrefab: {fileID: 0}
+  weaponAnimator: {fileID: 0}

@@ -446,7 +446,7 @@ MonoBehaviour:
       type: {class: HDRPDefaultVolumeProfileSettings, ns: UnityEngine.Rendering.HighDefinition, asm: Unity.RenderPipelines.HighDefinition.Runtime}
       data:
         m_Version: 0
-        m_VolumeProfile: {fileID: 11400000, guid: a8a56494da219dc438d526a0665dc6df, type: 2}
+        m_VolumeProfile: {fileID: 11400000, guid: 381b06eac0d1c91488787263f3f8bba2, type: 2}
     - rid: 1396394278540279813
       type: {class: LensSettings, ns: UnityEngine.Rendering.HighDefinition, asm: Unity.RenderPipelines.HighDefinition.Runtime}
       data:

@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName: Torch
   description: 
   itemType: 5
-  resourceType: 0
+  resourceType: 21
   isStackable: 0
   maxStack: 1
   hungerRestore: 0

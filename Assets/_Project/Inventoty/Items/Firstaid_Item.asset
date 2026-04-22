@@ -15,6 +15,7 @@ MonoBehaviour:
   itemName: FirstAid
   description: 
   itemType: 2
+  resourceType: 11
   isStackable: 1
   maxStack: 10
   hungerRestore: 0
@@ -22,3 +23,4 @@ MonoBehaviour:
   healthRestore: 10
   inventoryPrefab: {fileID: 7975998872709633962, guid: 0262d7324b4636e46842a6e56df5b8a7, type: 3}
   handPrefab: {fileID: 0}
+  weaponAnimator: {fileID: 0}

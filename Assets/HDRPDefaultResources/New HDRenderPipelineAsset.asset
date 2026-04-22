@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.RenderPipelines.HighDefinition.Runtime::UnityEngine.Rendering.HighDefinition.HDRenderPipelineAsset
   m_RenderPipelineSettings:
     supportShadowMask: 1
-    supportSSR: 0
+    supportSSR: 1
     supportSSRTransparent: 0
-    supportSSAO: 0
-    supportSSGI: 0
+    supportSSAO: 1
+    supportSSGI: 1
     supportSubsurfaceScattering: 0
     subsurfaceScatteringAttenuation: 1
     sssSampleBudget:
@@ -29,7 +29,7 @@ MonoBehaviour:
       m_SchemaId:
         m_Id: With3Levels
     supportVolumetrics: 1
-    supportVolumetricClouds: 0
+    supportVolumetricClouds: 1
     supportLightLayers: 0
     renderingLayerMaskBuffer: 0
     supportWater: 1
@@ -68,7 +68,7 @@ MonoBehaviour:
     supportDecalLayers: 0
     supportSurfaceGradient: 1
     decalNormalBufferHP: 0
-    supportHighQualityLineRendering: 0
+    supportHighQualityLineRendering: 1
     highQualityLineRenderingMemoryBudget: 128
     msaaSampleCount: 1
     supportMotionVectors: 0
@@ -86,7 +86,7 @@ MonoBehaviour:
     supportProbeVolumeScenarios: 0
     supportProbeVolumeScenarioBlending: 1
     probeVolumeBlendingMemoryBudget: 128
-    supportRayTracing: 0
+    supportRayTracing: 1
     supportVFXRayTracing: 0
     supportedRayTracingMode: 3
     lightLoopSettings:
@@ -119,7 +119,7 @@ MonoBehaviour:
       maxLocalVolumetricFogSize: 0
       maxLocalVolumetricFogOnScreen: 256
     hdShadowInitParams:
-      maxShadowRequests: 250
+      maxShadowRequests: 500
       directionalShadowsDepthBits: 32
       punctualShadowFilteringQuality: 1
       directionalShadowFilteringQuality: 1

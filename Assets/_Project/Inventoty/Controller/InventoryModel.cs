@@ -6,60 +6,68 @@ public class InventoryModel : MonoBehaviour
     public int SlotCount = 20;
     public List<InventorySlotData> slots = new();
 
-    private void Awake()
+    void Awake()
     {
-        slots.Clear();
-
-        for (int i = 0; i < SlotCount; i++)
+        if (slots.Count == 0)
         {
-            slots.Add(new InventorySlotData());
+            for (int i = 0; i < SlotCount; i++)
+                slots.Add(new InventorySlotData());
         }
     }
 
+    // 🔥 ДОБАВЛЕНИЕ
     public bool TryAdd(ItemData data, int amount)
     {
         int remaining = amount;
 
-        // 🔹 1. СТАКИ (ОБЯЗАТЕЛЬНО !isEmpty)
+        // ✅ СТАК ПО ТИПУ
         if (data.isStackable)
         {
             foreach (var slot in slots)
             {
-                if (!slot.isEmpty && slot.data == data && slot.amount < data.maxStack)
-                {
-                    int space = data.maxStack - slot.amount;
-                    int toAdd = Mathf.Min(space, remaining);
+                if (slot.isEmpty)
+                    continue;
 
-                    slot.amount += toAdd;
-                    remaining -= toAdd;
+                // 🔥 сравнение по типу
+                if (slot.data.resourceType != data.resourceType)
+                    continue;
 
-                    if (remaining == 0)
-                        return true;
-                }
-            }
-        }
+                if (slot.amount >= data.maxStack)
+                    continue;
 
-        // 🔹 2. ПУСТЫЕ СЛОТЫ
-        foreach (var slot in slots)
-        {
-            if (slot.isEmpty)
-            {
-                int toAdd = data.isStackable ? Mathf.Min(data.maxStack, remaining) : 1;
+                int space = data.maxStack - slot.amount;
+                int toAdd = Mathf.Min(space, remaining);
 
-                slot.data = data;
-                slot.amount = toAdd;
-
+                slot.amount += toAdd;
                 remaining -= toAdd;
 
-                if (remaining == 0)
+                if (remaining <= 0)
                     return true;
             }
         }
 
-        // ❌ НЕ ВЛЕЗЛО
-        Debug.Log("🚫 INVENTORY FULL, remaining = " + remaining);
+        // ✅ НОВЫЙ СЛОТ
+        foreach (var slot in slots)
+        {
+            if (!slot.isEmpty)
+                continue;
+
+            int toAdd = data.isStackable ? Mathf.Min(data.maxStack, remaining) : 1;
+
+            slot.data = data;
+            slot.amount = toAdd;
+
+            remaining -= toAdd;
+
+            if (remaining <= 0)
+                return true;
+        }
+
+        Debug.Log("🚫 INVENTORY FULL");
         return false;
     }
+
+    // 🔥 ПРОВЕРКА
     public bool HasItem(ResourceType type)
     {
         foreach (var slot in slots)
@@ -73,16 +81,8 @@ public class InventoryModel : MonoBehaviour
 
         return false;
     }
-    public bool IsFull()
-    {
-        foreach (var slot in slots)
-        {
-            if (slot.isEmpty)
-                return false;
-        }
 
-        return true;
-    }
+    // 🔥 УДАЛЕНИЕ
     public bool TryRemoveOne(ResourceType type)
     {
         foreach (var slot in slots)
@@ -102,5 +102,16 @@ public class InventoryModel : MonoBehaviour
         }
 
         return false;
+    }
+
+    public bool IsFull()
+    {
+        foreach (var slot in slots)
+        {
+            if (slot.isEmpty)
+                return false;
+        }
+
+        return true;
     }
 }

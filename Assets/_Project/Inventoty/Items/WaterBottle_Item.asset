@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName: Water Bottle
   description: 
   itemType: 3
-  resourceType: 0
+  resourceType: 18
   isStackable: 1
   maxStack: 5
   hungerRestore: 0

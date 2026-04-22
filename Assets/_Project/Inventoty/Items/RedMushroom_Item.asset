@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName: Mushroom
   description: 
   itemType: 1
-  resourceType: 0
+  resourceType: 13
   isStackable: 1
   maxStack: 10
   hungerRestore: 5

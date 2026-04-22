@@ -142,4 +142,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 742de380787426e409f56b467aaecbfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Highlightable
-  highlightMaterial: {fileID: 0}
+  highlightMaterial: {fileID: 2100000, guid: aaf6ad30a4faa5540908b7119abb3567, type: 2}

@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 1145fb65b9672b6458c718655e4bd118
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 8574412962073106934
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 213198
+  packageName: Unity Terrain - HDRP Demo Scene
+  packageVersion: 1.0.3
+  assetPath: Assets/TerrainDemoScene_HDRP/Terrain/Layers/Black_Sand_Rocks_B.terrainlayer
+  uploadId: 727864

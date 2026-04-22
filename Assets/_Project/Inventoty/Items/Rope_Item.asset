@@ -15,6 +15,7 @@ MonoBehaviour:
   itemName: Rope
   description: 
   itemType: 0
+  resourceType: 14
   isStackable: 1
   maxStack: 10
   hungerRestore: 0
@@ -22,3 +23,4 @@ MonoBehaviour:
   healthRestore: 0
   inventoryPrefab: {fileID: 5810011114451682236, guid: 9c63b7610e5d1284cb57c89cf078628b, type: 3}
   handPrefab: {fileID: 0}
+  weaponAnimator: {fileID: 0}

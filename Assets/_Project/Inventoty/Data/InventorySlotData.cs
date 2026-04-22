@@ -6,8 +6,27 @@ public class InventorySlotData
     public ItemData data;
     public int amount;
 
-    // 🔥 правильная проверка
-    public bool isEmpty => data == null || amount <= 0;
+    // ❗ теперь слот пуст ТОЛЬКО если data == null
+    public bool isEmpty => data == null;
+
+    public void Set(ItemData newData, int newAmount)
+    {
+        data = newData;
+        amount = newAmount;
+    }
+
+    public void Add(int value)
+    {
+        amount += value;
+    }
+
+    public void Remove(int value)
+    {
+        amount -= value;
+
+        if (amount <= 0)
+            Clear();
+    }
 
     public void Clear()
     {
