@@ -907,7 +907,7 @@ MonoBehaviour:
   m_StreamingVersion: 20241001
   m_LegacyPriority: 0
   Target:
-    TrackingTarget: {fileID: 1227357224}
+    TrackingTarget: {fileID: 595856147}
     LookAtTarget: {fileID: 0}
     CustomLookAtTarget: 0
   Lens:
@@ -5908,6 +5908,7 @@ GameObject:
   - component: {fileID: 647780126}
   - component: {fileID: 647780125}
   - component: {fileID: 647780127}
+  - component: {fileID: 647780128}
   m_Layer: 0
   m_Name: EnemyCamera
   m_TagString: Untagged
@@ -5939,7 +5940,7 @@ MonoBehaviour:
     LookAtTarget: {fileID: 0}
     CustomLookAtTarget: 0
   Lens:
-    FieldOfView: 60.000004
+    FieldOfView: 13.7
     OrthographicSize: 5
     NearClipPlane: 0.01
     FarClipPlane: 1000
@@ -5966,13 +5967,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 647780124}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.10886217, y: 0.59824467, z: 0.08248125, w: 0.78958803}
-  m_LocalPosition: {x: 727.87, y: 209.8, z: 244.58}
+  m_LocalRotation: {x: -0.0072198077, y: 0.14133568, z: 0.0019122645, w: 0.9899336}
+  m_LocalPosition: {x: 727.8, y: 210.39, z: 238.74}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: -15.7, y: 74.3, z: 0}
+  m_LocalEulerAnglesHint: {x: 356.7, y: -0.000009135784, z: -0.000001353962}
 --- !u!95 &647780127
 Animator:
   serializedVersion: 7
@@ -5995,6 +5996,25 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &647780128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 647780124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b617507da6d07e749b7efdb34e1173e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineFollow
+  TrackerSettings:
+    BindingMode: 4
+    PositionDamping: {x: 0, y: 1.51, z: 1}
+    AngularDampingMode: 0
+    RotationDamping: {x: 1, y: 1, z: 1}
+    QuaternionDamping: 1
+  FollowOffset: {x: -2.2, y: 2.19, z: -6.12}
 --- !u!1 &669403426
 GameObject:
   m_ObjectHideFlags: 0
@@ -10497,7 +10517,7 @@ Transform:
   m_GameObject: {fileID: 1184309695}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1215, y: -0, z: 3131.7903}
+  m_LocalPosition: {x: -1217, y: -0, z: 3131.7903}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10558,6 +10578,7 @@ PlayableDirector:
     - 8d5215cbf0c75400ab6ed7dc09731f8a: {fileID: 158770723}
     - e25ed6e4469b54af692432378a7fa87b: {fileID: 1024366036}
     - d3b337fc9cb5d4e48b698c072453bf7b: {fileID: 1814677426}
+    - 41ab670c115ca48679ca07e2afb9ffa1: {fileID: 584059010}
     - 4f723a826993941ba9fc7cfe9955bc62: {fileID: 1057902464}
     - faec7f71f17eb45dfae4ee52e7a79272: {fileID: 1633748903}
     - b8626d28771434949b600bec755a6717: {fileID: 647780125}
