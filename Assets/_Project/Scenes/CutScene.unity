@@ -4323,7 +4323,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1227357224}
-  m_LocalEulerAnglesHint: {x: 5.9, y: 31.17, z: 0}
+  m_LocalEulerAnglesHint: {x: -0.0000003968995, y: 0.02985219, z: -0.003084921}
 --- !u!114 &584059010
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5907,6 +5907,7 @@ GameObject:
   m_Component:
   - component: {fileID: 647780126}
   - component: {fileID: 647780125}
+  - component: {fileID: 647780127}
   m_Layer: 0
   m_Name: EnemyCamera
   m_TagString: Untagged
@@ -5972,6 +5973,28 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -15.7, y: 74.3, z: 0}
+--- !u!95 &647780127
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 647780124}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &669403426
 GameObject:
   m_ObjectHideFlags: 0
@@ -10525,6 +10548,8 @@ PlayableDirector:
     value: {fileID: 339068491}
   - key: {fileID: -8893114969587665265, guid: 134ca4538ed2d4241a212315a8515e07, type: 2}
     value: {fileID: 584059011}
+  - key: {fileID: -1286483047908248430, guid: 134ca4538ed2d4241a212315a8515e07, type: 2}
+    value: {fileID: 647780127}
   m_ExposedReferences:
     m_References:
     - 530913fccd57048be934918e76f9512b: {fileID: 313840623}
