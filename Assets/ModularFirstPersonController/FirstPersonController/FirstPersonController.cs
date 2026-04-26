@@ -72,7 +72,7 @@ public class FirstPersonController : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        crosshairObject = GetComponentInChildren<Image>();
+        //crosshairObject = GetComponentInChildren<Image>();
         playerCamera.fieldOfView = fov;
     }
 
