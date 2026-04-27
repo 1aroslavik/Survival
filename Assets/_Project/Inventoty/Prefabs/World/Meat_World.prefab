@@ -16,7 +16,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &1746447441929321031
 Transform:
@@ -109,7 +109,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &5094682385932839114
 Transform:
@@ -187,9 +187,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5286e08e78a1bd14f9f771f41647adf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DryingMeat
-  dryTime: 1
+  dryerTime: 20
+  fireTime: 8
   driedMeatPrefab: {fileID: 1425171790764893731, guid: 7039e0a9330f21d4f91501ecb00ef3c4, type: 3}
   isOnDryer: 0
+  isOnFire: 0
 --- !u!54 &-2291891655968736788
 Rigidbody:
   m_ObjectHideFlags: 0

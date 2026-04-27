@@ -9,7 +9,6 @@ public class BookTabs : MonoBehaviour
 
     void Start()
     {
-        // по умолчанию можно открыть что-то одно
         OpenFire();
     }
 
