@@ -4656,7 +4656,6 @@ MonoBehaviour:
   damage: 15
   attackRadius: 2.8
   attackAngle: 90
-  movingThreshold: 0.15
 --- !u!4 &617185396 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 55f94b3dfaaba26458dbf470efc8cfa4, type: 3}
@@ -6432,6 +6431,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3454950574518617245, guid: fd75b2f39964aa24caa7d5ddbdb9db43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4157539498077675507, guid: fd75b2f39964aa24caa7d5ddbdb9db43, type: 3}
       propertyPath: m_Name
       value: Bonfire
@@ -6781,6 +6784,10 @@ PrefabInstance:
     - target: {fileID: 4775223878170194848, guid: 8537b36cbbeee0c4d9fec7033e193cd3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4848418333817176414, guid: 8537b36cbbeee0c4d9fec7033e193cd3, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10436,6 +10443,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 892270408385781174, guid: fd75b2f39964aa24caa7d5ddbdb9db43, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3454950574518617245, guid: fd75b2f39964aa24caa7d5ddbdb9db43, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3618908724009495413, guid: fd75b2f39964aa24caa7d5ddbdb9db43, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.7071068
