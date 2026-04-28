@@ -41,6 +41,10 @@ public class EnemyAI : MonoBehaviour
     public float maxHealth = 80f;
     private float currentHealth;
 
+    [Header("Animation")]
+    [Tooltip("Сколько вариантов удара в Blend Tree (AttackIndex от 0 до N-1).")]
+    public int attackVariantCount = 2;
+
     float attackTimer;
     float screamTimer;
     float patrolWaitTimer;
@@ -102,6 +106,7 @@ public class EnemyAI : MonoBehaviour
             {
                 attackQueued = false;
                 DealDamage();
+                animator.SetBool("IsAttacking", false);
             }
         }
 
@@ -110,18 +115,36 @@ public class EnemyAI : MonoBehaviour
 
     void UpdateAnimation()
     {
+        if (animator == null) return;
+
+        bool moving = false;
+        bool running = false;
+        bool rage = false;
+
         switch (currentState)
         {
             case State.Patrol:
+                moving = agent != null && agent.velocity.sqrMagnitude > 0.01f;
+                break;
+
             case State.Scream:
-                animator.SetBool("IsRunning", false);
+                rage = true;
                 break;
 
             case State.Chase:
+                moving = true;
+                running = true;
+                break;
+
             case State.Attack:
-                animator.SetBool("IsRunning", true);
+                moving = false;
+                running = false;
                 break;
         }
+
+        animator.SetBool("IsMoving", moving);
+        animator.SetBool("IsRunning", running);
+        animator.SetBool("Rage", rage);
     }
 
     void TryAcquirePlayer()
@@ -205,7 +228,10 @@ public class EnemyAI : MonoBehaviour
 
         if (attackTimer <= 0f && !attackQueued && distance <= attackDistance)
         {
-            animator.SetTrigger("Attack");
+            int variants = Mathf.Max(1, attackVariantCount);
+            animator.SetInteger("AttackIndex", Random.Range(0, variants));
+            animator.SetBool("IsAttacking", true);
+
             attackQueued = true;
             hitTimer = attackHitDelay;
             attackTimer = attackCooldown;
@@ -324,6 +350,9 @@ public class EnemyAI : MonoBehaviour
 
         currentHealth -= dmg;
 
+        if (animator != null)
+            animator.SetTrigger("Hit");
+
         if (currentHealth <= 0f)
             Die();
     }
@@ -340,8 +369,14 @@ public class EnemyAI : MonoBehaviour
             agent.enabled = false;
         }
 
-        animator.SetBool("IsRunning", false);
-        animator.SetBool("Dead", true);
+        if (animator != null)
+        {
+            animator.SetBool("IsMoving", false);
+            animator.SetBool("IsRunning", false);
+            animator.SetBool("IsAttacking", false);
+            animator.SetBool("Rage", false);
+            animator.SetBool("IsDead", true);
+        }
     }
 
     void OnDrawGizmosSelected()
