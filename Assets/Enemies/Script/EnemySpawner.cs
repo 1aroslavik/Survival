@@ -200,12 +200,26 @@ public class EnemySpawner : MonoBehaviour
                 agent.Warp(spawnPos);
         }
 
-        EnemyBaseAI ai = obj.GetComponent<EnemyBaseAI>();
+        EnemyBaseAI baseAI = obj.GetComponent<EnemyBaseAI>();
+        if (baseAI != null)
+        {
+            baseAI.maxHealth = type.maxHealth;
+            baseAI.damage = type.damage;
+            baseAI.walkSpeed = type.walkSpeed;
+            baseAI.runSpeed = type.runSpeed;
+            baseAI.patrolRadius = type.patrolRadius;
+            baseAI.detectDistance = type.detectionRadius;
+        }
+
+        EnemyAI ai = obj.GetComponent<EnemyAI>();
         if (ai != null)
         {
-            ai.walkSpeed = type.walkSpeed;
-            ai.runSpeed = type.runSpeed;
+            ai.maxHealth = type.maxHealth;
+            ai.damage = type.damage;
+            ai.patrolSpeed = type.walkSpeed;
+            ai.chaseSpeed = type.runSpeed;
             ai.patrolRadius = type.patrolRadius;
+            ai.detectionRadius = type.detectionRadius;
         }
     }
 

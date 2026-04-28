@@ -37,6 +37,10 @@ public class EnemyAI : MonoBehaviour
     public float attackRadius = 2.8f;
     public float attackAngle = 90f;
 
+    [Header("Health")]
+    public float maxHealth = 80f;
+    private float currentHealth;
+
     float attackTimer;
     float screamTimer;
     float patrolWaitTimer;
@@ -59,6 +63,7 @@ public class EnemyAI : MonoBehaviour
         animator = GetComponent<Animator>();
 
         spawnPoint = transform.position;
+        currentHealth = maxHealth;
         TryAcquirePlayer();
 
         agent.stoppingDistance = 0.1f;
@@ -311,6 +316,16 @@ public class EnemyAI : MonoBehaviour
         PlayerStats stats = player.GetComponent<PlayerStats>();
         if (stats != null)
             stats.TakeDamage(damage);
+    }
+
+    public void TakeDamage(float dmg)
+    {
+        if (isDead) return;
+
+        currentHealth -= dmg;
+
+        if (currentHealth <= 0f)
+            Die();
     }
 
     public void Die()

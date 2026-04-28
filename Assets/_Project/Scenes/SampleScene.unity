@@ -2305,9 +2305,12 @@ MonoBehaviour:
   - name: Enemy3
     prefab: {fileID: 6347845055732319078, guid: 1f767fa48db25104c96a9670cc753b1b, type: 3}
     maxCount: 5
+    maxHealth: 50
+    damage: 10
     walkSpeed: 1
     runSpeed: 1
     patrolRadius: 50
+    detectionRadius: 12
 --- !u!1 &302180431
 GameObject:
   m_ObjectHideFlags: 0
@@ -4942,6 +4945,7 @@ MonoBehaviour:
   damage: 15
   attackRadius: 2.8
   attackAngle: 90
+  maxHealth: 80
 --- !u!4 &617185396 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 55f94b3dfaaba26458dbf470efc8cfa4, type: 3}
@@ -5187,9 +5191,12 @@ MonoBehaviour:
   - name: Enemy2
     prefab: {fileID: 290884568573657152, guid: 6ec18304030011c47aaa07296ea319e0, type: 3}
     maxCount: 5
+    maxHealth: 50
+    damage: 10
     walkSpeed: 1
     runSpeed: 4
     patrolRadius: 50
+    detectionRadius: 12
 --- !u!4 &630706423 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: f282d9fb9b399dd4384b20aba08642fb, type: 3}
@@ -7872,9 +7879,12 @@ MonoBehaviour:
   - name: Enemy1
     prefab: {fileID: 3490026887102114920, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
     maxCount: 5
+    maxHealth: 50
+    damage: 10
     walkSpeed: 1
     runSpeed: 2
     patrolRadius: 40
+    detectionRadius: 12
 --- !u!1 &972959988
 GameObject:
   m_ObjectHideFlags: 0
@@ -11368,9 +11378,12 @@ MonoBehaviour:
   - name: Enemy5
     prefab: {fileID: 3490026887102114920, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
     maxCount: 7
+    maxHealth: 50
+    damage: 10
     walkSpeed: 1
     runSpeed: 3
     patrolRadius: 30
+    detectionRadius: 12
 --- !u!1 &1398326239
 GameObject:
   m_ObjectHideFlags: 0
@@ -11420,9 +11433,12 @@ MonoBehaviour:
   - name: Enemy4
     prefab: {fileID: 7901366144787319798, guid: f2e03fd1cffea284890ee861660f8b1d, type: 3}
     maxCount: 7
+    maxHealth: 50
+    damage: 10
     walkSpeed: 3
     runSpeed: 5
     patrolRadius: 30
+    detectionRadius: 12
 --- !u!1001 &1401564515
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12691,7 +12707,7 @@ MonoBehaviour:
   moon: {fileID: 0}
   dayLength: 1200
   nightLength: 600
-  timeOfDay: 14.8
+  timeOfDay: 1
   sunIntensity: 100
   moonIntensity: 5
   minNightIntensity: 0.2
@@ -14262,6 +14278,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8704154039897254760, guid: c0d46a01327a29842a4f5fd7cdc96430, type: 3}
   m_PrefabInstance: {fileID: 1801931633}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1809110052
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3490026887102114920, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
+      propertyPath: m_Name
+      value: Enemy1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3490026887102541896, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 815.16174
+      objectReference: {fileID: 0}
+    - target: {fileID: 3490026887102541896, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 192.98035
+      objectReference: {fileID: 0}
+    - target: {fileID: 3490026887102541896, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 443.92776
+      objectReference: {fileID: 0}
+    - target: {fileID: 3490026887102541896, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3490026887102541896, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3490026887102541896, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3490026887102541896, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3490026887102541896, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3490026887102541896, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3490026887102541896, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
 --- !u!4 &1812528639 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 940d55d4117386f4f9398ea3ff52d4cd, type: 3}
@@ -17104,3 +17177,4 @@ SceneRoots:
   - {fileID: 198745021}
   - {fileID: 1269474204}
   - {fileID: 502402447}
+  - {fileID: 1809110052}
