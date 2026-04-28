@@ -2,6 +2,7 @@
 
 public class DayNightCycle : MonoBehaviour
 {
+    [Header("Lights")]
     public Light sun;
     public Light moon;
 
@@ -11,61 +12,53 @@ public class DayNightCycle : MonoBehaviour
 
     [Range(0f, 1f)] public float timeOfDay;
 
-    public float sunIntensity = 100f;
-    public float moonIntensity = 5f;
+    [Header("Intensity")]
+    public float sunIntensity = 1.2f;
+    public float moonIntensity = 0.3f;
+    public float minNightIntensity = 0.05f;
 
-    [Header("Anti Dark")]
-    public float minNightIntensity = 0.2f;
+    [Header("Ambient Colors")]
+    public Color dayAmbient = new Color(0.6f, 0.6f, 0.6f);
+    public Color nightAmbient = new Color(0.02f, 0.02f, 0.08f);
 
     void Update()
     {
+        // ⏱ расчёт цикла
         float totalCycle = dayLength + nightLength;
-
-        // ⏱ движение времени (разная скорость)
         float dayPortion = dayLength / totalCycle;
 
+        // движение времени (день медленнее, ночь быстрее)
         if (timeOfDay < dayPortion)
-        {
-            // ☀️ ДЕНЬ (медленнее)
             timeOfDay += Time.deltaTime / dayLength;
-        }
         else
-        {
-            // 🌙 НОЧЬ (быстрее)
             timeOfDay += Time.deltaTime / nightLength;
-        }
 
-        if (timeOfDay >= 1f) timeOfDay = 0f;
+        if (timeOfDay >= 1f)
+            timeOfDay = 0f;
 
+        // угол вращения
         float angle = timeOfDay * 360f;
 
-        // вращение
         sun.transform.rotation = Quaternion.Euler(angle - 90f, 0f, 0f);
         moon.transform.rotation = Quaternion.Euler(angle + 90f, 0f, 0f);
 
-        bool isDay = timeOfDay < dayPortion;
+        // 🌅 фактор освещения (плавный переход)
+        float sunDot = Vector3.Dot(sun.transform.forward, Vector3.down);
+        float t = Mathf.Clamp01(sunDot);
 
-        if (isDay)
-        {
-            // ☀️ день
-            sun.enabled = true;
-            sun.intensity = sunIntensity;
-            sun.shadows = LightShadows.Soft;
+        // ☀️ солнце
+        sun.enabled = true;
+        sun.intensity = Mathf.Lerp(minNightIntensity, sunIntensity, t);
 
-            moon.enabled = false;
-            moon.shadows = LightShadows.None;
-        }
-        else
-        {
-            // 🌙 ночь
-            moon.enabled = true;
-            moon.intensity = Mathf.Max(moonIntensity, minNightIntensity);
-            moon.shadows = LightShadows.Soft;
+        // 🌙 луна
+        moon.enabled = true;
+        moon.intensity = Mathf.Lerp(moonIntensity, 0f, t);
 
-            // слабый фон от солнца (анти-чернота)
-            sun.enabled = true;
-            sun.intensity = minNightIntensity;
-            sun.shadows = LightShadows.None;
-        }
+        // 🌫 тени (чтобы не было шума ночью)
+        sun.shadows = t > 0.1f ? LightShadows.Soft : LightShadows.None;
+        moon.shadows = t < 0.3f ? LightShadows.Soft : LightShadows.None;
+
+        // 🌌 ambient свет (очень влияет на атмосферу)
+        RenderSettings.ambientLight = Color.Lerp(nightAmbient, dayAmbient, t);
     }
 }
