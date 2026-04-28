@@ -10,103 +10,57 @@ public class InventoryView : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("=== INVENTORY VIEW START ===");
         Render();
     }
 
     public void Render()
     {
-        Debug.Log("=== RENDER START ===");
+        if (model == null) return;
 
-        if (model == null)
-        {
-            Debug.LogError("❌ MODEL NULL");
-            return;
-        }
-
-        // 🔹 очистка
-        Debug.Log("Clearing old visuals...");
+        // очистка
         foreach (var list in visuals.Values)
-        {
             foreach (var obj in list)
-            {
-                if (obj != null)
-                    Destroy(obj);
-            }
-        }
+                if (obj != null) Destroy(obj);
 
         visuals.Clear();
-
-        // 🔥 ПРОВЕРКА ВСЕХ СЛОТОВ
-        Debug.Log("=== MODEL SLOTS STATE ===");
-
-        for (int i = 0; i < model.slots.Count; i++)
-        {
-            var s = model.slots[i];
-
-            if (s.isEmpty)
-            {
-                Debug.Log($"Slot {i}: EMPTY");
-            }
-            else
-            {
-                Debug.Log($"Slot {i}: {s.data.name} | amount: {s.amount}");
-            }
-        }
-
-        Debug.Log("=== START SPAWN VISUALS ===");
 
         for (int i = 0; i < model.slots.Count && i < slotPoints.Count; i++)
         {
             var slot = model.slots[i];
-
-            if (slot.isEmpty)
-            {
-                Debug.Log($"Skip slot {i} (empty)");
+            if (slot.isEmpty || slot.data.inventoryPrefab == null)
                 continue;
-            }
-
-            if (slot.data.inventoryPrefab == null)
-            {
-                Debug.LogError($"❌ Slot {i} has NO prefab: {slot.data.name}");
-                continue;
-            }
-
-            Debug.Log($"Render slot {i}: {slot.data.name}");
-
-            int visualCount = Mathf.Min(slot.amount, 5);
 
             visuals[i] = new List<GameObject>();
 
+            int visualCount = Mathf.Min(slot.amount, 5);
+
             for (int j = 0; j < visualCount; j++)
             {
-                Debug.Log($"  Spawn visual {j} for slot {i}");
+                // 🔥 сохраняем ОРИГИНАЛ префаба
+                var prefab = slot.data.inventoryPrefab;
+                Vector3 originalScale = prefab.transform.localScale;
+                Quaternion originalRotation = prefab.transform.localRotation;
 
-                var obj = Instantiate(slot.data.inventoryPrefab, slotPoints[i]);
+                // создаём
+                var obj = Instantiate(prefab, slotPoints[i], false);
 
-                Debug.Log($"    Spawned prefab: {obj.name}");
-
+                // логика
                 var itemView = obj.GetComponent<InventoryItemsView>();
-
-                if (itemView == null)
-                {
-                    Debug.LogError("❌ NO InventoryItemsView on prefab!");
-                }
-                else
+                if (itemView != null)
                 {
                     itemView.model = model;
                     itemView.slotIndex = i;
-
-                    Debug.Log($"    Assigned slotIndex: {i}");
                 }
 
+                // ✅ ставим в центр
                 obj.transform.localPosition = Vector3.zero;
-                obj.transform.localRotation = Quaternion.identity;
+
+                // 🔥 ВОЗВРАЩАЕМ как в префабе
+                obj.transform.localRotation = originalRotation;
+                obj.transform.localScale = originalScale;
 
                 visuals[i].Add(obj);
             }
         }
-
-        Debug.Log("=== RENDER END ===");
     }
 }
