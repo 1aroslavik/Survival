@@ -4946,6 +4946,7 @@ MonoBehaviour:
   attackRadius: 2.8
   attackAngle: 90
   maxHealth: 80
+  attackVariantCount: 2
 --- !u!4 &617185396 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 55f94b3dfaaba26458dbf470efc8cfa4, type: 3}
@@ -7882,7 +7883,7 @@ MonoBehaviour:
     maxHealth: 50
     damage: 10
     walkSpeed: 1
-    runSpeed: 2
+    runSpeed: 3
     patrolRadius: 40
     detectionRadius: 12
 --- !u!1 &972959988
