@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.AI;
 
-public abstract class EnemyBaseAI : MonoBehaviour
+public class EnemyBaseAI : MonoBehaviour
 {
     protected NavMeshAgent agent;
     protected Animator animator;
@@ -24,8 +24,27 @@ public abstract class EnemyBaseAI : MonoBehaviour
     [Header("Attack")]
     public float attackDistance = 2f;
     public float attackCooldown = 2f;
+    [Tooltip("Длительность анимации атаки — пока IsAttacking=true. Поставь равным длине самого длинного клипа в AttackTree.")]
+    public float attackDuration = 0.8f;
+    [Tooltip("Через сколько секунд после начала анимации наносится урон.")]
+    public float attackHitDelay = 0.35f;
+
+    [Tooltip("Сколько вариантов удара (AttackIndex от 0 до N-1).")]
+    public int attackVariantCount = 2;
+
+    [Tooltip("Сколько вариантов смерти (DeathIndex от 0 до N-1).")]
+    public int deathVariantCount = 2;
+
+    [Header("Rage")]
+    [Tooltip("Длительность стейта rage перед бегом (если в аниматоре есть параметр Rage).")]
+    public float rageDuration = 1.2f;
 
     protected float lastAttackTime;
+    protected float attackEndTime;
+    protected float hitTime;
+    protected bool isAttacking;
+    protected bool damageDealt;
+    protected float rageEndTime;
     protected Vector3 spawnPoint;
 
     protected enum State { Patrol, Chase, Attack, Flee }
@@ -75,6 +94,7 @@ public abstract class EnemyBaseAI : MonoBehaviour
 
     protected virtual void ChaseUpdate(float dist)
     {
+        agent.isStopped = false;
         agent.speed = runSpeed;
         agent.SetDestination(player.position);
 
@@ -87,23 +107,56 @@ public abstract class EnemyBaseAI : MonoBehaviour
 
     protected virtual void AttackUpdate(float dist)
     {
-        agent.SetDestination(transform.position);
-        transform.LookAt(player);
+        agent.isStopped = true;
+        agent.ResetPath();
 
-        if (dist > attackDistance)
+        Vector3 dir = player.position - transform.position;
+        dir.y = 0f;
+
+        if (dir.sqrMagnitude > 0.0001f)
         {
+            Quaternion look = Quaternion.LookRotation(dir);
+            transform.rotation = Quaternion.Slerp(transform.rotation, look, 8f * Time.deltaTime);
+        }
+
+        if (isAttacking)
+        {
+            if (!damageDealt && Time.time >= hitTime)
+            {
+                damageDealt = true;
+                DealDamage();
+            }
+
+            if (Time.time >= attackEndTime)
+                isAttacking = false;
+        }
+
+        if (dist > attackDistance + 0.5f)
+        {
+            isAttacking = false;
+            agent.isStopped = false;
             SetState(State.Chase);
             return;
         }
 
-        if (Time.time - lastAttackTime > attackCooldown)
+        if (!isAttacking && Time.time - lastAttackTime > attackCooldown)
         {
             lastAttackTime = Time.time;
+            attackEndTime = Time.time + attackDuration;
+            hitTime = Time.time + attackHitDelay;
+            isAttacking = true;
+            damageDealt = false;
 
-            if (HasParam("Attack"))
-                animator.SetTrigger("Attack");
+            if (animator != null)
+            {
+                if (HasParam("AttackIndex"))
+                    animator.SetInteger("AttackIndex", Random.Range(0, Mathf.Max(1, attackVariantCount)));
 
-            DealDamage();
+                if (HasParam("Attack"))
+                    animator.SetTrigger("Attack");
+                else if (HasParam("IsAttacking"))
+                    animator.SetBool("IsAttacking", true);
+            }
         }
     }
 
@@ -120,16 +173,32 @@ public abstract class EnemyBaseAI : MonoBehaviour
     {
         currentHealth -= dmg;
 
+        if (animator != null && HasParam("Hit"))
+            animator.SetTrigger("Hit");
+
         if (currentHealth <= 0)
             Die();
     }
 
     protected virtual void Die()
     {
-        if (HasParam("Die"))
-            animator.SetTrigger("Die");
+        if (animator != null)
+        {
+            if (HasParam("IsMoving")) animator.SetBool("IsMoving", false);
+            if (HasParam("IsRunning")) animator.SetBool("IsRunning", false);
+            if (HasParam("IsAttacking")) animator.SetBool("IsAttacking", false);
+            if (HasParam("Rage")) animator.SetBool("Rage", false);
 
-        agent.isStopped = true;
+            if (HasParam("DeathIndex"))
+                animator.SetInteger("DeathIndex", Random.Range(0, Mathf.Max(1, deathVariantCount)));
+
+            if (HasParam("IsDead"))
+                animator.SetBool("IsDead", true);
+            else if (HasParam("Die"))
+                animator.SetTrigger("Die");
+        }
+
+        if (agent != null) agent.isStopped = true;
         Destroy(gameObject, 2f);
     }
 
@@ -144,18 +213,37 @@ public abstract class EnemyBaseAI : MonoBehaviour
 
     protected void SetState(State newState)
     {
+        State old = state;
         state = newState;
+
+        if (old != State.Chase && newState == State.Chase)
+        {
+            rageEndTime = Time.time + rageDuration;
+
+            if (animator != null && HasParam("Rage"))
+                animator.SetBool("Rage", true);
+        }
     }
 
     protected void UpdateAnimation()
     {
+        if (agent == null || animator == null) return;
+
         float speed = agent.velocity.magnitude;
+        bool moving = speed > 0.1f;
+        bool running = state == State.Chase;
 
         if (HasParam("Speed"))
             animator.SetFloat("Speed", speed);
 
         if (HasParam("IsMoving"))
-            animator.SetBool("IsMoving", speed > 0.1f);
+            animator.SetBool("IsMoving", moving);
+
+        if (HasParam("IsRunning"))
+            animator.SetBool("IsRunning", running);
+
+        if (HasParam("Rage") && Time.time >= rageEndTime)
+            animator.SetBool("Rage", false);
     }
 
     protected bool HasParam(string name)
