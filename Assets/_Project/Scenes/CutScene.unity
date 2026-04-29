@@ -1548,24 +1548,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abd84a088c578417c8ebb0df3f563fee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyZoneManager
-  zoneTemplate: {fileID: 8825789978555564337}
-  targetActiveZones: 4
-  replaceDelay: 5
-  anchorPoints: []
-  randomAreaRadius: 200
-  groundMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  randomPlacementAttempts: 20
-  requireNavMesh: 1
-  navMeshAreaMask: 1
-  navMeshSampleDistance: 7
-  minDistanceBetweenZones: 40
-  minDistanceFromPlayer: 50
-  playerTag: Player
-  spawnFirstNearPlayer: 1
-  firstZoneMinDistance: 15
-  firstZoneMaxDistance: 40
 --- !u!4 &251851862 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: f282d9fb9b399dd4384b20aba08642fb, type: 3}
@@ -5518,7 +5500,8 @@ MonoBehaviour:
   damage: 15
   attackRadius: 2.8
   attackAngle: 90
-  movingThreshold: 0.15
+  maxHealth: 80
+  attackVariantCount: 2
 --- !u!4 &595856147 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: c4c62d0272d104934919876103bb6cbd, type: 3}
@@ -6795,6 +6778,63 @@ MonoBehaviour:
     speed: 1
     roamRadius: 5
     swimRadius: 0
+--- !u!1001 &763287162
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 100000, guid: 90b3274db1c25b644a76c8cc1b09d18d, type: 3}
+      propertyPath: m_Name
+      value: Heli2
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 90b3274db1c25b644a76c8cc1b09d18d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 40.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 90b3274db1c25b644a76c8cc1b09d18d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 319.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 90b3274db1c25b644a76c8cc1b09d18d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 138
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 90b3274db1c25b644a76c8cc1b09d18d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 90b3274db1c25b644a76c8cc1b09d18d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 90b3274db1c25b644a76c8cc1b09d18d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 90b3274db1c25b644a76c8cc1b09d18d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 90b3274db1c25b644a76c8cc1b09d18d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 90b3274db1c25b644a76c8cc1b09d18d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 90b3274db1c25b644a76c8cc1b09d18d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 90b3274db1c25b644a76c8cc1b09d18d, type: 3}
 --- !u!1001 &767353274
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13492,62 +13532,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DayNightCycle
   sun: {fileID: 410087040}
+  moon: {fileID: 0}
+  dayLength: 1200
+  nightLength: 600
   timeOfDay: 14.8
-  dayDuration: 60
-  lightColor:
-    serializedVersion: 2
-    key0: {r: 1, g: 1, b: 1, a: 1}
-    key1: {r: 1, g: 1, b: 1, a: 1}
-    key2: {r: 0, g: 0, b: 0, a: 0}
-    key3: {r: 0, g: 0, b: 0, a: 0}
-    key4: {r: 0, g: 0, b: 0, a: 0}
-    key5: {r: 0, g: 0, b: 0, a: 0}
-    key6: {r: 0, g: 0, b: 0, a: 0}
-    key7: {r: 0, g: 0, b: 0, a: 0}
-    ctime0: 0
-    ctime1: 65535
-    ctime2: 0
-    ctime3: 0
-    ctime4: 0
-    ctime5: 0
-    ctime6: 0
-    ctime7: 0
-    atime0: 0
-    atime1: 65535
-    atime2: 0
-    atime3: 0
-    atime4: 0
-    atime5: 0
-    atime6: 0
-    atime7: 0
-    m_Mode: 0
-    m_ColorSpace: -1
-    m_NumColorKeys: 2
-    m_NumAlphaKeys: 2
-  intensityCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    - serializedVersion: 3
-      time: 1
-      value: 1
-      inSlope: 2
-      outSlope: 2
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  sunIntensity: 1.2
+  moonIntensity: 0.3
+  minNightIntensity: 0.05
+  dayAmbient: {r: 0.6, g: 0.6, b: 0.6, a: 1}
+  nightAmbient: {r: 0.02, g: 0.02, b: 0.08, a: 1}
 --- !u!1 &1633748901
 GameObject:
   m_ObjectHideFlags: 0
@@ -18248,28 +18241,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 589ac2198be0e427590081fd67bfa176, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawnZone
-  enemyPrefabs:
-  - {fileID: 595856139}
-  autoConfigureTrigger: 1
-  triggerRadius: 40
-  spawnCount: 5
-  spawnRadius: 15
-  spawnHeightOffset: 0
-  spawnOnGround: 1
-  groundMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  requireNavMesh: 1
-  navMeshAreaMask: -1
-  navMeshSampleDistance: 3
-  spawnAttempts: 15
-  overrideEnemyPatrol: 1
-  patrolRadius: 0
-  playerTag: Player
-  despawnOnExit: 1
-  despawnDelay: 2
-  repositionOnReentry: 1
-  respawnAllDeadCooldown: -1
 --- !u!65 &8825789978555564338
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18366,3 +18337,4 @@ SceneRoots:
   - {fileID: 158770724}
   - {fileID: 647780126}
   - {fileID: 1814677427}
+  - {fileID: 763287162}
