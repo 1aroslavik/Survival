@@ -203,7 +203,6 @@ public class EnemySpawner : MonoBehaviour
         EnemyBaseAI baseAI = obj.GetComponent<EnemyBaseAI>();
         if (baseAI != null)
         {
-            baseAI.maxHealth = type.maxHealth;
             baseAI.damage = type.damage;
             baseAI.walkSpeed = type.walkSpeed;
             baseAI.runSpeed = type.runSpeed;
@@ -214,7 +213,6 @@ public class EnemySpawner : MonoBehaviour
         EnemyAI ai = obj.GetComponent<EnemyAI>();
         if (ai != null)
         {
-            ai.maxHealth = type.maxHealth;
             ai.damage = type.damage;
             ai.patrolSpeed = type.walkSpeed;
             ai.chaseSpeed = type.runSpeed;

@@ -6623,7 +6623,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb833cff037a868499df23bdac545700, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBaseAI
-  maxHealth: 50
+  maxHealth: 40
   damage: 10
   patrolRadius: 15
   walkSpeed: 2

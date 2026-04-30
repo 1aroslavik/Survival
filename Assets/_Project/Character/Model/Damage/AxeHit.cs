@@ -50,6 +50,14 @@ public class AxeHit : MonoBehaviour
             return;
         }
 
+        // 👹 ВРАГ
+        EnemyBaseAI enemy = other.GetComponentInParent<EnemyBaseAI>();
+        if (enemy != null)
+        {
+            enemy.TakeDamage(animalDamage);
+            return;
+        }
+
         // 🌲 ГОТОВОЕ ДЕРЕВО
         TreeHealth tree = other.GetComponentInParent<TreeHealth>();
         if (tree != null)

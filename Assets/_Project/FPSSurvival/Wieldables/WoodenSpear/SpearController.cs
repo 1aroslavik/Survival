@@ -66,6 +66,14 @@ public class SpearController : MonoBehaviour
             if (animal != null)
             {
                 animal.TakeDamage(stabDamage);
+                return;
+            }
+
+            EnemyBaseAI enemy = hit.collider.GetComponentInParent<EnemyBaseAI>();
+
+            if (enemy != null)
+            {
+                enemy.TakeDamage(stabDamage);
             }
         }
     }
