@@ -2004,6 +2004,22 @@ MonoBehaviour:
   VirtualCamera:
     exposedName: 8d5215cbf0c75400ab6ed7dc09731f8a
     defaultValue: {fileID: 0}
+--- !u!114 &-4691596044046512912
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
+  m_Name: Signal Emitter
+  m_EditorClassIdentifier: Unity.Timeline::UnityEngine.Timeline.SignalEmitter
+  m_Time: 69.93333333333334
+  m_Retroactive: 0
+  m_EmitOnce: 0
+  m_Asset: {fileID: 11400000, guid: eac8be570ee25484480c48a8cf512f00, type: 2}
 --- !u!74 &-3968357959420396896
 AnimationClip:
   m_ObjectHideFlags: 0
@@ -2626,10 +2642,10 @@ MonoBehaviour:
     m_PreExtrapolationTime: 0
     m_DisplayName: ExtCamera
   - m_Version: 1
-    m_Start: 17.685015871624152
+    m_Start: 17.016666666666666
     m_ClipIn: 0
     m_Asset: {fileID: 6762280630455506773}
-    m_Duration: 13.850000000000001
+    m_Duration: 12.751682538290819
     m_TimeScale: 1
     m_ParentTrack: {fileID: -2319703007357243227}
     m_EaseInDuration: 0
@@ -2638,7 +2654,25 @@ MonoBehaviour:
     m_BlendOutDuration: -1
     m_MixInCurve:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -2662,7 +2696,7 @@ MonoBehaviour:
     m_Start: 8.916666666666668
     m_ClipIn: 0
     m_Asset: {fileID: -53451898991466003}
-    m_Duration: 8.768349204957484
+    m_Duration: 8.099999999999998
     m_TimeScale: 1
     m_ParentTrack: {fileID: -2319703007357243227}
     m_EaseInDuration: 0
@@ -2677,7 +2711,25 @@ MonoBehaviour:
       m_RotationOrder: 4
     m_MixOutCurve:
       serializedVersion: 2
-      m_Curve: []
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -2725,10 +2777,10 @@ MonoBehaviour:
     m_PreExtrapolationTime: 0
     m_DisplayName: ForestCamera
   - m_Version: 1
-    m_Start: 65.85
+    m_Start: 38.95
     m_ClipIn: 0
     m_Asset: {fileID: 2821966507213108909}
-    m_Duration: 29.04999999999999
+    m_Duration: 23.733333333333327
     m_TimeScale: 1
     m_ParentTrack: {fileID: -2319703007357243227}
     m_EaseInDuration: 0
@@ -2809,10 +2861,10 @@ MonoBehaviour:
     m_PreExtrapolationTime: 0
     m_DisplayName: HelicCamera (1)
   - m_Version: 1
-    m_Start: 44.11666666666667
+    m_Start: 36.95
     m_ClipIn: 0
     m_Asset: {fileID: -5039725676017502882}
-    m_Duration: 1.4833333333333334
+    m_Duration: 2
     m_TimeScale: 1
     m_ParentTrack: {fileID: -2319703007357243227}
     m_EaseInDuration: 0
@@ -2842,7 +2894,10 @@ MonoBehaviour:
     m_PreExtrapolationTime: 0
     m_DisplayName: HelicCamera (2)
   m_Markers:
-    m_Objects: []
+    m_Objects:
+    - {fileID: 3987339221391310644}
+    - {fileID: 3216849463201956642}
+    - {fileID: -4691596044046512912}
   TrackPriority: 0
 --- !u!114 &-2244105295714870413
 MonoBehaviour:
@@ -3125,6 +3180,7 @@ MonoBehaviour:
   - {fileID: -6920854196532089990}
   - {fileID: -2244105295714870413}
   - {fileID: 4474641772562792445}
+  - {fileID: 3199983741437170019}
   m_FixedDuration: 0
   m_EditorSettings:
     m_Framerate: 60
@@ -3380,6 +3436,45 @@ MonoBehaviour:
   VirtualCamera:
     exposedName: 41ab670c115ca48679ca07e2afb9ffa1
     defaultValue: {fileID: 0}
+--- !u!114 &3199983741437170019
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b46e36075dd1c124a8422c228e75e1fb, type: 3}
+  m_Name: Signal Track
+  m_EditorClassIdentifier: Unity.Timeline::UnityEngine.Timeline.SignalTrack
+  m_Version: 3
+  m_AnimClip: {fileID: 0}
+  m_Locked: 0
+  m_Muted: 0
+  m_CustomPlayableFullTypename: 
+  m_Curves: {fileID: 0}
+  m_Parent: {fileID: 11400000}
+  m_Children: []
+  m_Clips: []
+  m_Markers:
+    m_Objects: []
+--- !u!114 &3216849463201956642
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
+  m_Name: Signal Emitter
+  m_EditorClassIdentifier: Unity.Timeline::UnityEngine.Timeline.SignalEmitter
+  m_Time: 65.58333333333333
+  m_Retroactive: 0
+  m_EmitOnce: 0
+  m_Asset: {fileID: 11400000, guid: e09ec725420254e07864a685f967357b, type: 2}
 --- !u!74 &3276462017565989492
 AnimationClip:
   m_ObjectHideFlags: 0
@@ -3699,6 +3794,22 @@ AnimationClip:
   m_HasGenericRootTransform: 1
   m_HasMotionFloatCurves: 0
   m_Events: []
+--- !u!114 &3987339221391310644
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15c38f6fa1940124db1ab7f6fe7268d1, type: 3}
+  m_Name: Signal Emitter
+  m_EditorClassIdentifier: Unity.Timeline::UnityEngine.Timeline.SignalEmitter
+  m_Time: 31.733333333333334
+  m_Retroactive: 0
+  m_EmitOnce: 0
+  m_Asset: {fileID: 11400000, guid: d64422ade44624f99b368789d42ce46a, type: 2}
 --- !u!114 &4457357355436083532
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -165,6 +165,9 @@ public class EnemyBaseAI : MonoBehaviour
     protected virtual void DealDamage()
     {
         PlayerStats stats = player.GetComponent<PlayerStats>();
+        if (stats == null) stats = player.GetComponentInParent<PlayerStats>();
+        if (stats == null) stats = player.GetComponentInChildren<PlayerStats>();
+
         if (stats != null)
             stats.TakeDamage(damage);
     }
