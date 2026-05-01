@@ -130,8 +130,19 @@ MonoBehaviour:
   animator: {fileID: 8013324702712918208}
   spearPrefab: {fileID: 681920341298687110, guid: 037e269825d8707438c1822285749710, type: 3}
   spearSpawn: {fileID: 8483287869835516082}
+  spearVisual: {fileID: 3703503923392881594}
   throwForce: 25
   throwDelay: 0.6
+  stabDistance: 2.5
+  stabDamage: 30
+  cam: {fileID: 0}
+  inventory: {fileID: 0}
+  spearType: 20
+--- !u!1 &3703503923392881594 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 953325818498084587, guid: 9df814ff3d679eb4f903419c17808bc4, type: 3}
+  m_PrefabInstance: {fileID: 4494480233584414033}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &6340137220154608458 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7611972602405062171, guid: 9df814ff3d679eb4f903419c17808bc4, type: 3}

@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Linq;
 using UnityEngine;
 
 public class TreeHealth : MonoBehaviour
@@ -8,13 +7,16 @@ public class TreeHealth : MonoBehaviour
     public int maxHealth = 5;
     int currentHealth;
 
-    [Header("Segments")]
-    public GameObject[] choppingSegments;
-    int choppedCount = 0;
-
     [Header("Logs")]
     public GameObject logPrefab;
     public int logsCount = 4;
+
+    [Header("References")]
+    public Transform fallingTree; // перетащи сюда FallingTree
+
+    [Header("Fall Settings")]
+    public float pushForce = 8f;     // сила толчка
+    public float breakDelay = 2.2f;  // через сколько ломать на бревна
 
     bool fallen = false;
 
@@ -22,20 +24,21 @@ public class TreeHealth : MonoBehaviour
     {
         currentHealth = maxHealth;
 
-        // авто-сбор сегментов
-        if (choppingSegments == null || choppingSegments.Length == 0)
+        // fallback-поиск
+        if (fallingTree == null)
         {
-            Transform segRoot = transform.Find("_ChoppingSegments");
-
-            if (segRoot != null)
+            foreach (Transform t in GetComponentsInChildren<Transform>(true))
             {
-                choppingSegments = segRoot
-                    .GetComponentsInChildren<Transform>(true)
-                    .Where(t => t != segRoot)
-                    .Select(t => t.gameObject)
-                    .ToArray();
+                if (t.name.Contains("FallingTree"))
+                {
+                    fallingTree = t;
+                    break;
+                }
             }
         }
+
+        if (fallingTree == null)
+            Debug.LogError("[Tree] FallingTree not assigned!");
     }
 
     public void Hit(Vector3 hitterPosition)
@@ -43,8 +46,6 @@ public class TreeHealth : MonoBehaviour
         if (fallen) return;
 
         currentHealth--;
-
-        MakeHole(hitterPosition);
 
         if (currentHealth <= 0)
             Fall(hitterPosition);
@@ -55,65 +56,71 @@ public class TreeHealth : MonoBehaviour
         if (fallen) return;
         fallen = true;
 
-        // отключаем collider root
+        if (fallingTree == null) return;
+
+        // отключаем root collider
         Collider rootCol = GetComponent<Collider>();
         if (rootCol != null)
             rootCol.enabled = false;
 
-        Transform falling = transform.Find("FallingTree");
-        Transform segments = transform.Find("_ChoppingSegments");
-
-        if (falling == null) return;
-
-        if (segments != null)
-            segments.gameObject.SetActive(false);
-
         // отделяем падающую часть
-        falling.SetParent(null);
+        fallingTree.SetParent(null);
 
-        // находим нижнюю точку
-        Collider col = falling.GetComponent<Collider>();
+        // Rigidbody
+        Rigidbody rb = fallingTree.gameObject.AddComponent<Rigidbody>();
+        rb.mass = 200f;
+        rb.interpolation = RigidbodyInterpolation.Interpolate;
+        rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
+
+        // ищем collider для низа
+        Collider col = fallingTree.GetComponentInChildren<Collider>();
+        if (col == null)
+        {
+            Debug.LogError("[Tree] No collider on FallingTree!");
+            return;
+        }
+
+        // 🔥 ТОЧКА ОПОРЫ (низ ствола)
         Vector3 pivot = col.bounds.center;
         pivot.y = col.bounds.min.y;
 
-        // направление падения
-        Vector3 dir = (falling.position - hitterPosition).normalized;
+        // создаём якорь (невидимый)
+        GameObject anchor = new GameObject("TreePivot");
+        anchor.transform.position = pivot;
+
+        Rigidbody anchorRb = anchor.AddComponent<Rigidbody>();
+        anchorRb.isKinematic = true;
+
+        // 🔥 шарнир — как в The Forest
+        HingeJoint joint = fallingTree.gameObject.AddComponent<HingeJoint>();
+        joint.connectedBody = anchorRb;
+
+        // локальная точка шарнира
+        joint.anchor = fallingTree.InverseTransformPoint(pivot);
+
+        // ось вращения (перпендикуляр к направлению удара)
+        Vector3 dir = (fallingTree.position - hitterPosition).normalized;
         dir.y = 0;
+
         if (dir == Vector3.zero)
-            dir = falling.forward;
-
-        // запускаем падение
-        StartCoroutine(FallRoutine(falling, pivot, dir));
-    }
-
-    IEnumerator FallRoutine(Transform tree, Vector3 pivot, Vector3 dir)
-    {
-        float speed = 120f;
-        float angle = 0f;
+            dir = fallingTree.forward;
 
         Vector3 axis = Vector3.Cross(Vector3.up, dir).normalized;
+        joint.axis = axis;
 
-        while (angle < 90f)
-        {
-            float step = speed * Time.deltaTime;
-            tree.RotateAround(pivot, axis, step);
-            angle += step;
-            yield return null;
-        }
+        // 🔥 толчок
+        rb.AddForce(dir * pushForce, ForceMode.Impulse);
 
-        // включаем физику после падения
-        Rigidbody rb = tree.gameObject.AddComponent<Rigidbody>();
-        rb.mass = 200;
-
-        // 🔥 ЗАПУСК ЛОМАНИЯ
-        StartCoroutine(BreakAfterFall(tree.gameObject));
+        StartCoroutine(BreakAfterFall(fallingTree.gameObject, anchor));
     }
 
-    IEnumerator BreakAfterFall(GameObject fallingObj)
+    IEnumerator BreakAfterFall(GameObject fallingObj, GameObject anchor)
     {
-        yield return new WaitForSeconds(1.2f); // даём упасть
+        yield return new WaitForSeconds(breakDelay);
 
         BreakIntoLogs(fallingObj);
+
+        Destroy(anchor);
     }
 
     void BreakIntoLogs(GameObject fallingObj)
@@ -132,37 +139,5 @@ public class TreeHealth : MonoBehaviour
         }
 
         Destroy(fallingObj);
-    }
-
-    void MakeHole(Vector3 hitPoint)
-    {
-        if (choppedCount >= choppingSegments.Length)
-            return;
-
-        int index = -1;
-        float minDist = Mathf.Infinity;
-
-        for (int i = 0; i < choppingSegments.Length; i++)
-        {
-            if (!choppingSegments[i].activeSelf)
-                continue;
-
-            float dist = Vector3.Distance(
-                choppingSegments[i].transform.position,
-                hitPoint
-            );
-
-            if (dist < minDist)
-            {
-                minDist = dist;
-                index = i;
-            }
-        }
-
-        if (index != -1)
-        {
-            choppingSegments[index].SetActive(false);
-            choppedCount++;
-        }
     }
 }

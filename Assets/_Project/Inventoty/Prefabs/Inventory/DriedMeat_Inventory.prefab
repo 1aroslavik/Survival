@@ -100,6 +100,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5094682385932839114}
   - component: {fileID: -9015764068201585942}
+  - component: {fileID: -6493009333704339366}
   m_Layer: 3
   m_Name: DriedMeat_Inventory
   m_TagString: Untagged
@@ -117,7 +118,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1746447441929321031}
@@ -137,3 +138,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::InventoryItemsView
   slotIndex: 0
   model: {fileID: 0}
+--- !u!65 &-6493009333704339366
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1425171790764893731}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.25446665, y: 0.10518219, z: 0.3107493}
+  m_Center: {x: 0.018306017, y: 0.032102123, z: 0.0023618839}

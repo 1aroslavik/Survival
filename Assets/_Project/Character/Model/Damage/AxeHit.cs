@@ -2,95 +2,136 @@
 
 public class AxeHit : MonoBehaviour
 {
+    [Header("Damage")]
     public float animalDamage = 25f;
-    public TreeReplacer terrainChopper;
-    public GameObject woodChipsEffect;
 
-    bool isSwinging = false;
+    [Header("References")]
+    public TreeReplacer terrainChopper;
+    public Camera playerCamera;
+
+    [Header("Hit Settings")]
+    public float hitDistance = 4f;
+    public float sphereRadius = 0.5f; // 🔥 для стабильного попадания
+
     bool hasHit = false;
 
     void Start()
     {
         if (terrainChopper == null)
             terrainChopper = FindObjectOfType<TreeReplacer>();
+
+        if (playerCamera == null)
+            playerCamera = Camera.main;
     }
 
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
         {
-            isSwinging = true;
             hasHit = false;
-
-            // через 0.3 сек выключаем удар
-            Invoke(nameof(StopSwing), 0.3f);
+            Invoke(nameof(DoHit), 0.1f);
         }
     }
 
-    void StopSwing()
+    void DoHit()
     {
-        isSwinging = false;
-    }
-
-    void OnTriggerStay(Collider other)
-    {
-        if (!isSwinging || hasHit) return;
-
+        if (hasHit) return;
         hasHit = true;
 
-        Vector3 hitPoint = other.ClosestPoint(transform.position);
+        Ray ray = new Ray(playerCamera.transform.position, playerCamera.transform.forward);
 
-        SpawnWoodEffect(hitPoint, other);
+        Debug.DrawRay(ray.origin, ray.direction * hitDistance, Color.red, 2f);
 
-        // 🐇 ЖИВОТНОЕ
-        AnimalHealth animal = other.GetComponentInParent<AnimalHealth>();
+        RaycastHit hit;
+
+        bool hasRayHit = Physics.Raycast(ray, out hit, hitDistance);
+
+        if (!hasRayHit)
+        {
+            if (!Physics.SphereCast(ray, sphereRadius, out hit, hitDistance))
+            {
+                Debug.Log("[AxeHit] Nothing hit");
+                return;
+            }
+            else
+            {
+                Debug.Log("[AxeHit] SphereCast hit");
+            }
+        }
+
+        Debug.Log($"[AxeHit] Hit: {hit.collider.name}");
+
+        Vector3 hitPoint = hit.point;
+
+        // ❌ Игнор игрока
+        if (hit.collider.GetComponentInParent<FirstPersonController>() != null)
+        {
+            Debug.Log("[AxeHit] Hit player → ignored");
+            return;
+        }
+
+        // 🐇 Животное
+        AnimalHealth animal = hit.collider.GetComponentInParent<AnimalHealth>();
         if (animal != null)
         {
             animal.TakeDamage(animalDamage);
             return;
         }
 
-        // 👹 ВРАГ
-        EnemyBaseAI enemy = other.GetComponentInParent<EnemyBaseAI>();
+        // 👹 Враг
+        EnemyBaseAI enemy = hit.collider.GetComponentInParent<EnemyBaseAI>();
         if (enemy != null)
         {
             enemy.TakeDamage(animalDamage);
             return;
         }
 
-        // 🌲 ГОТОВОЕ ДЕРЕВО
-        TreeHealth tree = other.GetComponentInParent<TreeHealth>();
+        // 🌲 Дерево (prefab)
+        TreeHealth tree = hit.collider.GetComponentInParent<TreeHealth>();
+
+        if (tree == null && hit.rigidbody != null)
+            tree = hit.rigidbody.GetComponentInParent<TreeHealth>();
+
         if (tree != null)
         {
-            tree.Hit(transform.position);
+            tree.Hit(hitPoint);
             return;
         }
 
-        // 🌳 TERRAIN ДЕРЕВО
+        // 🌳 Terrain дерево
         if (terrainChopper != null)
         {
-            GameObject obj = terrainChopper.TryChopAndSpawn(hitPoint);
+            GameObject obj = terrainChopper.TryChopClosestTree(hitPoint);
 
             if (obj != null)
             {
-                TreeHealth h = obj.GetComponentInChildren<TreeHealth>();
+                Debug.Log("[AxeHit] Terrain tree replaced");
+
+                TreeHealth h = obj.GetComponent<TreeHealth>();
+
+                if (h == null)
+                    h = obj.GetComponentInChildren<TreeHealth>();
 
                 if (h != null)
-                    h.Hit(transform.position);
+                {
+                    h.Hit(hitPoint);
+                    return;
+                }
             }
         }
-    }
 
-    void SpawnWoodEffect(Vector3 point, Collider col)
-    {
-        if (woodChipsEffect == null) return;
+        // 🔥 Fallback
+        Collider[] cols = Physics.OverlapSphere(hitPoint, 1.5f);
 
-        Vector3 normal = (point - col.bounds.center).normalized;
-
-        Quaternion rot = Quaternion.LookRotation(normal) *
-                         Quaternion.Euler(0, Random.Range(0, 360), 0);
-
-        GameObject fx = Instantiate(woodChipsEffect, point, rot);
-        Destroy(fx, 2f);
+        foreach (var c in cols)
+        {
+            TreeHealth t = c.GetComponentInParent<TreeHealth>();
+            if (t != null)
+            {
+                Debug.Log("[AxeHit] Fallback hit");
+                t.Hit(hitPoint);
+                return;
+            }
+        }
     }
 }

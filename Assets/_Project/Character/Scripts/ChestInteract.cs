@@ -1,5 +1,4 @@
-using TMPro;
-using UnityEngine;
+п»їusing UnityEngine;
 
 public class ChestInteract : MonoBehaviour
 {
@@ -9,12 +8,16 @@ public class ChestInteract : MonoBehaviour
     public float speed = 4f;
 
     [Header("Loot")]
-    public GameObject[] possibleItems;     // префабы предметов
-    public Transform[] spawnPoints;        // точки спавна
+    public GameObject[] possibleItems;
+    public Transform[] spawnPoints;
 
     [Header("UI")]
     public GameObject openHint;
-    private bool playerInside;
+
+    [Header("Player")]
+    public Camera playerCamera;
+    public float interactDistance = 3f;
+
     private bool isOpen;
     private bool spawned;
 
@@ -23,6 +26,9 @@ public class ChestInteract : MonoBehaviour
 
     void Start()
     {
+        if (playerCamera == null)
+            playerCamera = Camera.main;
+
         closedRot = lid.localRotation;
         openRot = Quaternion.Euler(openAngle, 0f, 0f);
 
@@ -32,30 +38,50 @@ public class ChestInteract : MonoBehaviour
 
     void Update()
     {
-        if (playerInside && Input.GetKeyDown(KeyCode.E))
+        bool isLooking = CheckRaycast();
+
+        // РҐРРќРў
+        if (openHint != null)
+            openHint.SetActive(isLooking && !isOpen);
+
+        // РћРўРљР Р«РўРР•
+        if (isLooking && Input.GetKeyDown(KeyCode.E))
         {
-            if (!isOpen)
-            {
-                isOpen = true;
-
-                // скрываем подсказку
-                if (openHint != null)
-                    openHint.SetActive(false);
-
-                if (!spawned)
-                {
-                    SpawnLoot();
-                    spawned = true;
-                }
-            }
+            OpenChest();
         }
 
+        // РђРќРРњРђР¦РРЇ
         Quaternion target = isOpen ? openRot : closedRot;
 
         lid.localRotation = Quaternion.Lerp(
             lid.localRotation,
             target,
             Time.deltaTime * speed);
+    }
+
+    bool CheckRaycast()
+    {
+        Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
+
+        if (Physics.Raycast(ray, out RaycastHit hit, interactDistance))
+        {
+            return hit.collider.GetComponentInParent<ChestInteract>() != null;
+        }
+
+        return false;
+    }
+
+    public void OpenChest()
+    {
+        if (isOpen) return;
+
+        isOpen = true;
+
+        if (!spawned)
+        {
+            SpawnLoot();
+            spawned = true;
+        }
     }
 
     void SpawnLoot()
@@ -71,7 +97,6 @@ public class ChestInteract : MonoBehaviour
                 point.position,
                 point.rotation);
 
-            // выставляем слой всем детям
             SetLayerRecursively(item, LayerMask.NameToLayer("PostProcessing"));
         }
     }
@@ -82,27 +107,5 @@ public class ChestInteract : MonoBehaviour
 
         foreach (Transform child in obj.transform)
             SetLayerRecursively(child.gameObject, layer);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            playerInside = true;
-
-            if (!isOpen && openHint != null)
-                openHint.SetActive(true);
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("Player"))
-        {
-            playerInside = false;
-
-            if (openHint != null)
-                openHint.SetActive(false);
-        }
     }
 }

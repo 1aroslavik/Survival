@@ -8218,7 +8218,6 @@ GameObject:
   - component: {fileID: 9076324096229914240}
   - component: {fileID: 4720379660340435200}
   - component: {fileID: 5337792656061380567}
-  - component: {fileID: 1227865775252534069}
   m_Layer: 0
   m_Name: FireTab
   m_TagString: Untagged
@@ -8342,18 +8341,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1227865775252534069
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5804114236226124282}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0f7dcbd74eedab4ea78b94f22b4f1be, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Debugger
 --- !u!1 &5873770608289734411
 GameObject:
   m_ObjectHideFlags: 0

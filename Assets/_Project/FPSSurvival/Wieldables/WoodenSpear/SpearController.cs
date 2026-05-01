@@ -8,6 +8,8 @@ public class SpearController : MonoBehaviour
     public GameObject spearPrefab;
     public Transform spearSpawn;
 
+    public GameObject spearVisual;
+
     public float throwForce = 30f;
     public float throwDelay = 0.25f;
 
@@ -19,15 +21,28 @@ public class SpearController : MonoBehaviour
     bool isAiming;
     bool isThrowing;
 
+    public InventoryModel inventory;
+    public ResourceType spearType;
+
+    void Awake()
+    {
+        AutoFindInventory();
+        AutoFindCamera();
+
+        if (spearVisual != null)
+            spearVisual.SetActive(false);
+        else
+            Debug.LogError("❌ spearVisual НЕ назначен!");
+    }
+
     void Start()
     {
-        if (cam == null)
-            cam = Camera.main;
+        ForceUpdateSpearVisual();
     }
 
     void Update()
     {
-        // ПКМ — прицеливание
+        // ПКМ — прицел
         if (Input.GetMouseButtonDown(1))
         {
             animator.SetBool("Aim", true);
@@ -40,23 +55,73 @@ public class SpearController : MonoBehaviour
             isAiming = false;
         }
 
-        // 🗡️ УДАР КОПЬЁМ
+        // 🗡️ УДАР
         if (Input.GetMouseButtonDown(0) && !isAiming)
         {
             animator.SetTrigger("Stab");
-            Invoke(nameof(DoStabHit), 0.15f); // момент попадания
+            Invoke(nameof(DoStabHit), 0.15f);
         }
 
         // 🏹 БРОСОК
         if (Input.GetMouseButtonDown(0) && isAiming && !isThrowing)
         {
+            if (!HasSpears())
+                return;
+
             animator.SetTrigger("Throw");
             StartCoroutine(ThrowRoutine());
         }
     }
 
+    void LateUpdate()
+    {
+        ForceUpdateSpearVisual();
+    }
+
+    // =========================
+    // 🔍 AUTO FIND
+    // =========================
+
+    void AutoFindInventory()
+    {
+        if (inventory != null) return;
+
+        inventory = FindObjectOfType<InventoryModel>();
+
+        if (inventory == null)
+        {
+            inventory = GetComponentInParent<InventoryModel>();
+        }
+
+        if (inventory == null)
+            Debug.LogError("❌ InventoryModel НЕ найден в сцене!");
+        else
+            Debug.Log("✅ Inventory найден: " + inventory.name);
+    }
+
+    void AutoFindCamera()
+    {
+        if (cam != null) return;
+
+        cam = Camera.main;
+
+        if (cam == null)
+        {
+            cam = FindObjectOfType<Camera>();
+        }
+
+        if (cam == null)
+            Debug.LogError("❌ Камера НЕ найдена!");
+        else
+            Debug.Log("✅ Камера: " + cam.name);
+    }
+
+    // =========================
+
     void DoStabHit()
     {
+        if (cam == null) return;
+
         Ray ray = new Ray(cam.transform.position, cam.transform.forward);
 
         if (Physics.Raycast(ray, out RaycastHit hit, stabDistance))
@@ -91,11 +156,28 @@ public class SpearController : MonoBehaviour
 
     void ThrowSpear()
     {
+        if (inventory == null)
+        {
+            Debug.LogError("❌ Inventory NULL");
+            return;
+        }
+
+        if (!inventory.TryRemoveOne(spearType))
+        {
+            Debug.Log("❌ Нет копья для удаления");
+            return;
+        }
+
         GameObject spear = Instantiate(spearPrefab, spearSpawn.position, spearSpawn.rotation);
 
         Rigidbody rb = spear.GetComponent<Rigidbody>();
-
         Collider spearCollider = spear.GetComponent<Collider>();
+
+        if (rb == null)
+        {
+            Debug.LogError("❌ У копья нет Rigidbody!");
+            return;
+        }
 
         foreach (Collider col in GetComponentsInParent<Collider>())
         {
@@ -103,5 +185,26 @@ public class SpearController : MonoBehaviour
         }
 
         rb.linearVelocity = spearSpawn.forward * throwForce;
+    }
+
+    bool HasSpears()
+    {
+        return inventory != null && inventory.HasItem(spearType);
+    }
+
+    void ForceUpdateSpearVisual()
+    {
+        if (spearVisual == null || inventory == null)
+            return;
+
+        bool hasSpear = inventory.HasItem(spearType);
+
+        spearVisual.SetActive(hasSpear);
+
+        // 💀 УДАЛЯЕМ РУКИ ЕСЛИ НЕТ КОПЬЯ
+        if (!hasSpear)
+        {
+            Destroy(gameObject);
+        }
     }
 }

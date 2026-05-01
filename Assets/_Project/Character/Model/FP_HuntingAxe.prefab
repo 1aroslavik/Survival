@@ -70,9 +70,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7b5a9b7e89c2c9c429151cdebea73cfb, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1333893123744722977}
-    - targetCorrespondingSourceObject: {fileID: 6495662628462921364, guid: 7b5a9b7e89c2c9c429151cdebea73cfb, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1686655704218779100}
   m_SourcePrefab: {fileID: 100100000, guid: 7b5a9b7e89c2c9c429151cdebea73cfb, type: 3}
 --- !u!1 &1666959609907928620 stripped
 GameObject:
@@ -107,32 +104,7 @@ MonoBehaviour:
   animalDamage: 25
   terrainChopper: {fileID: 0}
   woodChipsEffect: {fileID: 1400400831016474, guid: ed73b04b299849840aa8e5dd1dcd2987, type: 3}
---- !u!1 &4739591663597479401 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6495662628462921364, guid: 7b5a9b7e89c2c9c429151cdebea73cfb, type: 3}
-  m_PrefabInstance: {fileID: 2009541389044507517}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &1686655704218779100
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4739591663597479401}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.030778013, y: 0.17475386, z: 0.16983657}
-  m_Center: {x: 0.0042173723, y: 0.085851766, z: -0.3414372}
+  hitDistance: 4
 --- !u!95 &5371042382268718828 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 7b5a9b7e89c2c9c429151cdebea73cfb, type: 3}

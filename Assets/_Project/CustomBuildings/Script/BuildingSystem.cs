@@ -22,24 +22,20 @@ public class BuildingSystem : MonoBehaviour
     bool canPlace = true;
     float currentRotation = 0f;
 
-    // 🔥 ВЫЗЫВАЕТСЯ ИЗ UI (кнопок книги)
     public void SelectBuildingByUI(BuildingData building)
     {
         currentBuilding = building;
-
         currentRotation = 0f;
 
         if (previewObject != null)
             Destroy(previewObject);
 
-        // 🔥 ЗАКРЫВАЕМ КНИГУ
         if (bookController != null)
             bookController.CloseBookFromUI();
     }
 
     void Update()
     {
-        // ❗ не строим если курсор на UI
         if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
             return;
 
@@ -66,7 +62,6 @@ public class BuildingSystem : MonoBehaviour
 
         previewRenderers = previewObject.GetComponentsInChildren<Renderer>();
 
-        // удаляем физику
         foreach (Collider col in previewObject.GetComponentsInChildren<Collider>())
             Destroy(col);
 
@@ -82,18 +77,30 @@ public class BuildingSystem : MonoBehaviour
             Camera.main.transform.position,
             Camera.main.transform.forward);
 
-        if (!Physics.Raycast(ray, out RaycastHit hit, 100f))
+        if (!Physics.Raycast(ray, out RaycastHit hit, 100f, LayerMask.GetMask("Ground")))
             return;
 
-        previewObject.transform.position = hit.point;
+        // 🔥 ТОЧНАЯ ПОСАДКА НА ЗЕМЛЮ
+        Bounds bounds = GetBounds(previewObject);
 
-        // 🔥 SNAP SYSTEM
+        float bottom = bounds.min.y;
+        float offsetY = previewObject.transform.position.y - bottom;
+
+        Vector3 targetPos = new Vector3(
+            hit.point.x,
+            hit.point.y + offsetY,
+            hit.point.z
+        );
+
+        previewObject.transform.position = targetPos;
+
+        // ===== SNAP =====
         int snapMask = LayerMask.GetMask("SnapPoint");
 
-        Collider[] snapPoints =
-            Physics.OverlapSphere(previewObject.transform.position,
-                                  snapDistance,
-                                  snapMask);
+        Collider[] snapPoints = Physics.OverlapSphere(
+            previewObject.transform.position,
+            snapDistance,
+            snapMask);
 
         Transform closest = null;
         float minDist = float.MaxValue;
@@ -116,33 +123,27 @@ public class BuildingSystem : MonoBehaviour
             Transform previewSnapPoints =
                 previewObject.transform.Find("SnapPoints");
 
-            if (previewSnapPoints == null)
-                return;
-
-            Transform previewClosest = null;
-            float minPreviewDist = float.MaxValue;
-
-            foreach (Transform child in previewSnapPoints)
+            if (previewSnapPoints != null)
             {
-                float dist = Vector3.Distance(
-                    child.position,
-                    closest.position);
+                Transform previewClosest = null;
+                float minPreviewDist = float.MaxValue;
 
-                if (dist < minPreviewDist)
+                foreach (Transform child in previewSnapPoints)
                 {
-                    minPreviewDist = dist;
-                    previewClosest = child;
+                    float dist = Vector3.Distance(child.position, closest.position);
+
+                    if (dist < minPreviewDist)
+                    {
+                        minPreviewDist = dist;
+                        previewClosest = child;
+                    }
                 }
-            }
 
-            if (previewClosest != null)
-            {
-                Vector3 offset =
-                    previewObject.transform.position -
-                    previewClosest.position;
-
-                previewObject.transform.position =
-                    closest.position + offset;
+                if (previewClosest != null)
+                {
+                    Vector3 diff = closest.position - previewClosest.position;
+                    previewObject.transform.position += diff;
+                }
             }
         }
     }
@@ -164,19 +165,25 @@ public class BuildingSystem : MonoBehaviour
             Quaternion.Euler(0, currentRotation, 0);
     }
 
+    Bounds GetBounds(GameObject obj)
+    {
+        Renderer[] rends = obj.GetComponentsInChildren<Renderer>();
+
+        if (rends.Length == 0)
+            return new Bounds(obj.transform.position, Vector3.zero);
+
+        Bounds bounds = rends[0].bounds;
+
+        foreach (Renderer r in rends)
+            bounds.Encapsulate(r.bounds);
+
+        return bounds;
+    }
+
     void CheckPlacement()
     {
-        int mask = LayerMask.GetMask("Default", "Building");
-
-        Collider[] hits = Physics.OverlapBox(
-            previewObject.transform.position,
-            previewObject.transform.localScale / 2f,
-            previewObject.transform.rotation,
-            mask);
-
-        canPlace = hits.Length == 0;
-
-        SetPreviewMaterial(canPlace ? validMaterial : invalidMaterial);
+        canPlace = true;
+        SetPreviewMaterial(validMaterial);
     }
 
     void SetPreviewMaterial(Material mat)
@@ -192,21 +199,17 @@ public class BuildingSystem : MonoBehaviour
         if (!canPlace)
             return;
 
-        // создаём объект стройки
         GameObject obj = Instantiate(
             currentBuilding.constructionPrefab,
             previewObject.transform.position,
             previewObject.transform.rotation);
 
-        // получаем ConstructionSite
         ConstructionSite site = obj.GetComponent<ConstructionSite>();
 
         if (site != null)
         {
-            // 🔥 ОБЯЗАТЕЛЬНО передаём BuildingData
             site.data = currentBuilding;
 
-            // 🔥 копируем ресурсы
             if (currentBuilding.resources != null)
             {
                 site.resources = new List<ResourceRequirement>();
@@ -230,7 +233,6 @@ public class BuildingSystem : MonoBehaviour
             Debug.LogError("ConstructionSite not found on prefab!");
         }
 
-        // удаляем превью
         Destroy(previewObject);
     }
 
