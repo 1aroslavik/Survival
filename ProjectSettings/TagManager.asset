@@ -8,6 +8,7 @@ TagManager:
   - Ground
   - Log
   - Water
+  - SoundZone
   layers:
   - Default
   - TransparentFX

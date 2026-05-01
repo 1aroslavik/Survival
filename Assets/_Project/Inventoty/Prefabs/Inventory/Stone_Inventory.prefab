@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8434090007105966646}
   - component: {fileID: 5561276897921700210}
   - component: {fileID: 6297210611382322987}
+  - component: {fileID: -574891323843990593}
   m_Layer: 3
   m_Name: Stone_Inventory
   m_TagString: Untagged
@@ -103,7 +104,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efd2de0cb985a8a49a6d0ef029176f71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventoryItemsView
-  data: {fileID: 11400000, guid: e2dd980d5de47f44b8a177c4e3799191, type: 2}
-  slot:
-    data: {fileID: 0}
-    amount: 0
+  slotIndex: 0
+  model: {fileID: 0}
+--- !u!135 &-574891323843990593
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 458521985419375119}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.13079074
+  m_Center: {x: 0.0050365776, y: 0.05444164, z: -0.0029629841}

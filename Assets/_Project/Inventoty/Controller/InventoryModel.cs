@@ -5,9 +5,15 @@ public class InventoryModel : MonoBehaviour
 {
     public int SlotCount = 20;
     public List<InventorySlotData> slots = new();
-
+    public static InventoryModel Instance;
+    public System.Action OnInventoryChanged;
     void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
         if (slots.Count == 0)
         {
             for (int i = 0; i < SlotCount; i++)
@@ -20,7 +26,6 @@ public class InventoryModel : MonoBehaviour
     {
         int remaining = amount;
 
-        // ✅ СТАК ПО ТИПУ
         if (data.isStackable)
         {
             foreach (var slot in slots)
@@ -28,7 +33,6 @@ public class InventoryModel : MonoBehaviour
                 if (slot.isEmpty)
                     continue;
 
-                // 🔥 сравнение по типу
                 if (slot.data.resourceType != data.resourceType)
                     continue;
 
@@ -42,11 +46,13 @@ public class InventoryModel : MonoBehaviour
                 remaining -= toAdd;
 
                 if (remaining <= 0)
+                {
+                    OnInventoryChanged?.Invoke(); // ✅ В КОНЦЕ
                     return true;
+                }
             }
         }
 
-        // ✅ НОВЫЙ СЛОТ
         foreach (var slot in slots)
         {
             if (!slot.isEmpty)
@@ -60,7 +66,10 @@ public class InventoryModel : MonoBehaviour
             remaining -= toAdd;
 
             if (remaining <= 0)
+            {
+                OnInventoryChanged?.Invoke(); // ✅ В КОНЦЕ
                 return true;
+            }
         }
 
         Debug.Log("🚫 INVENTORY FULL");
@@ -97,6 +106,8 @@ public class InventoryModel : MonoBehaviour
 
             if (slot.amount <= 0)
                 slot.Clear();
+
+            OnInventoryChanged?.Invoke(); // ✅ ВАЖНО
 
             return true;
         }

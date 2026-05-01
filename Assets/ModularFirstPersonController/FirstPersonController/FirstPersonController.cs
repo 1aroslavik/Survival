@@ -60,7 +60,7 @@ public class FirstPersonController : MonoBehaviour
     public bool useSprintBar = true;
     public Image sprintBar;
 
-    bool isSprinting;
+    public bool isSprinting;
     #endregion
 
     #region Jump
@@ -253,4 +253,5 @@ public class FirstPersonController : MonoBehaviour
         Vector3 origin = transform.position + Vector3.down * 0.5f;
         isGrounded = Physics.Raycast(origin, Vector3.down, 0.7f);
     }
+
 }
