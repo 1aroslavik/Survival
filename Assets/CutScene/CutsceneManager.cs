@@ -14,7 +14,8 @@ public class CutsceneManager : MonoBehaviour
     public CanvasGroup blackOverlay;
 
     [Header("Настройки")]
-    public float fadeDuration = 0.8f;
+    public float fadeDuration = 0.8f;      // скорость появления/исчезновения документов
+    public float crashFadeDuration = 0.3f; // скорость затухания при краше
     public float readDuration = 4f;
     public float timeBetweenDocs = 1f;
 
@@ -64,18 +65,23 @@ public class CutsceneManager : MonoBehaviour
 
     IEnumerator CrashSequence()
     {
-        yield return Fade(blackOverlay, 0f, 1f);
+        yield return FadeWithDuration(blackOverlay, 0f, 1f, crashFadeDuration);
         yield return new WaitForSeconds(0.5f);
         SceneManager.LoadScene(nextSceneName);
     }
 
     IEnumerator Fade(CanvasGroup group, float from, float to)
     {
+        yield return FadeWithDuration(group, from, to, fadeDuration);
+    }
+
+    IEnumerator FadeWithDuration(CanvasGroup group, float from, float to, float duration)
+    {
         float elapsed = 0f;
-        while (elapsed < fadeDuration)
+        while (elapsed < duration)
         {
             elapsed += Time.deltaTime;
-            group.alpha = Mathf.Lerp(from, to, elapsed / fadeDuration);
+            group.alpha = Mathf.Lerp(from, to, elapsed / duration);
             yield return null;
         }
         group.alpha = to;
