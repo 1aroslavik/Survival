@@ -44,20 +44,18 @@ public class AxeHit : MonoBehaviour
 
         RaycastHit hit;
 
-        // 🔥 1. Обычный Raycast
         bool hasRayHit = Physics.Raycast(ray, out hit, hitDistance);
 
-        // 🔥 2. Если не попал — SphereCast (как в играх)
         if (!hasRayHit)
         {
-            if (Physics.SphereCast(ray, sphereRadius, out hit, hitDistance))
-            {
-                Debug.Log("[AxeHit] SphereCast hit");
-            }
-            else
+            if (!Physics.SphereCast(ray, sphereRadius, out hit, hitDistance))
             {
                 Debug.Log("[AxeHit] Nothing hit");
                 return;
+            }
+            else
+            {
+                Debug.Log("[AxeHit] SphereCast hit");
             }
         }
 
@@ -80,7 +78,15 @@ public class AxeHit : MonoBehaviour
             return;
         }
 
-        // 🌲 PREFAB дерево
+        // 👹 Враг
+        EnemyBaseAI enemy = hit.collider.GetComponentInParent<EnemyBaseAI>();
+        if (enemy != null)
+        {
+            enemy.TakeDamage(animalDamage);
+            return;
+        }
+
+        // 🌲 Дерево (prefab)
         TreeHealth tree = hit.collider.GetComponentInParent<TreeHealth>();
 
         if (tree == null && hit.rigidbody != null)
@@ -92,7 +98,7 @@ public class AxeHit : MonoBehaviour
             return;
         }
 
-        // 🌳 TERRAIN дерево
+        // 🌳 Terrain дерево
         if (terrainChopper != null)
         {
             GameObject obj = terrainChopper.TryChopClosestTree(hitPoint);
@@ -114,7 +120,7 @@ public class AxeHit : MonoBehaviour
             }
         }
 
-        // 🔥 Fallback — если попали рядом
+        // 🔥 Fallback
         Collider[] cols = Physics.OverlapSphere(hitPoint, 1.5f);
 
         foreach (var c in cols)
