@@ -35,6 +35,7 @@ public class ItemData : ScriptableObject
     [Header("Visual")]
     public GameObject inventoryPrefab;
     public GameObject handPrefab;
+    public Sprite noteImage;
 
     [Header("Weapon")]
     public RuntimeAnimatorController weaponAnimator;
