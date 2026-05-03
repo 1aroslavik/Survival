@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5631230702933013483}
-  m_Layer: 11
+  m_Layer: 3
   m_Name: NoteInventory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24,14 +24,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5696212276998265700}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0.018324912, y: 0, z: 0, w: 0.9998321}
   m_LocalPosition: {x: 855.252, y: 194.03894, z: 485.61066}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9052780605543725984}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 2.1, y: 0, z: 0}
 --- !u!1001 &3532269576018108607
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -43,6 +43,10 @@ PrefabInstance:
     - target: {fileID: 5183391543283696037, guid: f262912e680694ee78f01b0a123a022f, type: 3}
       propertyPath: m_Name
       value: NotePaper1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5183391543283696037, guid: f262912e680694ee78f01b0a123a022f, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5522762835815308063, guid: f262912e680694ee78f01b0a123a022f, type: 3}
       propertyPath: m_LocalScale.x

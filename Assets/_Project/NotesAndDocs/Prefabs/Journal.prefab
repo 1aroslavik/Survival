@@ -66,7 +66,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 7ef81cce061364a1d8a4eb4b48af91c7, type: 3}
       propertyPath: m_Name
-      value: NoteBook
+      value: Journal
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 7ef81cce061364a1d8a4eb4b48af91c7, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -75,6 +79,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7ef81cce061364a1d8a4eb4b48af91c7, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6746916049761050582}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 7ef81cce061364a1d8a4eb4b48af91c7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -749903394746238130}
   m_SourcePrefab: {fileID: 100100000, guid: 7ef81cce061364a1d8a4eb4b48af91c7, type: 3}
 --- !u!1 &1812791609346471466 stripped
 GameObject:
@@ -102,3 +109,17 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.8057609, y: 0.098829955, z: 2.0049913}
   m_Center: {x: 0.03, y: 0.014854737, z: 0}
+--- !u!114 &-749903394746238130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1812791609346471466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: efd2de0cb985a8a49a6d0ef029176f71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InventoryItemsView
+  slotIndex: 0
+  model: {fileID: 0}

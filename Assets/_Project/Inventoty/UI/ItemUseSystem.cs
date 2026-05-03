@@ -4,6 +4,9 @@ public class ItemUseSystem : MonoBehaviour
 {
     public static ItemUseSystem Instance;
 
+    [Tooltip("Перетащи сюда ItemData дневника (тот, что лежит в инвентаре и открывает записки)")]
+    public ItemData journalItemData;
+
     PlayerStats playerStats;
 
     void Awake()
@@ -38,6 +41,18 @@ public class ItemUseSystem : MonoBehaviour
 
             case ItemType.Resource:
                 AddToCraft(slot);
+                return;
+
+            case ItemType.Quest:
+                if (item == journalItemData)
+                {
+                    if (NoteReader.Instance != null)
+                        NoteReader.Instance.Open();
+                    else
+                        Debug.LogWarning("NoteReader.Instance == null — добавь NoteReader в сцену");
+                }
+                if (InventoryTooltip.Instance != null)
+                    InventoryTooltip.Instance.Hide();
                 return;
         }
 

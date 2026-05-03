@@ -18,6 +18,6 @@
           if (note == null) return;
           if (collected.Contains(note)) return;
           collected.Add(note);
-          Debug.Log($"📜 Записка добавлена: {note.itemName}. Всего: {collected.Count}");
+          Debug.Log($"note added: {note.itemName}. Всего: {collected.Count}");
       }
   }
