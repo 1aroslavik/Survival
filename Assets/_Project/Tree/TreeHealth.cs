@@ -4,19 +4,26 @@ using UnityEngine;
 public class TreeHealth : MonoBehaviour
 {
     [Header("Health")]
-    public int maxHealth = 5;
+    public int maxHealth = 10;
     int currentHealth;
+
+    [Header("HP Indicator")]
+    public GameObject[] hpSegments;
+    public Material healthyMaterial;
+    public Material damagedMaterial;
 
     [Header("Logs")]
     public GameObject logPrefab;
     public int logsCount = 4;
 
     [Header("References")]
-    public Transform fallingTree; // перетащи сюда FallingTree
+    public Transform fallingTree;
 
-    [Header("Fall Settings")]
-    public float pushForce = 8f;     // сила толчка
-    public float breakDelay = 2.2f;  // через сколько ломать на бревна
+    [Header("Regrow")]
+    public float regrowTime = 6000f;
+
+    TreeReplacer replacer;
+    Vector3 treePosition;
 
     bool fallen = false;
 
@@ -24,7 +31,7 @@ public class TreeHealth : MonoBehaviour
     {
         currentHealth = maxHealth;
 
-        // fallback-поиск
+        // 🔥 поиск FallingTree
         if (fallingTree == null)
         {
             foreach (Transform t in GetComponentsInChildren<Transform>(true))
@@ -37,8 +44,24 @@ public class TreeHealth : MonoBehaviour
             }
         }
 
-        if (fallingTree == null)
-            Debug.LogError("[Tree] FallingTree not assigned!");
+        // 🔥 поиск сегментов
+        Transform hpRoot = transform.Find("hp");
+
+        if (hpRoot != null)
+        {
+            hpSegments = new GameObject[hpRoot.childCount];
+
+            for (int i = 0; i < hpRoot.childCount; i++)
+            {
+                hpSegments[i] = hpRoot.GetChild(i).gameObject;
+            }
+
+            // сортировка по имени (важно!)
+            System.Array.Sort(hpSegments, (a, b) => a.name.CompareTo(b.name));
+        }
+
+        replacer = FindObjectOfType<TreeReplacer>();
+        treePosition = transform.position;
     }
 
     public void Hit(Vector3 hitterPosition)
@@ -47,8 +70,39 @@ public class TreeHealth : MonoBehaviour
 
         currentHealth--;
 
+        UpdateHPVisual();
+
         if (currentHealth <= 0)
+        {
+            HideIndicator();
             Fall(hitterPosition);
+        }
+    }
+
+    void UpdateHPVisual()
+    {
+        if (hpSegments == null || hpSegments.Length == 0) return;
+
+        int damagedCount = maxHealth - currentHealth;
+
+        for (int i = 0; i < hpSegments.Length; i++)
+        {
+            Renderer r = hpSegments[i].GetComponent<Renderer>();
+            if (r == null) continue;
+
+            if (i < damagedCount)
+                r.material = damagedMaterial;
+            else
+                r.material = healthyMaterial;
+        }
+    }
+
+    void HideIndicator()
+    {
+        foreach (var seg in hpSegments)
+        {
+            seg.SetActive(false);
+        }
     }
 
     void Fall(Vector3 hitterPosition)
@@ -58,72 +112,50 @@ public class TreeHealth : MonoBehaviour
 
         if (fallingTree == null) return;
 
-        // отключаем root collider
         Collider rootCol = GetComponent<Collider>();
         if (rootCol != null)
             rootCol.enabled = false;
 
-        // отделяем падающую часть
         fallingTree.SetParent(null);
 
-        // Rigidbody
-        Rigidbody rb = fallingTree.gameObject.AddComponent<Rigidbody>();
-        rb.mass = 200f;
-        rb.interpolation = RigidbodyInterpolation.Interpolate;
+        GameObject obj = fallingTree.gameObject;
+
+        Rigidbody rb = obj.AddComponent<Rigidbody>();
+        rb.mass = 120f;
         rb.collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
+        rb.interpolation = RigidbodyInterpolation.Interpolate;
+        rb.constraints = RigidbodyConstraints.FreezeRotationY;
 
-        // ищем collider для низа
-        Collider col = fallingTree.GetComponentInChildren<Collider>();
-        if (col == null)
-        {
-            Debug.LogError("[Tree] No collider on FallingTree!");
-            return;
-        }
-
-        // 🔥 ТОЧКА ОПОРЫ (низ ствола)
-        Vector3 pivot = col.bounds.center;
-        pivot.y = col.bounds.min.y;
-
-        // создаём якорь (невидимый)
-        GameObject anchor = new GameObject("TreePivot");
-        anchor.transform.position = pivot;
-
-        Rigidbody anchorRb = anchor.AddComponent<Rigidbody>();
-        anchorRb.isKinematic = true;
-
-        // 🔥 шарнир — как в The Forest
-        HingeJoint joint = fallingTree.gameObject.AddComponent<HingeJoint>();
-        joint.connectedBody = anchorRb;
-
-        // локальная точка шарнира
-        joint.anchor = fallingTree.InverseTransformPoint(pivot);
-
-        // ось вращения (перпендикуляр к направлению удара)
         Vector3 dir = (fallingTree.position - hitterPosition).normalized;
         dir.y = 0;
 
         if (dir == Vector3.zero)
-            dir = fallingTree.forward;
+            dir = transform.forward;
 
-        Vector3 axis = Vector3.Cross(Vector3.up, dir).normalized;
-        joint.axis = axis;
+        rb.AddForce(dir * 8f, ForceMode.Impulse);
 
-        // 🔥 толчок
-        rb.AddForce(dir * pushForce, ForceMode.Impulse);
-
-        StartCoroutine(BreakAfterFall(fallingTree.gameObject, anchor));
+        StartCoroutine(WaitUntilStop(obj));
     }
 
-    IEnumerator BreakAfterFall(GameObject fallingObj, GameObject anchor)
+    IEnumerator WaitUntilStop(GameObject obj)
     {
-        yield return new WaitForSeconds(breakDelay);
+        Rigidbody rb = obj.GetComponent<Rigidbody>();
 
-        BreakIntoLogs(fallingObj);
+        yield return new WaitForSeconds(0.3f);
 
-        Destroy(anchor);
+        while (true)
+        {
+            if (rb.linearVelocity.magnitude < 0.3f)
+            {
+                BreakIntoLogs(obj);
+                yield break;
+            }
+
+            yield return null;
+        }
     }
 
-    void BreakIntoLogs(GameObject fallingObj)
+    public void BreakIntoLogs(GameObject fallingObj)
     {
         Vector3 startPos = fallingObj.transform.position;
         Vector3 direction = fallingObj.transform.up;
@@ -139,5 +171,18 @@ public class TreeHealth : MonoBehaviour
         }
 
         Destroy(fallingObj);
+        StartCoroutine(RegrowTree());
+    }
+
+    IEnumerator RegrowTree()
+    {
+        yield return new WaitForSeconds(regrowTime);
+
+        Destroy(gameObject);
+
+        if (replacer != null)
+        {
+            replacer.RestoreTree(treePosition);
+        }
     }
 }
