@@ -101,10 +101,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c68c49594bc41cd4cb3ea4c7b15d6dc6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AxeHit
+  treeHitSound: {fileID: 8300000, guid: 8603db9f5ccb5bf4c8bf77323354dc5c, type: 3}
+  volume: 0.8
+  pitchRange: {x: 0.9, y: 1.1}
   animalDamage: 25
   terrainChopper: {fileID: 0}
-  woodChipsEffect: {fileID: 1400400831016474, guid: ed73b04b299849840aa8e5dd1dcd2987, type: 3}
+  playerCamera: {fileID: 0}
   hitDistance: 4
+  sphereRadius: 0.5
+  hitVFX: {fileID: 1400400831016474, guid: ed73b04b299849840aa8e5dd1dcd2987, type: 3}
+  fallbackDestroyTime: 2
 --- !u!95 &5371042382268718828 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 7b5a9b7e89c2c9c429151cdebea73cfb, type: 3}

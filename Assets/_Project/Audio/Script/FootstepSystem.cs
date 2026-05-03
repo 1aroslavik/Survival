@@ -13,9 +13,10 @@ public class FootstepSystem : MonoBehaviour
     }
 
     [Header("References")]
-    public AudioSource footstepSource; // 👈 отдельный источник!
+    public AudioSource footstepSource;
     public Terrain terrain;
     public FirstPersonController controller;
+    public PlayerSwimmingSystem swimmingSystem;
 
     [Header("Settings")]
     public float stepDelay = 0.5f;
@@ -24,15 +25,26 @@ public class FootstepSystem : MonoBehaviour
     [Header("Terrain Sounds")]
     public TerrainSound[] terrainSounds;
 
+    void Start()
+    {
+        if (swimmingSystem == null)
+            swimmingSystem = GetComponent<PlayerSwimmingSystem>();
+    }
+
     void FixedUpdate()
     {
-        if (controller == null || terrain == null || footstepSource == null)
+        if (terrain == null || footstepSource == null)
             return;
 
-        Rigidbody rb = controller.GetComponent<Rigidbody>();
-        bool isMoving = rb != null && rb.linearVelocity.magnitude > 0.1f;
+        float h = Input.GetAxis("Horizontal");
+        float v = Input.GetAxis("Vertical");
 
-        if (isMoving && !controller.isInWater) // ❗ в воде шаги отключаем
+        bool isMoving = Mathf.Abs(h) > 0.1f || Mathf.Abs(v) > 0.1f;
+
+        bool inWater = swimmingSystem != null && swimmingSystem.IsInWater();
+
+        // 🔥 ГЛАВНОЕ УСЛОВИЕ
+        if (isMoving && !inWater)
         {
             stepTimer -= Time.fixedDeltaTime;
 
@@ -43,10 +55,12 @@ public class FootstepSystem : MonoBehaviour
                 if (clip != null)
                 {
                     footstepSource.pitch = Random.Range(0.95f, 1.05f);
-                    footstepSource.PlayOneShot(clip, 0.6f); // чуть тише
+                    footstepSource.PlayOneShot(clip, 0.6f);
                 }
 
-                stepTimer = controller.isSprinting ? stepDelay * 0.6f : stepDelay;
+                stepTimer = (controller != null && controller.isSprinting)
+                    ? stepDelay * 0.6f
+                    : stepDelay;
             }
         }
         else

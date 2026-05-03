@@ -118,4 +118,34 @@ public class TreeReplacer : MonoBehaviour
 
         return obj;
     }
+    public void RestoreTree(Vector3 worldPos)
+    {
+        if (terrain == null || tData == null) return;
+
+        // переводим мировую позицию в координаты terrain (0–1)
+        Vector3 terrainPos = worldPos - terrain.transform.position;
+
+        TreeInstance tree = new TreeInstance();
+
+        tree.position = new Vector3(
+            terrainPos.x / tData.size.x,
+            terrainPos.y / tData.size.y,
+            terrainPos.z / tData.size.z
+        );
+
+        // 👉 ставим первый тип дерева (как у тебя сейчас)
+        tree.prototypeIndex = 0;
+
+        tree.widthScale = 1f;
+        tree.heightScale = 1f;
+        tree.color = Color.white;
+        tree.lightmapColor = Color.white;
+
+        // добавляем обратно
+        List<TreeInstance> list = tData.treeInstances.ToList();
+        list.Add(tree);
+
+        tData.treeInstances = list.ToArray();
+        terrain.Flush();
+    }
 }
