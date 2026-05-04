@@ -19,6 +19,9 @@ public class CutsceneManager : MonoBehaviour
     public float readDuration = 4f;
     public float timeBetweenDocs = 1f;
 
+    [Header("Тряска камеры")]
+    public CameraShake cameraShake; // перетащи PlayerCamera сюда
+
     [Header("Следующая сцена")]
     public string nextSceneName = "MainGame";
 
@@ -48,6 +51,9 @@ public class CutsceneManager : MonoBehaviour
     // Вызывается третьим сигналом — крушение, экран гаснет и грузим сцену
     public void TriggerCrash()
     {
+        if (cameraShake != null)
+            cameraShake.TriggerCrashShake();
+
         StartCoroutine(CrashSequence());
     }
 

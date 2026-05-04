@@ -21,6 +21,7 @@ public enum ResourceType
     WatterBottle,
     WoodenBow,
     WoodenSpear,
-    WoodenTorch
+    WoodenTorch,
+    Note,
 
 }

@@ -69,7 +69,9 @@ public class InventoryView : MonoBehaviour
 
                 obj.transform.localPosition = positions[j];
 
-                obj.transform.localRotation = originalRotation * GetRandomRotation();
+                obj.transform.localRotation = slot.data.itemType == ItemType.Quest
+                    ? originalRotation
+                    : originalRotation * GetRandomRotation();
 
                 obj.transform.localScale = originalScale;
 
