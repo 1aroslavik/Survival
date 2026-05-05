@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d69fb88eff5304441b95c52aeba6dbe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WorldItem
-  data: {fileID: 11400000, guid: e1a293873111b40c6bd50951c6d46c42, type: 2}
+  data: {fileID: 11400000, guid: d2604683336444a0cb317adb5c0f99ab, type: 2}
   amount: 1
 --- !u!114 &8231599606262860644
 MonoBehaviour:

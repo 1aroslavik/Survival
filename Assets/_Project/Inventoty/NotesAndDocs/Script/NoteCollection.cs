@@ -7,6 +7,14 @@
 
       public List<ItemData> collected = new();
 
+      public static NoteCollection GetOrCreate()
+      {
+          if (Instance != null) return Instance;
+          var go = new GameObject("NoteCollection");
+          Instance = go.AddComponent<NoteCollection>();
+          return Instance;
+      }
+
       void Awake()
       {
           if (Instance != null && Instance != this) { Destroy(gameObject); return; }

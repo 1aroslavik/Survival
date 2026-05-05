@@ -19,6 +19,9 @@ public class InventoryItemsView : MonoBehaviour
         if (slot == null || slot.isEmpty)
             return;
 
+        if (NoteReader.Instance != null && NoteReader.Instance.IsOpen)
+            return;
+
         if (InventoryTooltip.Instance != null)
             InventoryTooltip.Instance.Show(slot);
     }
@@ -55,6 +58,14 @@ public class InventoryItemsView : MonoBehaviour
 
                 if (equipment != null)
                     equipment.Equip(slot.data);
+            }
+            else if (slot.data.resourceType == ResourceType.Note)
+            {
+                if (InventoryTooltip.Instance != null)
+                    InventoryTooltip.Instance.Hide();
+
+                if (NoteReader.Instance != null)
+                    NoteReader.Instance.OpenForItem(slot.data);
             }
             else
             {

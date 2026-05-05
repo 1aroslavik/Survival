@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee068d734ff63ca49864da26bbe487bb, type: 3}
-  m_Name: NoteDiary
+  m_Name: NoteSoldier3
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  itemName: Diary
-  description: 
+  itemName: Letter
+  description: third
   itemType: 8
   resourceType: 22
   isStackable: 1
@@ -21,7 +21,7 @@ MonoBehaviour:
   hungerRestore: 0
   thirstRestore: 0
   healthRestore: 0
-  inventoryPrefab: {fileID: 919132149155446097, guid: b1a050d2860824b5aa734b61737cb8d2, type: 3}
+  inventoryPrefab: {fileID: 2007342378608294326, guid: c0537fea861cc4bddaf0195b2993bf04, type: 3}
   handPrefab: {fileID: 0}
-  noteImage: {fileID: 0}
+  noteImage: {fileID: 21300000, guid: bd6afae4e831243f7a8d867f80e1e949, type: 3}
   weaponAnimator: {fileID: 0}

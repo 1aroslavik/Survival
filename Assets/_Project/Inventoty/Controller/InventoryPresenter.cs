@@ -40,6 +40,15 @@ public class InventoryPresenter : MonoBehaviour
         Cursor.lockState = isOpen ? CursorLockMode.None : CursorLockMode.Locked;
 
         Cursor.visible = isOpen;
+
+        if (!isOpen)
+        {
+            if (NoteReader.Instance != null)
+                NoteReader.Instance.Hide();
+
+            if (InventoryTooltip.Instance != null)
+                InventoryTooltip.Instance.Hide();
+        }
     }
 
 }

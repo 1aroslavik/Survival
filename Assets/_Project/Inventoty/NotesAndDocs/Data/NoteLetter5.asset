@@ -10,18 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee068d734ff63ca49864da26bbe487bb, type: 3}
-  m_Name: Letter3
+  m_Name: NoteLetter5
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  itemName: 
-  description: 
-  itemType: 0
-  resourceType: 0
+  itemName: Note5
+  description: 'Last from Soldier
+
+'
+  itemType: 8
+  resourceType: 22
   isStackable: 1
   maxStack: 10
   hungerRestore: 0
   thirstRestore: 0
   healthRestore: 0
-  inventoryPrefab: {fileID: 0}
+  inventoryPrefab: {fileID: 6298248906036679073, guid: 146ab3d0a6a4c42a096bc3284ea21ea2, type: 3}
   handPrefab: {fileID: 0}
-  noteImage: {fileID: 0}
+  noteImage: {fileID: 21300000, guid: 513d7193c1d8a435ea6c1466ae8911ea, type: 3}
   weaponAnimator: {fileID: 0}

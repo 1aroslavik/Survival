@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee068d734ff63ca49864da26bbe487bb, type: 3}
+  m_Name: NoteDiary
+  m_EditorClassIdentifier: Assembly-CSharp::ItemData
+  itemName: Diary
+  description: 
+  itemType: 8
+  resourceType: 22
+  isStackable: 1
+  maxStack: 10
+  hungerRestore: 0
+  thirstRestore: 0
+  healthRestore: 0
+  inventoryPrefab: {fileID: 3080855618468514175, guid: 17fe96a9aea9a4d128a40893173305e4, type: 3}
+  handPrefab: {fileID: 0}
+  noteImage: {fileID: 21300000, guid: 26d5d6637c5c546f584fabefc0cf3be8, type: 3}
+  weaponAnimator: {fileID: 0}
