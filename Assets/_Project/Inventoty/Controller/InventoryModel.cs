@@ -33,7 +33,7 @@ public class InventoryModel : MonoBehaviour
                 if (slot.isEmpty)
                     continue;
 
-                if (slot.data.resourceType != data.resourceType)
+                if (slot.data != data)
                     continue;
 
                 if (slot.amount >= data.maxStack)
