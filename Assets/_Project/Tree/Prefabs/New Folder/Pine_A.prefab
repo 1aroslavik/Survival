@@ -86,7 +86,7 @@ MonoBehaviour:
   logPrefab: {fileID: 421135329707430855, guid: 597325a94f6b4a04e982715bb4e5e43b, type: 3}
   logsCount: 6
   fallingTree: {fileID: 6836874611912026399}
-  regrowTime: 6000
+  regrowTime: 6
 --- !u!1 &4150731702417443317
 GameObject:
   m_ObjectHideFlags: 0
