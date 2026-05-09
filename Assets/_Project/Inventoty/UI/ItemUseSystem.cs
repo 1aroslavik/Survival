@@ -27,23 +27,64 @@ public class ItemUseSystem : MonoBehaviour
 
         switch (item.itemType)
         {
+            // ================= FOOD =================
+
             case ItemType.Food:
+
                 playerStats.Eat(item.hungerRestore);
+
+                if (item.healthRestore > 0)
+                    playerStats.Heal(item.healthRestore);
+
+                if (item.radiationAdd > 0)
+                    playerStats.AddRadiation(item.radiationAdd);
+
+                if (item.radiationRemove > 0)
+                    playerStats.RemoveRadiation(item.radiationRemove);
+
                 break;
+
+            // ================= DRINK =================
 
             case ItemType.Drink:
+
                 playerStats.Drink(item.thirstRestore);
+
+                if (item.healthRestore > 0)
+                    playerStats.Heal(item.healthRestore);
+
+                if (item.radiationAdd > 0)
+                    playerStats.AddRadiation(item.radiationAdd);
+
+                if (item.radiationRemove > 0)
+                    playerStats.RemoveRadiation(item.radiationRemove);
+
                 break;
 
+            // ================= MEDICINE =================
+
             case ItemType.Medicine:
+
                 playerStats.Heal(item.healthRestore);
+
+                if (item.radiationRemove > 0)
+                    playerStats.RemoveRadiation(item.radiationRemove);
+
+                if (item.radiationAdd > 0)
+                    playerStats.AddRadiation(item.radiationAdd);
+
                 break;
+
+            // ================= RESOURCE =================
 
             case ItemType.Resource:
                 AddToCraft(slot);
                 return;
 
+            // ================= QUEST =================
+
             case ItemType.Quest:
+
                 if (item == journalItemData)
                 {
                     if (NoteReader.Instance != null)
@@ -51,10 +92,14 @@ public class ItemUseSystem : MonoBehaviour
                     else
                         Debug.LogWarning("NoteReader.Instance == null — добавь NoteReader в сцену");
                 }
+
                 if (InventoryTooltip.Instance != null)
                     InventoryTooltip.Instance.Hide();
+
                 return;
         }
+
+        // ================= CONSUME =================
 
         slot.amount--;
 
@@ -64,8 +109,9 @@ public class ItemUseSystem : MonoBehaviour
         if (InventoryTooltip.Instance != null)
             InventoryTooltip.Instance.Hide();
 
-        // 🔥 безопасный вызов
+        // безопасный вызов
         var view = FindObjectOfType<InventoryView>();
+
         if (view != null)
             view.Render();
     }
@@ -85,7 +131,8 @@ public class ItemUseSystem : MonoBehaviour
 
     void AddToCraft(InventorySlotData slot)
     {
-        if (CraftArea.Instance == null) return;
+        if (CraftArea.Instance == null)
+            return;
 
         // добавляем предмет на коврик
         CraftArea.Instance.AddItem(slot.data);

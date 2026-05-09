@@ -149,6 +149,8 @@ MonoBehaviour:
   arrowPrefab: {fileID: 911210957420550073, guid: 63c920134f375144daa2a1c811ecb337, type: 3}
   arrowSpawn: {fileID: 2016593937638407246}
   arrowVisual: {fileID: 8669111883640153882}
+  drawSound: {fileID: 8300000, guid: 4f1cb49feafa09849a95f4bddc387ee7, type: 3}
+  shootSound: {fileID: 8300000, guid: 22ecc62c295b0dd449fad0d8b7957e81, type: 3}
   shootForce: 40
   shootDelay: 0.2
   inventory: {fileID: 0}

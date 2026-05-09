@@ -5,10 +5,14 @@ public class InventoryTooltip : MonoBehaviour
 {
     public static InventoryTooltip Instance;
 
+    [Header("Texts")]
     public TextMeshProUGUI itemName;
     public TextMeshProUGUI amount;
     public TextMeshProUGUI description;
     public TextMeshProUGUI hint;
+
+    [Header("Use Button")]
+    public GameObject useButtonObject;
 
     void Awake()
     {
@@ -38,37 +42,44 @@ public class InventoryTooltip : MonoBehaviour
         switch (slot.data.itemType)
         {
             case ItemType.Food:
-                action = "[E] Eat";
+                action = "Eat";
                 break;
 
             case ItemType.Drink:
-                action = "[E] Drink"; // 👈 ВОТ ЭТО ТЕБЕ НУЖНО
+                action = "Drink";
                 break;
 
             case ItemType.Medicine:
-                action = "[E] Heal";
+                action = "Heal";
                 break;
 
             case ItemType.Weapon:
-                action = "[E] Equip";
+                action = "Equip";
                 break;
 
             case ItemType.Resource:
-                action = "[E] Add to Craft";
+                action = "Add to Craft";
                 break;
 
             case ItemType.Quest:
-                action = "[E] Inspect";
+                action = "Inspect";
                 break;
         }
 
         hint.text = action;
+
+        // Показываем кнопку вместе с текстом
+        if (useButtonObject != null)
+            useButtonObject.SetActive(!string.IsNullOrEmpty(action));
 
         gameObject.SetActive(true);
     }
 
     public void Hide()
     {
+        if (useButtonObject != null)
+            useButtonObject.SetActive(false);
+
         gameObject.SetActive(false);
     }
 }

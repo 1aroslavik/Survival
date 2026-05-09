@@ -6,7 +6,9 @@ public class PlayerStats : MonoBehaviour
     [HideInInspector] public bool isSprinting;
 
     [Header("Stamina ↔ Thirst")]
-    public float thirstCostPerStamina = 0.3f;
+    public float thirstCostPerStamina = 0.08f;
+
+    // ================= MAX VALUES =================
 
     [Header("MAX VALUES")]
     public float maxHealth = 100f;
@@ -14,27 +16,55 @@ public class PlayerStats : MonoBehaviour
     public float maxThirst = 100f;
     public float maxStamina = 100f;
 
+    [Header("Radiation")]
+    public float radiation = 0f;
+    public float maxRadiation = 100f;
+
+    [Tooltip("Сколько здоровья теряется от максимума при 100 радиации")]
+    public float radiationHealthPenalty = 70f;
+
+    // ================= CURRENT =================
+
     [Header("CURRENT")]
     public float health;
     public float hunger;
     public float thirst;
     public float stamina;
 
-    [Header("DRAIN (per second)")]
-    public float hungerDrain = 0.15f;
-    public float thirstDrain = 0.35f;
-    public float staminaRegen = 18f;
+    // ================= DRAIN =================
+
+    [Header("Needs Drain (per second)")]
+
+    // Голод уходит медленно (~1 игровой день)
+    public float hungerDrain = 0.025f;
+
+    // Жажда уходит быстрее
+    public float thirstDrain = 0.045f;
+
+    // Восстановление стамины
+    public float staminaRegen = 12f;
 
     [Header("Stamina Drain")]
-    public float sprintStaminaCostPerSecond = 20f;
+    public float sprintStaminaCostPerSecond = 9f;
 
-    [Header("DAMAGE")]
-    public float starvationDamage = 6f;
+    // ================= DAMAGE =================
 
-    [Header("THRESHOLDS")]
+    [Header("Damage")]
+    public float starvationDamage = 4f;
+    public float dehydrationDamage = 8f;
+
+    [Header("Radiation Damage")]
+    public float radiationDamageThreshold = 70f;
+    public float radiationDamagePerSecond = 3f;
+
+    // ================= THRESHOLDS =================
+
+    [Header("Thresholds")]
     public float lowValue = 20f;
 
     bool isDead;
+
+    // =========================================================
 
     void Start()
     {
@@ -49,9 +79,11 @@ public class PlayerStats : MonoBehaviour
         if (isDead) return;
 
         DrainNeeds();
-        DrainStamina(); // 🔥 добавлено
+        DrainStamina();
         RegenerateStamina();
         ApplyHealthDamage();
+        ApplyRadiationEffects();
+        ClampStats();
         CheckDeath();
     }
 
@@ -60,13 +92,13 @@ public class PlayerStats : MonoBehaviour
     void DrainNeeds()
     {
         hunger -= hungerDrain * Time.deltaTime;
-        thirst -= thirstDrain * Time.deltaTime;
 
-        hunger = Mathf.Clamp(hunger, 0, maxHunger);
-        thirst = Mathf.Clamp(thirst, 0, maxThirst);
+        // При беге жажда растет сильнее
+        float thirstMultiplier = isSprinting ? 2f : 1f;
+
+        thirst -= thirstDrain * thirstMultiplier * Time.deltaTime;
     }
 
-    // 🔥 НОВОЕ — расход при беге
     void DrainStamina()
     {
         if (!isSprinting) return;
@@ -77,8 +109,16 @@ public class PlayerStats : MonoBehaviour
             return;
         }
 
-        stamina -= sprintStaminaCostPerSecond * Time.deltaTime;
-        stamina = Mathf.Clamp(stamina, 0, maxStamina);
+        float staminaCost = sprintStaminaCostPerSecond;
+
+        // Если голод/жажда низкие — устаем быстрее
+        if (hunger <= lowValue)
+            staminaCost *= 1.25f;
+
+        if (thirst <= lowValue)
+            staminaCost *= 1.4f;
+
+        stamina -= staminaCost * Time.deltaTime;
     }
 
     void RegenerateStamina()
@@ -89,9 +129,14 @@ public class PlayerStats : MonoBehaviour
 
         float multiplier = 1f;
 
-        if (hunger <= lowValue) multiplier *= 0.5f;
+        if (hunger <= lowValue)
+            multiplier *= 0.65f;
+
+        if (thirst <= lowValue)
+            multiplier *= 0.5f;
 
         float staminaGain = staminaRegen * multiplier * Time.deltaTime;
+
         float thirstNeeded = staminaGain * thirstCostPerStamina;
 
         if (thirst < thirstNeeded)
@@ -105,16 +150,67 @@ public class PlayerStats : MonoBehaviour
         }
 
         stamina += staminaGain;
-        stamina = Mathf.Clamp(stamina, 0, maxStamina);
     }
 
     void ApplyHealthDamage()
     {
-        if (hunger <= 0 || thirst <= 0)
+        // Голод
+        if (hunger <= 0f)
         {
             health -= starvationDamage * Time.deltaTime;
-            health = Mathf.Clamp(health, 0, maxHealth);
         }
+
+        // Жажда
+        if (thirst <= 0f)
+        {
+            health -= dehydrationDamage * Time.deltaTime;
+        }
+    }
+
+    void ApplyRadiationEffects()
+    {
+        // Ограничение максимального HP
+        float currentMaxHealth = GetCurrentMaxHealth();
+
+        if (health > currentMaxHealth)
+        {
+            health = Mathf.MoveTowards(
+                health,
+                currentMaxHealth,
+                15f * Time.deltaTime
+            );
+        }
+
+        // Урон от сильной радиации
+        if (radiation >= radiationDamageThreshold)
+        {
+            health -= radiationDamagePerSecond * Time.deltaTime;
+        }
+    }
+
+    float GetCurrentMaxHealth()
+    {
+        float hpPenalty =
+            (radiation / maxRadiation) * radiationHealthPenalty;
+
+        return Mathf.Clamp(
+            maxHealth - hpPenalty,
+            10f,
+            maxHealth
+        );
+    }
+
+    void ClampStats()
+    {
+        float currentMaxHealth = GetCurrentMaxHealth();
+
+        health = Mathf.Clamp(health, 0, currentMaxHealth);
+
+        hunger = Mathf.Clamp(hunger, 0, maxHunger);
+        thirst = Mathf.Clamp(thirst, 0, maxThirst);
+        stamina = Mathf.Clamp(stamina, 0, maxStamina);
+
+        radiation = Mathf.Clamp(radiation, 0, maxRadiation);
     }
 
     void CheckDeath()
@@ -136,7 +232,6 @@ public class PlayerStats : MonoBehaviour
     public void UseStamina(float cost)
     {
         stamina -= cost;
-        stamina = Mathf.Clamp(stamina, 0, maxStamina);
     }
 
     public bool HasStamina()
@@ -147,24 +242,44 @@ public class PlayerStats : MonoBehaviour
     public void Eat(float amount)
     {
         hunger += amount;
-        hunger = Mathf.Clamp(hunger, 0, maxHunger);
     }
 
     public void Drink(float amount)
     {
         thirst += amount;
-        thirst = Mathf.Clamp(thirst, 0, maxThirst);
     }
 
     public void Heal(float amount)
     {
         health += amount;
-        health = Mathf.Clamp(health, 0, maxHealth);
+
+        // нельзя хилиться выше лимита от радиации
+        health = Mathf.Clamp(
+            health,
+            0,
+            GetCurrentMaxHealth()
+        );
     }
 
     public void TakeDamage(float amount)
     {
         health -= amount;
-        health = Mathf.Clamp(health, 0, maxHealth);
+    }
+
+    // ================= RADIATION =================
+
+    public void AddRadiation(float amount)
+    {
+        radiation += amount;
+    }
+
+    public void RemoveRadiation(float amount)
+    {
+        radiation -= amount;
+    }
+
+    public float GetCurrentMaxHP()
+    {
+        return GetCurrentMaxHealth();
     }
 }

@@ -6,6 +6,10 @@ public class InventoryPresenter : MonoBehaviour
     public Camera inventoryCamera;
     public GameObject inventoryRoot;
 
+    [Header("HUD")]
+    public GameObject statsUI;
+    public GameObject infoUI;
+
     [Header("Player")]
     public MonoBehaviour playerController;
 
@@ -26,18 +30,27 @@ public class InventoryPresenter : MonoBehaviour
     }
 
     void ToggleInventory()
-    { 
+    {
         isOpen = !isOpen;
 
         inventoryCamera.gameObject.SetActive(isOpen);
         inventoryRoot.gameObject.SetActive(isOpen);
 
-        if(playerController != null)
+        // Скрываем HUD
+        if (statsUI != null)
+            statsUI.SetActive(!isOpen);
+
+        if (infoUI != null)
+            infoUI.SetActive(!isOpen);
+
+        if (playerController != null)
             playerController.enabled = !isOpen;
 
         Time.timeScale = isOpen ? 0f : 1f;
 
-        Cursor.lockState = isOpen ? CursorLockMode.None : CursorLockMode.Locked;
+        Cursor.lockState = isOpen
+            ? CursorLockMode.None
+            : CursorLockMode.Locked;
 
         Cursor.visible = isOpen;
 
@@ -50,5 +63,4 @@ public class InventoryPresenter : MonoBehaviour
                 InventoryTooltip.Instance.Hide();
         }
     }
-
 }
