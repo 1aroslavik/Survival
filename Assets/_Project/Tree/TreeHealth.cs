@@ -6,12 +6,20 @@ public class TreeHealth : MonoBehaviour
     [Header("Health")]
     public int maxHealth = 10;
     int currentHealth;
+    [Header("Stump")]
+    public int stumpHealth = 5;
+
+    bool stumpDestroyed = false;
 
     [Header("HP Indicator")]
     public GameObject[] hpSegments;
     public Material healthyMaterial;
     public Material damagedMaterial;
+    [Header("Effects")]
+    public AudioClip breakSound;
+    public AudioClip fallImpactSound;
 
+    public GameObject fallEffect;
     [Header("Logs")]
     public GameObject logPrefab;
     public int logsCount = 4;
@@ -65,9 +73,10 @@ public class TreeHealth : MonoBehaviour
     }
 
     public void Hit(Vector3 hitterPosition)
+{
+    // 🌲 дерево
+    if (!fallen)
     {
-        if (fallen) return;
-
         currentHealth--;
 
         UpdateHPVisual();
@@ -77,7 +86,23 @@ public class TreeHealth : MonoBehaviour
             HideIndicator();
             Fall(hitterPosition);
         }
+
+        return;
     }
+
+    // 🪵 пень
+    if (!stumpDestroyed)
+    {
+        stumpHealth--;
+
+        Debug.Log("STUMP HIT: " + stumpHealth);
+
+        if (stumpHealth <= 0)
+        {
+            DestroyStump();
+        }
+    }
+}
 
     void UpdateHPVisual()
     {
@@ -109,7 +134,14 @@ public class TreeHealth : MonoBehaviour
     {
         if (fallen) return;
         fallen = true;
-
+        if (breakSound != null)
+        {
+            AudioSource.PlayClipAtPoint(
+                breakSound,
+                transform.position,
+                1f
+            );
+        }
         if (fallingTree == null) return;
 
         Collider rootCol = GetComponent<Collider>();
@@ -147,6 +179,8 @@ public class TreeHealth : MonoBehaviour
         {
             if (rb.linearVelocity.magnitude < 0.3f)
             {
+                SpawnFallImpact(obj.transform.position);
+
                 BreakIntoLogs(obj);
                 yield break;
             }
@@ -154,7 +188,24 @@ public class TreeHealth : MonoBehaviour
             yield return null;
         }
     }
+    void SpawnFallImpact(Vector3 pos)
+    {
+        // 💥 пыль
+        if (fallEffect != null)
+        {
+            Instantiate(fallEffect, pos, Quaternion.identity);
+        }
 
+        // 🔊 удар о землю
+        if (fallImpactSound != null)
+        {
+            AudioSource.PlayClipAtPoint(
+                fallImpactSound,
+                pos,
+                1f
+            );
+        }
+    }
     public void BreakIntoLogs(GameObject fallingObj)
     {
         Vector3 startPos = fallingObj.transform.position;
@@ -173,10 +224,37 @@ public class TreeHealth : MonoBehaviour
         Destroy(fallingObj);
         StartCoroutine(RegrowTree());
     }
+    
+    void DestroyStump()
+    {
+        stumpDestroyed = true;
 
+        // можно добавить эффект
+        if (fallEffect != null)
+        {
+            Instantiate(fallEffect, transform.position, Quaternion.identity);
+        }
+
+        // звук
+        if (breakSound != null)
+        {
+            AudioSource.PlayClipAtPoint(
+                breakSound,
+                transform.position,
+                1f
+            );
+        }
+
+        StopAllCoroutines();
+
+        Destroy(gameObject);
+    }
     IEnumerator RegrowTree()
     {
         yield return new WaitForSeconds(regrowTime);
+
+        if (stumpDestroyed)
+            yield break;
 
         Destroy(gameObject);
 
@@ -185,4 +263,5 @@ public class TreeHealth : MonoBehaviour
             replacer.RestoreTree(treePosition);
         }
     }
+
 }

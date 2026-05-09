@@ -178,7 +178,7 @@ public class ItemPickUp : MonoBehaviour
             Debug.Log("Inventory UI updated");
         }
 
-        ShowMessage("Picked up: " + data.name, 1.5f, Color.green);
+        ShowMessage("Picked up: " + data.itemName, 1.5f, Color.white);
 
         Debug.Log("=== TRY PICKUP END ===");
     }

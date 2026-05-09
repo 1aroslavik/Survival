@@ -9,7 +9,10 @@ public class BowController : MonoBehaviour
     public Transform arrowSpawn;
 
     public GameObject arrowVisual;
+    [Header("Audio")]
 
+    public AudioClip drawSound;
+    public AudioClip shootSound;
     public float shootForce = 40f;
     public float shootDelay = 0.2f;
 
@@ -47,6 +50,14 @@ public class BowController : MonoBehaviour
         {
             animator.SetBool("Aim", true);
             isAiming = true;
+
+            if (drawSound != null)
+            {
+                AudioSource.PlayClipAtPoint(
+                    drawSound,
+                    Camera.main.transform.position
+                );
+            }
         }
 
         if (Input.GetMouseButtonUp(1))
@@ -85,6 +96,15 @@ public class BowController : MonoBehaviour
         // защита
         if (!inventory.TryRemoveOne(arrowType))
             return;
+
+        // 🏹 звук выстрела
+        if (shootSound != null)
+        {
+            AudioSource.PlayClipAtPoint(
+                shootSound,
+                Camera.main.transform.position
+            );
+        }
 
         GameObject arrow = Instantiate(arrowPrefab, arrowSpawn.position, arrowSpawn.rotation);
 

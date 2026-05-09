@@ -5,22 +5,52 @@ using UnityEngine.Rendering;
 [RequireComponent(typeof(Volume))]
 public class RadiationSource : MonoBehaviour
 {
+    [Header("Target")]
     public string targetTag = "Player";
 
+    [Header("Radiation")]
+    public float radiationPerSecond = 4f;
+
+    [Tooltip("Насколько быстро появляется эффект")]
+    public float effectSmoothSpeed = 2f;
+
     private Volume volume;
+    private bool playerInside;
+
+    private PlayerStats playerStats;
 
     void Awake()
     {
-        // получаем Volume с этого же объекта
         volume = GetComponent<Volume>();
 
-        // настраиваем коллайдер
         SphereCollider col = GetComponent<SphereCollider>();
         col.isTrigger = true;
 
-        // выключено по умолчанию
         if (volume != null)
             volume.weight = 0f;
+    }
+
+    void Update()
+    {
+        // Плавное включение/выключение эффекта
+        if (volume != null)
+        {
+            float targetWeight = playerInside ? 1f : 0f;
+
+            volume.weight = Mathf.MoveTowards(
+                volume.weight,
+                targetWeight,
+                effectSmoothSpeed * Time.deltaTime
+            );
+        }
+
+        // Накопление радиации
+        if (playerInside && playerStats != null)
+        {
+            playerStats.AddRadiation(
+                radiationPerSecond * Time.deltaTime
+            );
+        }
     }
 
     void OnTriggerEnter(Collider other)
@@ -28,10 +58,11 @@ public class RadiationSource : MonoBehaviour
         if (!other.CompareTag(targetTag))
             return;
 
-        Debug.Log("☢️ ВОШЕЛ В ЗОНУ");
+        playerInside = true;
 
-        if (volume != null)
-            volume.weight = 1f; // включили эффект
+        playerStats = other.GetComponent<PlayerStats>();
+
+        Debug.Log("☢️ ВОШЕЛ В РАДИАЦИОННУЮ ЗОНУ");
     }
 
     void OnTriggerExit(Collider other)
@@ -39,9 +70,9 @@ public class RadiationSource : MonoBehaviour
         if (!other.CompareTag(targetTag))
             return;
 
-        Debug.Log("🚪 ВЫШЕЛ ИЗ ЗОНЫ");
+        playerInside = false;
+        playerStats = null;
 
-        if (volume != null)
-            volume.weight = 0f; // выключили эффект
+        Debug.Log("🚪 ВЫШЕЛ ИЗ РАДИАЦИОННОЙ ЗОНЫ");
     }
 }

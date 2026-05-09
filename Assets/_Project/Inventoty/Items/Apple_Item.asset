@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Apple_Item
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: Apple
-  description: 
+  description: zzz
   itemType: 1
   resourceType: 5
   isStackable: 1
@@ -21,6 +21,14 @@ MonoBehaviour:
   hungerRestore: 15
   thirstRestore: 0
   healthRestore: 0
+  staminaRestore: 0
+  radiationAdd: 0
+  radiationRemove: 55
+  causesBleeding: 0
+  causesPoison: 0
+  isConsumable: 1
   inventoryPrefab: {fileID: 3893244131966969671, guid: 7f338ee1121c0704684d43936b7d9bde, type: 3}
   handPrefab: {fileID: 0}
+  noteImage: {fileID: 0}
   weaponAnimator: {fileID: 0}
+  useSound: {fileID: 8300000, guid: b4a1bb510f488f64db62af1defb03dc0, type: 3}
