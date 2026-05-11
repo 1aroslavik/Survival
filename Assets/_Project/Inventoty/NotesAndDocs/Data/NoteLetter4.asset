@@ -21,7 +21,14 @@ MonoBehaviour:
   hungerRestore: 0
   thirstRestore: 0
   healthRestore: 0
+  staminaRestore: 0
+  radiationAdd: 0
+  radiationRemove: 0
+  causesBleeding: 0
+  causesPoison: 0
+  isConsumable: 1
   inventoryPrefab: {fileID: 5258488427080396938, guid: 80f950e62982f4d0f86200368d26d30e, type: 3}
   handPrefab: {fileID: 0}
-  noteImage: {fileID: 21300000, guid: 1bfedbca1fe414883aec9728286bca8d, type: 3}
+  noteImage: {fileID: 21300000, guid: 13fd6b59e803c4fec864e19997b74b47, type: 3}
   weaponAnimator: {fileID: 0}
+  useSound: {fileID: 0}

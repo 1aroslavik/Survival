@@ -67,6 +67,7 @@ public class EnemyBaseAI : MonoBehaviour
     protected virtual void Update()
     {
         if (player == null || agent == null) return;
+        if (!agent.isOnNavMesh) return;
 
         float dist = Vector3.Distance(transform.position, player.position);
 
@@ -207,6 +208,8 @@ public class EnemyBaseAI : MonoBehaviour
 
     protected void MoveRandom()
     {
+        if (!agent.isOnNavMesh) return;
+
         Vector2 rand = Random.insideUnitCircle * patrolRadius;
         Vector3 target = spawnPoint + new Vector3(rand.x, 0, rand.y);
 

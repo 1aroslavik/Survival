@@ -167,22 +167,20 @@ public class EnemySpawner : MonoBehaviour
 
     Vector3 GetLandPosition(EnemyZone zone)
     {
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 20; i++)
         {
-            Vector3 random = Random.insideUnitSphere * zone.radius;
-            random.y = 0;
-
-            Vector3 pos = zone.transform.position + random;
+            Vector2 rand2D = Random.insideUnitCircle * zone.radius;
+            Vector3 pos = zone.transform.position + new Vector3(rand2D.x, 0f, rand2D.y);
 
             if (Vector3.Distance(player.position, pos) < minDistance)
                 continue;
 
-            if (Physics.Raycast(pos + Vector3.up * 10f, Vector3.down, out RaycastHit hit, 20f))
+            if (NavMesh.SamplePosition(pos, out NavMeshHit navHit, zone.radius, NavMesh.AllAreas))
             {
-                if (NavMesh.SamplePosition(hit.point, out NavMeshHit navHit, 5f, NavMesh.AllAreas))
-                {
-                    return navHit.position;
-                }
+                if (Vector3.Distance(player.position, navHit.position) < minDistance)
+                    continue;
+
+                return navHit.position;
             }
         }
 
@@ -197,7 +195,13 @@ public class EnemySpawner : MonoBehaviour
             agent.speed = type.walkSpeed;
 
             if (!agent.isOnNavMesh)
-                agent.Warp(spawnPos);
+            {
+                Vector3 target = spawnPos;
+                if (NavMesh.SamplePosition(obj.transform.position, out NavMeshHit hit, 20f, NavMesh.AllAreas))
+                    target = hit.position;
+
+                agent.Warp(target);
+            }
         }
 
         EnemyBaseAI baseAI = obj.GetComponent<EnemyBaseAI>();

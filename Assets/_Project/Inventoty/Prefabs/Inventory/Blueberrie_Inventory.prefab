@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -3748006646766038017}
   - component: {fileID: 7505915211358689279}
   m_Layer: 3
-  m_Name: Blueberries_Inventory
+  m_Name: Blueberrie_Inventory
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,8 +30,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 472.93442, y: 194.72644, z: 611.25446}
-  m_LocalScale: {x: 2, y: 2, z: 2}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 3.03, y: 3.03, z: 3.03}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
@@ -104,10 +104,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efd2de0cb985a8a49a6d0ef029176f71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventoryItemsView
-  data: {fileID: 0}
-  slot:
-    data: {fileID: 0}
-    amount: 0
+  slotIndex: 0
+  model: {fileID: 0}
 --- !u!135 &7505915211358689279
 SphereCollider:
   m_ObjectHideFlags: 0
