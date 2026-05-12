@@ -2621,7 +2621,7 @@ MonoBehaviour:
   radius: 67.7
   enemies:
   - name: Enemy3
-    prefab: {fileID: 6347845055732319078, guid: 1f767fa48db25104c96a9670cc753b1b, type: 3}
+    prefab: {fileID: 3490026887102114920, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
     maxCount: 5
     maxHealth: 50
     damage: 10
@@ -5194,7 +5194,7 @@ MonoBehaviour:
   radius: 50
   enemies:
   - name: Enemy2
-    prefab: {fileID: 290884568573657152, guid: 6ec18304030011c47aaa07296ea319e0, type: 3}
+    prefab: {fileID: 3490026887102114920, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
     maxCount: 5
     maxHealth: 50
     damage: 10
@@ -13600,7 +13600,7 @@ MonoBehaviour:
   radius: 21.2
   enemies:
   - name: Enemy4
-    prefab: {fileID: 7901366144787319798, guid: f2e03fd1cffea284890ee861660f8b1d, type: 3}
+    prefab: {fileID: 3490026887102114920, guid: e0a2ae8d8ae1c1f4b83e337da0b6f6b4, type: 3}
     maxCount: 7
     maxHealth: 50
     damage: 10
