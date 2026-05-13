@@ -18,18 +18,7 @@ public class CraftUI : MonoBehaviour
 
     public void ShowRecipe(CraftRecipe recipe)
     {
-        string text = "";
-
-        foreach (var ing in recipe.ingredients)
-        {
-            text += ing.item.name + " x" + ing.amount + " + ";
-        }
-
-        text = text.TrimEnd(' ', '+');
-
-        text += " → " + recipe.result.name;
-
-        craftText.text = text;
+        craftText.text = recipe.result.itemName;
 
         craftText.gameObject.SetActive(true);
         craftButton.SetActive(true);

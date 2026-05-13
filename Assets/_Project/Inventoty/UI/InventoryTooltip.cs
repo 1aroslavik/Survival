@@ -8,7 +8,6 @@ public class InventoryTooltip : MonoBehaviour
     [Header("Texts")]
     public TextMeshProUGUI itemName;
     public TextMeshProUGUI amount;
-    public TextMeshProUGUI description;
     public TextMeshProUGUI hint;
 
     [Header("Use Button")]
@@ -35,7 +34,6 @@ public class InventoryTooltip : MonoBehaviour
 
         itemName.text = slot.data.itemName;
         amount.text = "x" + slot.amount;
-        description.text = slot.data.description;
 
         string action = "";
 
@@ -68,7 +66,6 @@ public class InventoryTooltip : MonoBehaviour
 
         hint.text = action;
 
-        // Показываем кнопку вместе с текстом
         if (useButtonObject != null)
             useButtonObject.SetActive(!string.IsNullOrEmpty(action));
 

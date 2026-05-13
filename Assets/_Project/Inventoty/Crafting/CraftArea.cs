@@ -115,6 +115,51 @@ public class CraftArea : MonoBehaviour
 
         slots.Clear();
     }
+    public void RemoveItem(ItemData item)
+    {
+        var inventory = FindObjectOfType<InventoryModel>();
+
+        CraftSlot slot = slots.Find(s => s.item == item);
+
+        if (slot == null)
+            return;
+
+        // возвращаем 1 предмет в инвентарь
+        inventory.TryAdd(item, 1);
+
+        // удаляем визуальный объект
+        if (slot.visuals.Count > 0)
+        {
+            GameObject obj = slot.visuals[slot.visuals.Count - 1];
+
+            slot.visuals.RemoveAt(slot.visuals.Count - 1);
+
+            Destroy(obj);
+        }
+
+        slot.amount--;
+
+        // если предметов больше нет
+        if (slot.amount <= 0)
+        {
+            slots.Remove(slot);
+        }
+
+        // обновляем рецепты
+        List<ItemData> items = new();
+
+        foreach (var s in slots)
+        {
+            for (int i = 0; i < s.amount; i++)
+            {
+                items.Add(s.item);
+            }
+        }
+
+        CraftingSystem.Instance.CheckRecipes(items);
+
+        FindObjectOfType<InventoryView>().Render();
+    }
 
     // 🔥 возвращаем список для рецептов (с учётом количества)
     public List<ItemData> GetItems()

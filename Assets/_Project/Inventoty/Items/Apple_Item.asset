@@ -13,17 +13,17 @@ MonoBehaviour:
   m_Name: Apple_Item
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemName: Apple
-  description: zzz
+  description: Where did the apples come from here?
   itemType: 1
   resourceType: 5
   isStackable: 1
   maxStack: 10
-  hungerRestore: 15
-  thirstRestore: 0
+  hungerRestore: 10
+  thirstRestore: 5
   healthRestore: 0
-  staminaRestore: 0
+  staminaRestore: 3
   radiationAdd: 0
-  radiationRemove: 55
+  radiationRemove: 0
   causesBleeding: 0
   causesPoison: 0
   isConsumable: 1
