@@ -189,6 +189,9 @@ public class NoteReader : MonoBehaviour
         if (NoteCollection.Instance == null || noteImage == null) return;
         var note = NoteCollection.Instance.collected[currentIndex];
         if (note != null && note.noteImage != null)
+        {
             noteImage.sprite = note.noteImage;
+            Debug.Log($"[NoteReader] Refresh idx={currentIndex} ItemData='{note.name}' itemName='{note.itemName}' sprite='{note.noteImage.name}'");
+        }
     }
 }

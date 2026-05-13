@@ -30,8 +30,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.6477377, y: 0.2836123, z: -0.2836123, w: 0.6477377}
   m_LocalPosition: {x: -0.022924878, y: 0, z: 0.009800604}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2.03, y: 1.8454545, z: 1.8454545}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: -47.292}
@@ -104,10 +104,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efd2de0cb985a8a49a6d0ef029176f71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InventoryItemsView
-  data: {fileID: 11400000, guid: 734be260adf25c44dbccdfe7d219f267, type: 2}
-  slot:
-    data: {fileID: 0}
-    amount: 0
+  slotIndex: 0
+  model: {fileID: 0}
 --- !u!136 &8500357176835058357
 CapsuleCollider:
   m_ObjectHideFlags: 0

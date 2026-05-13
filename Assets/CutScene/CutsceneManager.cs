@@ -14,16 +14,16 @@ public class CutsceneManager : MonoBehaviour
     public CanvasGroup blackOverlay;
 
     [Header("Настройки")]
-    public float fadeDuration = 0.8f;      // скорость появления/исчезновения документов
-    public float crashFadeDuration = 0.3f; // скорость затухания при краше
+    public float fadeDuration = 0.8f;
+    public float crashFadeDuration = 0.3f;
     public float readDuration = 4f;
     public float timeBetweenDocs = 1f;
 
     [Header("Тряска камеры")]
-    public CameraShake cameraShake; // перетащи PlayerCamera сюда
+    public CameraShake cameraShake;
 
     [Header("Следующая сцена")]
-    public string nextSceneName = "MainGame";
+    public string nextSceneName = "SampleScene";
 
     private Coroutine docsCoroutine;
 
@@ -33,24 +33,24 @@ public class CutsceneManager : MonoBehaviour
         blackOverlay.alpha = 0f;
     }
 
-    // Вызывается первым сигналом в Timeline — начать показывать документы
     public void StartDocuments()
     {
+        Debug.Log("StartDocuments вызван!");
         docsCoroutine = StartCoroutine(ShowAllDocuments());
     }
 
-    // Вызывается вторым сигналом в Timeline — вертолёт начал трястись, убрать документы
     public void StopDocuments()
     {
+        Debug.Log("StopDocuments вызван!");
         if (docsCoroutine != null)
             StopCoroutine(docsCoroutine);
 
         StartCoroutine(Fade(documentCanvasGroup, documentCanvasGroup.alpha, 0f));
     }
 
-    // Вызывается третьим сигналом — крушение, экран гаснет и грузим сцену
     public void TriggerCrash()
     {
+        Debug.Log("TriggerCrash вызван!");
         if (cameraShake != null)
             cameraShake.TriggerCrashShake();
 
@@ -71,6 +71,7 @@ public class CutsceneManager : MonoBehaviour
 
     IEnumerator CrashSequence()
     {
+        Debug.Log("CrashSequence запущен, грузим: " + nextSceneName);
         yield return FadeWithDuration(blackOverlay, 0f, 1f, crashFadeDuration);
         yield return new WaitForSeconds(0.5f);
         SceneManager.LoadScene(nextSceneName);

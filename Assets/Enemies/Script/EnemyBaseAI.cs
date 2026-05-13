@@ -7,6 +7,9 @@ public class EnemyBaseAI : MonoBehaviour
     protected Animator animator;
     protected Transform player;
 
+    // [AUDIO] — добавлено
+    protected EnemyAudio enemyAudio;
+
     [Header("Stats")]
     public float maxHealth = 50f;
     protected float currentHealth;
@@ -55,6 +58,9 @@ public class EnemyBaseAI : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponentInChildren<Animator>();
 
+        // [AUDIO] — ищем компонент на том же объекте
+        enemyAudio = GetComponent<EnemyAudio>();
+
         GameObject p = GameObject.FindGameObjectWithTag("Player");
         if (p != null) player = p.transform;
 
@@ -67,6 +73,7 @@ public class EnemyBaseAI : MonoBehaviour
     protected virtual void Update()
     {
         if (player == null || agent == null) return;
+        if (!agent.isOnNavMesh) return;
 
         float dist = Vector3.Distance(transform.position, player.position);
 
@@ -147,6 +154,9 @@ public class EnemyBaseAI : MonoBehaviour
             isAttacking = true;
             damageDealt = false;
 
+            // [AUDIO] — играем звук атаки
+            enemyAudio?.PlayAttack();
+
             if (animator != null)
             {
                 if (HasParam("AttackIndex"))
@@ -176,6 +186,9 @@ public class EnemyBaseAI : MonoBehaviour
     {
         currentHealth -= dmg;
 
+        // [AUDIO] — играем звук получения урона
+        enemyAudio?.PlayHurt();
+
         if (animator != null && HasParam("Hit"))
             animator.SetTrigger("Hit");
 
@@ -185,6 +198,9 @@ public class EnemyBaseAI : MonoBehaviour
 
     protected virtual void Die()
     {
+        // [AUDIO] — играем звук смерти
+        enemyAudio?.PlayDeath();
+
         if (animator != null)
         {
             if (HasParam("IsMoving")) animator.SetBool("IsMoving", false);
@@ -207,6 +223,8 @@ public class EnemyBaseAI : MonoBehaviour
 
     protected void MoveRandom()
     {
+        if (!agent.isOnNavMesh) return;
+
         Vector2 rand = Random.insideUnitCircle * patrolRadius;
         Vector3 target = spawnPoint + new Vector3(rand.x, 0, rand.y);
 
@@ -222,6 +240,9 @@ public class EnemyBaseAI : MonoBehaviour
         if (old != State.Chase && newState == State.Chase)
         {
             rageEndTime = Time.time + rageDuration;
+
+            // [AUDIO] — враг засёк игрока
+            enemyAudio?.PlayAlert();
 
             if (animator != null && HasParam("Rage"))
                 animator.SetBool("Rage", true);
