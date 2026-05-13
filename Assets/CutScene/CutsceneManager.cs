@@ -12,12 +12,14 @@ public class CutsceneManager : MonoBehaviour
     public Image documentImage;
     public CanvasGroup documentCanvasGroup;
     public CanvasGroup blackOverlay;
+    public CanvasGroup skipPrompt; // перетащи сюда CanvasGroup с текстом "Нажмите пробел"
 
     [Header("Настройки")]
     public float fadeDuration = 0.8f;
     public float crashFadeDuration = 0.3f;
     public float readDuration = 4f;
     public float timeBetweenDocs = 1f;
+    public float skipPromptFadeDuration = 1.5f; // как долго появляется надпись
 
     [Header("Тряска камеры")]
     public CameraShake cameraShake;
@@ -31,17 +33,29 @@ public class CutsceneManager : MonoBehaviour
     {
         documentCanvasGroup.alpha = 0f;
         blackOverlay.alpha = 0f;
+
+        if (skipPrompt != null)
+        {
+            skipPrompt.alpha = 0f;
+            StartCoroutine(FadeWithDuration(skipPrompt, 0f, 1f, skipPromptFadeDuration));
+        }
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            SceneManager.LoadScene(nextSceneName);
+        }
     }
 
     public void StartDocuments()
     {
-        Debug.Log("StartDocuments вызван!");
         docsCoroutine = StartCoroutine(ShowAllDocuments());
     }
 
     public void StopDocuments()
     {
-        Debug.Log("StopDocuments вызван!");
         if (docsCoroutine != null)
             StopCoroutine(docsCoroutine);
 
@@ -50,7 +64,6 @@ public class CutsceneManager : MonoBehaviour
 
     public void TriggerCrash()
     {
-        Debug.Log("TriggerCrash вызван!");
         if (cameraShake != null)
             cameraShake.TriggerCrashShake();
 
@@ -71,7 +84,6 @@ public class CutsceneManager : MonoBehaviour
 
     IEnumerator CrashSequence()
     {
-        Debug.Log("CrashSequence запущен, грузим: " + nextSceneName);
         yield return FadeWithDuration(blackOverlay, 0f, 1f, crashFadeDuration);
         yield return new WaitForSeconds(0.5f);
         SceneManager.LoadScene(nextSceneName);
