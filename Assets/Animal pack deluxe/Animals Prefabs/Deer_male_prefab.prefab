@@ -768,6 +768,7 @@ GameObject:
   - component: {fileID: 4496611595107527105}
   - component: {fileID: 310910168901996155}
   - component: {fileID: 641292519275814088}
+  - component: {fileID: 7824600679654655316}
   m_Layer: 21
   m_Name: Deer_male_prefab
   m_TagString: Untagged
@@ -914,9 +915,40 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnimalHealth
   health: 50
-  animator: {fileID: 0}
+  damage: 10
+  attackRange: 2
+  attackCooldown: 1.5
   meatPrefab: {fileID: 1425171790764893731, guid: 0066d271627d09b48a11f99ec3cef5be, type: 3}
   meatCount: 3
+  animator: {fileID: 0}
+--- !u!114 &7824600679654655316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1359080710252902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbb6580bd00554732ada21ee83dab903, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimalAudioController
+  idleClips: []
+  alertClips:
+  - {fileID: 8300000, guid: 3b72b3b55bb3b4753bbf995302965cb3, type: 3}
+  attackClips: []
+  fleeClips: []
+  hurtClips: []
+  deathClips: []
+  walkSteps:
+  - {fileID: 8300000, guid: fc756a1bdbafd43e3aeca858c0250cf8, type: 3}
+  runSteps:
+  - {fileID: 8300000, guid: fc756a1bdbafd43e3aeca858c0250cf8, type: 3}
+  idleInterval: 8
+  idleVariance: 3
+  footstepWalkInterval: 0.5
+  footstepRunInterval: 0.27
+  audioMaxDistance: 25
 --- !u!1 &1365269035226208
 GameObject:
   m_ObjectHideFlags: 0

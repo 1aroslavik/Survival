@@ -942,6 +942,7 @@ GameObject:
   - component: {fileID: -3580095127864471763}
   - component: {fileID: 7933265400095183040}
   - component: {fileID: -5091453362144348352}
+  - component: {fileID: -1589749751966534353}
   m_Layer: 21
   m_Name: Wild_rabbit_prefab
   m_TagString: Untagged
@@ -1060,9 +1061,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnimalHealth
   health: 50
-  animator: {fileID: 0}
+  damage: 10
+  attackRange: 2
+  attackCooldown: 1.5
   meatPrefab: {fileID: 1425171790764893731, guid: 0066d271627d09b48a11f99ec3cef5be, type: 3}
   meatCount: 1
+  animator: {fileID: 0}
 --- !u!54 &-5091453362144348352
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1090,6 +1094,34 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-1589749751966534353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1502059054957796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbb6580bd00554732ada21ee83dab903, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimalAudioController
+  idleClips: []
+  alertClips: []
+  attackClips: []
+  fleeClips: []
+  hurtClips: []
+  deathClips: []
+  walkSteps:
+  - {fileID: 8300000, guid: 64cde67e4528b4e2583e754ea0135d9a, type: 3}
+  runSteps:
+  - {fileID: 8300000, guid: 64cde67e4528b4e2583e754ea0135d9a, type: 3}
+  - {fileID: 8300000, guid: 0ec63d412b8804fe8a8bb025418f611e, type: 3}
+  idleInterval: 8
+  idleVariance: 3
+  footstepWalkInterval: 0.5
+  footstepRunInterval: 0.27
+  audioMaxDistance: 25
 --- !u!1 &1542613413889116
 GameObject:
   m_ObjectHideFlags: 0

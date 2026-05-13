@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 95978546307975870}
   - component: {fileID: -3190368670491925134}
   - component: {fileID: -2698046085254860086}
+  - component: {fileID: -405630194078685435}
   m_Layer: 0
   m_Name: Wild_rabbit_v2_prefab
   m_TagString: Untagged
@@ -121,16 +122,39 @@ MonoBehaviour:
   m_GameObject: {fileID: 1038650439005304}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83f7c8c8a923649d2ae4cb374c0d9a13, type: 3}
+  m_Script: {fileID: 11500000, guid: 0f22cfb955ec60d4f8898d679a58c3ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnimalAI
-  animalType: 0
-  player: {fileID: 0}
-  detectionRadius: 7
-  wanderRadius: 10
-  walkTime: 5
-  idleTime: 3
-  eatTime: 4
+  detectDistance: 15
+  roamRadius: 20
+--- !u!114 &-405630194078685435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1038650439005304}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbb6580bd00554732ada21ee83dab903, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimalAudioController
+  idleClips: []
+  alertClips: []
+  attackClips: []
+  fleeClips: []
+  hurtClips: []
+  deathClips: []
+  walkSteps:
+  - {fileID: 8300000, guid: 64cde67e4528b4e2583e754ea0135d9a, type: 3}
+  runSteps:
+  - {fileID: 8300000, guid: 64cde67e4528b4e2583e754ea0135d9a, type: 3}
+  - {fileID: 8300000, guid: 0ec63d412b8804fe8a8bb025418f611e, type: 3}
+  idleInterval: 8
+  idleVariance: 3
+  footstepWalkInterval: 0.5
+  footstepRunInterval: 0.27
+  audioMaxDistance: 25
 --- !u!1 &1052421133370920
 GameObject:
   m_ObjectHideFlags: 0

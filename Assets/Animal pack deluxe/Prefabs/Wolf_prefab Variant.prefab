@@ -67,14 +67,14 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1817446995028838, guid: 5701a584e276bba438e4a5f5f02780a4, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 4063184267445762980}
+      addedObject: {fileID: 7953390942625815913}
   m_SourcePrefab: {fileID: 100100000, guid: 5701a584e276bba438e4a5f5f02780a4, type: 3}
 --- !u!1 &9172182880077584055 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1817446995028838, guid: 5701a584e276bba438e4a5f5f02780a4, type: 3}
   m_PrefabInstance: {fileID: 9172802537717824977}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4063184267445762980
+--- !u!114 &7953390942625815913
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -83,12 +83,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 9172182880077584055}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f89dbf60c3a2645ea8409f01a92e7dff, type: 3}
+  m_Script: {fileID: 11500000, guid: fbb6580bd00554732ada21ee83dab903, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AnimalAI
-  animalType: 1
-  player: {fileID: 0}
-  detectionRadius: 7
-  wanderRadius: 10
-  idleTime: 3
-  eatTime: 4
+  m_EditorClassIdentifier: Assembly-CSharp::AnimalAudioController
+  idleClips: []
+  alertClips:
+  - {fileID: 8300000, guid: 3f4c74bd24ace4a61980a10860f8ff3d, type: 3}
+  attackClips:
+  - {fileID: 8300000, guid: af83c8fd61fbd4d66b8d3ea1f27e7c25, type: 3}
+  fleeClips: []
+  hurtClips: []
+  deathClips: []
+  walkSteps:
+  - {fileID: 8300000, guid: 64cde67e4528b4e2583e754ea0135d9a, type: 3}
+  runSteps:
+  - {fileID: 8300000, guid: 64cde67e4528b4e2583e754ea0135d9a, type: 3}
+  idleInterval: 8
+  idleVariance: 3
+  footstepWalkInterval: 0.5
+  footstepRunInterval: 0.27
+  audioMaxDistance: 25

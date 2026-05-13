@@ -765,6 +765,7 @@ GameObject:
   - component: {fileID: 95366048792280394}
   - component: {fileID: 5718234356342252771}
   - component: {fileID: 5298628933482229567}
+  - component: {fileID: -6989352799181893059}
   m_Layer: 0
   m_Name: Deer_male_prefab
   m_TagString: Untagged
@@ -843,16 +844,39 @@ MonoBehaviour:
   m_GameObject: {fileID: 1359080710252902}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83f7c8c8a923649d2ae4cb374c0d9a13, type: 3}
+  m_Script: {fileID: 11500000, guid: 545bcf3077afa1e4e8f3c2240ec48c97, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnimalAI
-  animalType: 0
-  player: {fileID: 0}
-  detectionRadius: 7
-  wanderRadius: 10
-  walkTime: 5
-  idleTime: 3
-  eatTime: 4
+  detectDistance: 15
+  roamRadius: 20
+--- !u!114 &-6989352799181893059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1359080710252902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbb6580bd00554732ada21ee83dab903, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimalAudioController
+  idleClips: []
+  alertClips:
+  - {fileID: 8300000, guid: 3b72b3b55bb3b4753bbf995302965cb3, type: 3}
+  attackClips: []
+  fleeClips: []
+  hurtClips: []
+  deathClips: []
+  walkSteps:
+  - {fileID: 8300000, guid: fc756a1bdbafd43e3aeca858c0250cf8, type: 3}
+  runSteps:
+  - {fileID: 8300000, guid: fc756a1bdbafd43e3aeca858c0250cf8, type: 3}
+  idleInterval: 8
+  idleVariance: 3
+  footstepWalkInterval: 0.5
+  footstepRunInterval: 0.27
+  audioMaxDistance: 25
 --- !u!1 &1365269035226208
 GameObject:
   m_ObjectHideFlags: 0
