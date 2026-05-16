@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 982892050521380482}
   - component: {fileID: -1601170427519667328}
   - component: {fileID: -399318918692499004}
+  - component: {fileID: 9060900088613396109}
   m_Layer: 18
   m_Name: WallWithWindow
   m_TagString: Untagged
@@ -130,3 +131,17 @@ MonoBehaviour:
   buildingData: {fileID: 11400000, guid: e068043dd4c2b814e906ea8c38846057, type: 2}
   logPrefab: {fileID: 421135329707430855, guid: 597325a94f6b4a04e982715bb4e5e43b, type: 3}
   holdTime: 2
+--- !u!114 &9060900088613396109
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6787462284637791834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da8a4e49b8edfbb4cbb4fc5e2a50e174, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuildingIdentity
+  buildingID: wallwithwindow
+  isFinished: 1

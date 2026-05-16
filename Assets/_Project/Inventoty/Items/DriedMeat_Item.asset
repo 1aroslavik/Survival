@@ -12,15 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee068d734ff63ca49864da26bbe487bb, type: 3}
   m_Name: DriedMeat_Item
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
+  worldPrefab: {fileID: 1425171790764893731, guid: 7039e0a9330f21d4f91501ecb00ef3c4, type: 3}
   itemName: DriedMeat
   description: 
   itemType: 1
+  itemID: driedmeat
   resourceType: 10
   isStackable: 1
   maxStack: 5
   hungerRestore: 50
   thirstRestore: 0
   healthRestore: 0
+  staminaRestore: 0
+  radiationAdd: 0
+  radiationRemove: 0
+  causesBleeding: 0
+  causesPoison: 0
+  isConsumable: 1
   inventoryPrefab: {fileID: 1425171790764893731, guid: 837f1e009457b4b4a871c9f27e6812df, type: 3}
   handPrefab: {fileID: 0}
+  noteImage: {fileID: 0}
   weaponAnimator: {fileID: 0}
+  useSound: {fileID: 0}

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea7ed53daaa6c4d4180aaa7137eadcf2, type: 3}
   m_Name: FlatRoofData
   m_EditorClassIdentifier: Assembly-CSharp::BuildingData
+  buildingID: flatroof
   constructionPrefab: {fileID: 9131440607035066883, guid: 0352fcda1f9e0fd4e821f3476dcfe92d, type: 3}
   finishedPrefab: {fileID: 9131440607035066883, guid: f4ab7e9244cb04343954c093083cde56, type: 3}
   resources:

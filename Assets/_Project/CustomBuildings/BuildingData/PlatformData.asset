@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea7ed53daaa6c4d4180aaa7137eadcf2, type: 3}
   m_Name: PlatformData
   m_EditorClassIdentifier: Assembly-CSharp::BuildingData
+  buildingID: platform
   constructionPrefab: {fileID: 8353103876137609062, guid: 250892add231f9542b1ecf8a60d77b85, type: 3}
   finishedPrefab: {fileID: 8353103876137609062, guid: 1eb4d726b06055f4eae1c5c76c38905f, type: 3}
   resources:

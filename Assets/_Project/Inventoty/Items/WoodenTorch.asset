@@ -12,15 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee068d734ff63ca49864da26bbe487bb, type: 3}
   m_Name: WoodenTorch
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
+  worldPrefab: {fileID: 6425603794723442580, guid: c9267992152b02e43b7a70eea114bace, type: 3}
   itemName: Torch
   description: 
   itemType: 5
+  itemID: torch
   resourceType: 21
   isStackable: 0
   maxStack: 1
   hungerRestore: 0
   thirstRestore: 0
   healthRestore: 0
+  staminaRestore: 0
+  radiationAdd: 0
+  radiationRemove: 0
+  causesBleeding: 0
+  causesPoison: 0
+  isConsumable: 1
   inventoryPrefab: {fileID: 6425603794723442580, guid: ae08911a428abaa4b8c86f1e25293388, type: 3}
   handPrefab: {fileID: 8711731116539900380, guid: 41813485d507bc84b8b50b84bf1b1f4e, type: 3}
+  noteImage: {fileID: 0}
   weaponAnimator: {fileID: 9100000, guid: 331d7aaa0653df24c8c786fb084c51e7, type: 2}
+  useSound: {fileID: 0}

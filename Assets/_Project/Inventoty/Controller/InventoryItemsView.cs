@@ -46,7 +46,34 @@ public class InventoryItemsView : MonoBehaviour
 
         if (slot == null || slot.isEmpty)
             return;
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            if (slot.data != null && slot.data.worldPrefab != null)
+            {
+                Transform cam = Camera.main.transform;
 
+                Vector3 dropPos =
+                    cam.position +
+                    cam.forward * 2f;
+
+                Instantiate(
+                    slot.data.worldPrefab,
+                    dropPos,
+                    Quaternion.identity
+                );
+            }
+
+            slot.Clear();
+
+            model.OnInventoryChanged?.Invoke();
+
+            isHovering = false;
+
+            if (InventoryTooltip.Instance != null)
+                InventoryTooltip.Instance.Hide();
+
+            return;
+        }
         if (Input.GetKeyDown(KeyCode.E))
         {
             if (slot.data == null)

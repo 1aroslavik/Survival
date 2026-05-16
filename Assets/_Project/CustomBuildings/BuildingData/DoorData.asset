@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea7ed53daaa6c4d4180aaa7137eadcf2, type: 3}
   m_Name: DoorData
   m_EditorClassIdentifier: Assembly-CSharp::BuildingData
+  buildingID: door
   constructionPrefab: {fileID: 1945309440466956535, guid: ce71508957a2533418ad074cf2a5a8fa, type: 3}
   finishedPrefab: {fileID: 1945309440466956535, guid: 9145853fb0ee4da4c9b25a94dbd08794, type: 3}
   resources:

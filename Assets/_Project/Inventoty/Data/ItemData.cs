@@ -16,6 +16,8 @@ public enum ItemType
 [CreateAssetMenu(menuName = "Inventory/Item")]
 public class ItemData : ScriptableObject
 {
+    [Header("Drop")]
+    public GameObject worldPrefab;
     // ================= BASE =================
 
     [Header("Base")]
@@ -25,7 +27,10 @@ public class ItemData : ScriptableObject
     public string description;
 
     public ItemType itemType;
+    // ================= SAVE =================
 
+    [Header("Save")]
+    public string itemID;
     // ================= RESOURCE =================
 
     [Header("Resource")]

@@ -890,6 +890,7 @@ GameObject:
   - component: {fileID: 4775223878170194848}
   - component: {fileID: 590605455217064634}
   - component: {fileID: 4901244000012968739}
+  - component: {fileID: -3901542925783213957}
   m_Layer: 0
   m_Name: Campfire
   m_TagString: Untagged
@@ -975,6 +976,20 @@ MonoBehaviour:
   - {fileID: 3510475693938846261}
   meatInventory: {fileID: 11400000, guid: 6b01fad1f8fc499468b5f7c350328625, type: 2}
   meatWorld: {fileID: 1425171790764893731, guid: 0066d271627d09b48a11f99ec3cef5be, type: 3}
+--- !u!114 &-3901542925783213957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4157539498077675507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da8a4e49b8edfbb4cbb4fc5e2a50e174, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuildingIdentity
+  buildingID: campfire
+  isFinished: 1
 --- !u!1 &4426325329149448069
 GameObject:
   m_ObjectHideFlags: 0

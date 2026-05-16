@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 149596568374675247}
   - component: {fileID: 1007085408450664736}
   - component: {fileID: 2112479628417750915}
+  - component: {fileID: -3542077508419470258}
   m_Layer: 0
   m_Name: StandingTorch
   m_TagString: Untagged
@@ -116,6 +117,20 @@ CapsuleCollider:
   m_Height: 1.6727368
   m_Direction: 1
   m_Center: {x: -0.0069264993, y: 0.8243789, z: -0.0324507}
+--- !u!114 &-3542077508419470258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3365182667391188369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da8a4e49b8edfbb4cbb4fc5e2a50e174, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuildingIdentity
+  buildingID: torch
+  isFinished: 1
 --- !u!1001 &4000059979808160730
 PrefabInstance:
   m_ObjectHideFlags: 0

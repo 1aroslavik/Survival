@@ -255,6 +255,7 @@ GameObject:
   - component: {fileID: 6783805350458532989}
   - component: {fileID: 4899073503789228504}
   - component: {fileID: 1952205680347306838}
+  - component: {fileID: -2816857839962383551}
   m_Layer: 0
   m_Name: MeatDryer
   m_TagString: Untagged
@@ -322,6 +323,20 @@ MonoBehaviour:
   - {fileID: 4904005339648316865}
   meatInventory: {fileID: 11400000, guid: 6b01fad1f8fc499468b5f7c350328625, type: 2}
   meatWorld: {fileID: 1425171790764893731, guid: 0066d271627d09b48a11f99ec3cef5be, type: 3}
+--- !u!114 &-2816857839962383551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5207883661308511998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da8a4e49b8edfbb4cbb4fc5e2a50e174, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuildingIdentity
+  buildingID: meatdryer
+  isFinished: 1
 --- !u!1 &5646201957396884409
 GameObject:
   m_ObjectHideFlags: 0

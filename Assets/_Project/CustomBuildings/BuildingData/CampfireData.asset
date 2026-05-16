@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea7ed53daaa6c4d4180aaa7137eadcf2, type: 3}
   m_Name: CampfireData
   m_EditorClassIdentifier: Assembly-CSharp::BuildingData
+  buildingID: campfire
   constructionPrefab: {fileID: 4157539498077675507, guid: 3a3f70d13ddb65d439e3774dbabbb8e3, type: 3}
   finishedPrefab: {fileID: 4157539498077675507, guid: 8537b36cbbeee0c4d9fec7033e193cd3, type: 3}
   resources:

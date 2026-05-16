@@ -12,15 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee068d734ff63ca49864da26bbe487bb, type: 3}
   m_Name: Spear_Item
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
+  worldPrefab: {fileID: 0}
   itemName: Spear
   description: 
   itemType: 5
+  itemID: spear
   resourceType: 15
   isStackable: 0
   maxStack: 1
   hungerRestore: 0
   thirstRestore: 0
   healthRestore: 0
+  staminaRestore: 0
+  radiationAdd: 0
+  radiationRemove: 0
+  causesBleeding: 0
+  causesPoison: 0
+  isConsumable: 1
   inventoryPrefab: {fileID: 4529049542669806326, guid: a722b37ad84dcaf4580f6ce67df66614, type: 3}
   handPrefab: {fileID: 0}
+  noteImage: {fileID: 0}
   weaponAnimator: {fileID: 0}
+  useSound: {fileID: 0}

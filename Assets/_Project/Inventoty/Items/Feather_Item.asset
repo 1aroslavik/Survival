@@ -12,15 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee068d734ff63ca49864da26bbe487bb, type: 3}
   m_Name: Feather_Item
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
+  worldPrefab: {fileID: 2139894475784436948, guid: ecad7aaa59cf8694895640be12f5a7d4, type: 3}
   itemName: Feather
   description: 
-  itemType: 4
+  itemType: 0
+  itemID: feather
   resourceType: 4
   isStackable: 1
   maxStack: 20
   hungerRestore: 0
   thirstRestore: 0
   healthRestore: 0
+  staminaRestore: 0
+  radiationAdd: 0
+  radiationRemove: 0
+  causesBleeding: 0
+  causesPoison: 0
+  isConsumable: 1
   inventoryPrefab: {fileID: 2139894475784436948, guid: fa2774d6aeaf81942abf365e791a950e, type: 3}
   handPrefab: {fileID: 0}
+  noteImage: {fileID: 0}
   weaponAnimator: {fileID: 0}
+  useSound: {fileID: 0}

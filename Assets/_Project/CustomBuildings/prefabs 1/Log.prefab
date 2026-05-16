@@ -561,6 +561,7 @@ GameObject:
   - component: {fileID: 7457285084248448141}
   - component: {fileID: 5873548023548783994}
   - component: {fileID: 1052305535726526325}
+  - component: {fileID: 1450790755806836501}
   m_Layer: 17
   m_Name: Log
   m_TagString: Untagged
@@ -682,3 +683,17 @@ MonoBehaviour:
     slots:
     - {fileID: 372951725813371467}
   cancelHoldTime: 1.5
+--- !u!114 &1450790755806836501
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8637695914539996394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da8a4e49b8edfbb4cbb4fc5e2a50e174, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuildingIdentity
+  buildingID: log
+  isFinished: 0

@@ -12,15 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee068d734ff63ca49864da26bbe487bb, type: 3}
   m_Name: WoodenBow_Item
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
+  worldPrefab: {fileID: 5855820633019739314, guid: 2cf95f1a94cfa89448438067033baee6, type: 3}
   itemName: WoodenBow
   description: 
   itemType: 5
+  itemID: bow
   resourceType: 19
   isStackable: 0
   maxStack: 1
   hungerRestore: 0
   thirstRestore: 0
   healthRestore: 0
+  staminaRestore: 0
+  radiationAdd: 0
+  radiationRemove: 0
+  causesBleeding: 0
+  causesPoison: 0
+  isConsumable: 1
   inventoryPrefab: {fileID: 5855820633019739314, guid: f50e0c798041c02489844a2565a27c8f, type: 3}
   handPrefab: {fileID: 7021104802368732770, guid: 65793440e365eb540b124a9944459615, type: 3}
+  noteImage: {fileID: 0}
   weaponAnimator: {fileID: 9100000, guid: 8c9089166380c0d478ac0d53408c9c29, type: 2}
+  useSound: {fileID: 0}

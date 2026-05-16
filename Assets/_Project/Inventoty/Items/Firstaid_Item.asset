@@ -12,15 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee068d734ff63ca49864da26bbe487bb, type: 3}
   m_Name: Firstaid_Item
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
+  worldPrefab: {fileID: 7975998872709633962, guid: ea4d4c5b982f16e4e96139780d5c437f, type: 3}
   itemName: FirstAid
   description: 
   itemType: 2
+  itemID: firstaid
   resourceType: 11
   isStackable: 1
   maxStack: 10
   hungerRestore: 0
   thirstRestore: 0
   healthRestore: 10
+  staminaRestore: 0
+  radiationAdd: 0
+  radiationRemove: 20
+  causesBleeding: 0
+  causesPoison: 0
+  isConsumable: 1
   inventoryPrefab: {fileID: 7975998872709633962, guid: 0262d7324b4636e46842a6e56df5b8a7, type: 3}
   handPrefab: {fileID: 0}
+  noteImage: {fileID: 0}
   weaponAnimator: {fileID: 0}
+  useSound: {fileID: 0}

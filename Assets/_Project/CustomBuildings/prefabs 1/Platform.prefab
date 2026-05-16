@@ -893,6 +893,7 @@ GameObject:
   - component: {fileID: 1343083815651639517}
   - component: {fileID: 6540169393226627743}
   - component: {fileID: 6066751054599011965}
+  - component: {fileID: 3431171745037035440}
   m_Layer: 17
   m_Name: Platform
   m_TagString: Untagged
@@ -1033,6 +1034,20 @@ MonoBehaviour:
     - {fileID: 8167326592667932232}
     - {fileID: 6552465828263605456}
   cancelHoldTime: 1.5
+--- !u!114 &3431171745037035440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8353103876137609062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da8a4e49b8edfbb4cbb4fc5e2a50e174, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuildingIdentity
+  buildingID: platform
+  isFinished: 0
 --- !u!1 &8548063767527591454
 GameObject:
   m_ObjectHideFlags: 0

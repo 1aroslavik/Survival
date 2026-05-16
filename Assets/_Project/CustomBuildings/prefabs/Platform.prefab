@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1343083815651639517}
   - component: {fileID: 6540169393226627743}
   - component: {fileID: -8989303888191992840}
+  - component: {fileID: 2400378260369374788}
   m_Layer: 18
   m_Name: Platform
   m_TagString: Untagged
@@ -129,3 +130,17 @@ MonoBehaviour:
   buildingData: {fileID: 11400000, guid: 8855bb061925955489967a098f1a079c, type: 2}
   logPrefab: {fileID: 421135329707430855, guid: 597325a94f6b4a04e982715bb4e5e43b, type: 3}
   holdTime: 2
+--- !u!114 &2400378260369374788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8353103876137609062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da8a4e49b8edfbb4cbb4fc5e2a50e174, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuildingIdentity
+  buildingID: platform
+  isFinished: 1

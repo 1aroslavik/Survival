@@ -12,15 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee068d734ff63ca49864da26bbe487bb, type: 3}
   m_Name: TomatoSoup_Item
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
+  worldPrefab: {fileID: 2480711523850051260, guid: 92b081930b0dd384cb99cbb0ff40b276, type: 3}
   itemName: Tomato Soup
   description: 
   itemType: 1
+  itemID: tomatosoup
   resourceType: 17
   isStackable: 1
   maxStack: 5
   hungerRestore: 40
   thirstRestore: 20
   healthRestore: 0
+  staminaRestore: 0
+  radiationAdd: 0
+  radiationRemove: 0
+  causesBleeding: 0
+  causesPoison: 0
+  isConsumable: 1
   inventoryPrefab: {fileID: 2480711523850051260, guid: 565737c5334094c40896bf32b0f32424, type: 3}
   handPrefab: {fileID: 0}
+  noteImage: {fileID: 0}
   weaponAnimator: {fileID: 0}
+  useSound: {fileID: 0}

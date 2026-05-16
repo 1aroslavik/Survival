@@ -12,15 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee068d734ff63ca49864da26bbe487bb, type: 3}
   m_Name: WaterBottle_Item
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
+  worldPrefab: {fileID: 4907392872421600573, guid: e7fa272389ae5194a900ec889396236e, type: 3}
   itemName: Water Bottle
   description: 
   itemType: 3
+  itemID: water
   resourceType: 18
   isStackable: 1
   maxStack: 5
   hungerRestore: 0
   thirstRestore: 50
   healthRestore: 0
+  staminaRestore: 0
+  radiationAdd: 0
+  radiationRemove: 0
+  causesBleeding: 0
+  causesPoison: 0
+  isConsumable: 1
   inventoryPrefab: {fileID: 4907392872421600573, guid: c56678f46b5b12b48be7c8b43bafc461, type: 3}
   handPrefab: {fileID: 0}
+  noteImage: {fileID: 0}
   weaponAnimator: {fileID: 0}
+  useSound: {fileID: 0}
