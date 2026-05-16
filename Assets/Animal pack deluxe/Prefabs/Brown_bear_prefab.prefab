@@ -108,6 +108,7 @@ GameObject:
   - component: {fileID: 95770884961887428}
   - component: {fileID: 3820105496846855484}
   - component: {fileID: 979561854212217118}
+  - component: {fileID: 4143189057439550087}
   m_Layer: 0
   m_Name: Brown_bear_prefab
   m_TagString: Untagged
@@ -185,16 +186,41 @@ MonoBehaviour:
   m_GameObject: {fileID: 1048028720104268}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83f7c8c8a923649d2ae4cb374c0d9a13, type: 3}
+  m_Script: {fileID: 11500000, guid: 0d9b94a4a8093ad4d82f076ff87ee8c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SimpleAnimalAI
-  animalType: 1
-  player: {fileID: 0}
-  detectionRadius: 7
-  wanderRadius: 10
-  walkTime: 5
-  idleTime: 3
-  eatTime: 4
+  detectDistance: 15
+  roamRadius: 20
+  attackDistance: 2.5
+--- !u!114 &4143189057439550087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1048028720104268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbb6580bd00554732ada21ee83dab903, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimalAudioController
+  idleClips:
+  - {fileID: 8300000, guid: b37eecb30605d4f789653845d00b1184, type: 3}
+  alertClips: []
+  attackClips:
+  - {fileID: 0}
+  fleeClips: []
+  hurtClips: []
+  deathClips: []
+  walkSteps:
+  - {fileID: 8300000, guid: 64cde67e4528b4e2583e754ea0135d9a, type: 3}
+  runSteps:
+  - {fileID: 8300000, guid: 64cde67e4528b4e2583e754ea0135d9a, type: 3}
+  idleInterval: 8
+  idleVariance: 3
+  footstepWalkInterval: 0.5
+  footstepRunInterval: 0.27
+  audioMaxDistance: 25
 --- !u!1 &1062409669733698
 GameObject:
   m_ObjectHideFlags: 0

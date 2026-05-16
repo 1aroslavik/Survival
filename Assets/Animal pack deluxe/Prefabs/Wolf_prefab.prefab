@@ -1530,6 +1530,7 @@ GameObject:
   - component: {fileID: 4913353921665142}
   - component: {fileID: -4456992928768752197}
   - component: {fileID: 8125471638366621581}
+  - component: {fileID: -4208493421862468424}
   m_Layer: 0
   m_Name: Wolf_prefab
   m_TagString: Untagged
@@ -1585,15 +1586,41 @@ MonoBehaviour:
   m_GameObject: {fileID: 1817446995028838}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83f7c8c8a923649d2ae4cb374c0d9a13, type: 3}
+  m_Script: {fileID: 11500000, guid: 8cbb16a74c4e12645a02c1cd5186c9c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnimalAI
-  animalType: 1
-  player: {fileID: 0}
-  detectionRadius: 6.17
-  wanderRadius: 10
-  idleTime: 3
-  eatTime: 4
+  detectDistance: 15
+  roamRadius: 20
+  attackDistance: 2
+--- !u!114 &-4208493421862468424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1817446995028838}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbb6580bd00554732ada21ee83dab903, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AnimalAudioController
+  idleClips: []
+  alertClips:
+  - {fileID: 8300000, guid: 3f4c74bd24ace4a61980a10860f8ff3d, type: 3}
+  attackClips:
+  - {fileID: 8300000, guid: af83c8fd61fbd4d66b8d3ea1f27e7c25, type: 3}
+  fleeClips: []
+  hurtClips: []
+  deathClips: []
+  walkSteps:
+  - {fileID: 8300000, guid: 64cde67e4528b4e2583e754ea0135d9a, type: 3}
+  runSteps:
+  - {fileID: 8300000, guid: 64cde67e4528b4e2583e754ea0135d9a, type: 3}
+  idleInterval: 8
+  idleVariance: 3
+  footstepWalkInterval: 0.5
+  footstepRunInterval: 0.27
+  audioMaxDistance: 25
 --- !u!1 &1852420776143842
 GameObject:
   m_ObjectHideFlags: 0

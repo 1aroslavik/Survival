@@ -2,15 +2,17 @@
 
 public class RabbitAI : AnimalBaseAI
 {
-    enum State
-    {
-        Idle,
-        Wander,
-        Panic
-    }
+    enum State { Idle, Wander, Panic }
 
+    AnimalAudioController animalAudio;
     State currentState;
     float timer;
+
+    protected override void Start()
+    {
+        base.Start();
+        animalAudio = GetComponent<AnimalAudioController>();
+    }
 
     void Update()
     {
@@ -18,40 +20,28 @@ public class RabbitAI : AnimalBaseAI
 
         float dist = Vector3.Distance(transform.position, player.position);
 
-        // 🐰 ЕСЛИ ИГРОК БЛИЗКО → ПАНИКА
         if (dist < detectDistance)
-        {
             EnterPanic();
-        }
 
         switch (currentState)
         {
-            case State.Idle:
-                Idle();
-                break;
-
-            case State.Wander:
-                Wander();
-                break;
-
-            case State.Panic:
-                Panic();
-                break;
+            case State.Idle:   Idle();   break;
+            case State.Wander: Wander(); break;
+            case State.Panic:  Panic();  break;
         }
 
+        animalAudio?.TickFootsteps(agent.velocity.magnitude);
         UpdateAnimation();
     }
 
     void Idle()
     {
         agent.SetDestination(transform.position);
-
         SetBool("IsEating", true);
 
         timer -= Time.deltaTime;
         if (timer <= 0)
         {
-            // шанс перейти в движение
             if (Random.value < 0.6f)
                 SetState(State.Wander, Random.Range(1.5f, 3f));
             else
@@ -66,14 +56,10 @@ public class RabbitAI : AnimalBaseAI
         timer -= Time.deltaTime;
 
         if (agent.remainingDistance < 0.5f)
-        {
-            MoveRandom(2f, 5f); // короткие перебежки
-        }
+            MoveRandom(2f, 5f);
 
         if (timer <= 0)
-        {
             SetState(State.Idle, Random.Range(2f, 5f));
-        }
     }
 
     void Panic()
@@ -84,7 +70,6 @@ public class RabbitAI : AnimalBaseAI
 
         if (timer <= 0)
         {
-            // после паники возвращается к жизни
             SetState(State.Idle, Random.Range(3f, 6f));
             return;
         }
@@ -93,7 +78,6 @@ public class RabbitAI : AnimalBaseAI
         {
             Vector3 dir = (transform.position - player.position).normalized;
             Vector3 target = transform.position + dir * Random.Range(8f, 15f);
-
             agent.speed = 7f;
             agent.SetDestination(target);
         }
@@ -102,7 +86,7 @@ public class RabbitAI : AnimalBaseAI
     void EnterPanic()
     {
         if (currentState == State.Panic) return;
-
+        animalAudio?.OnFlee();
         SetState(State.Panic, Random.Range(3f, 6f));
     }
 
