@@ -12,15 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee068d734ff63ca49864da26bbe487bb, type: 3}
   m_Name: Rope_Item
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
+  worldPrefab: {fileID: 5810011114451682236, guid: 65988eeebac19dd42aab2fb06ed12cc5, type: 3}
   itemName: Rope
   description: 
   itemType: 0
+  itemID: rope
   resourceType: 14
   isStackable: 1
   maxStack: 10
   hungerRestore: 0
   thirstRestore: 0
   healthRestore: 0
+  staminaRestore: 0
+  radiationAdd: 0
+  radiationRemove: 0
+  causesBleeding: 0
+  causesPoison: 0
+  isConsumable: 1
   inventoryPrefab: {fileID: 5810011114451682236, guid: 9c63b7610e5d1284cb57c89cf078628b, type: 3}
   handPrefab: {fileID: 0}
+  noteImage: {fileID: 0}
   weaponAnimator: {fileID: 0}
+  useSound: {fileID: 0}

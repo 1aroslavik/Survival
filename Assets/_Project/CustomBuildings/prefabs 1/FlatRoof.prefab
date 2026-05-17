@@ -763,6 +763,7 @@ GameObject:
   - component: {fileID: 5269496701467373252}
   - component: {fileID: 2521124361113503443}
   - component: {fileID: -5304388361880135971}
+  - component: {fileID: -8994914349714852614}
   m_Layer: 17
   m_Name: FlatRoof
   m_TagString: Untagged
@@ -897,3 +898,17 @@ MonoBehaviour:
     - {fileID: 4873655175536684585}
     - {fileID: 8408878853234386116}
   cancelHoldTime: 1.5
+--- !u!114 &-8994914349714852614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9131440607035066883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da8a4e49b8edfbb4cbb4fc5e2a50e174, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuildingIdentity
+  buildingID: flatroof
+  isFinished: 0

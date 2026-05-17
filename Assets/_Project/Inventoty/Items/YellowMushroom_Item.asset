@@ -12,15 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee068d734ff63ca49864da26bbe487bb, type: 3}
   m_Name: YellowMushroom_Item
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
+  worldPrefab: {fileID: 185280, guid: 8381f3de86739e84eaadb9ce20bccccb, type: 3}
   itemName: Mushroom
   description: 
   itemType: 1
+  itemID: yellowmushroom
   resourceType: 3
   isStackable: 1
   maxStack: 10
   hungerRestore: 5
   thirstRestore: 0
   healthRestore: 0
+  staminaRestore: 0
+  radiationAdd: 0
+  radiationRemove: 0
+  causesBleeding: 0
+  causesPoison: 0
+  isConsumable: 1
   inventoryPrefab: {fileID: 185280, guid: b888105bd1ad6dc40af2f74dc0d47198, type: 3}
   handPrefab: {fileID: 0}
+  noteImage: {fileID: 0}
   weaponAnimator: {fileID: 0}
+  useSound: {fileID: 0}

@@ -12,15 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee068d734ff63ca49864da26bbe487bb, type: 3}
   m_Name: Blueberries_Item
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
+  worldPrefab: {fileID: 6842361655457291128, guid: e3c9b7f5eef121d4db184d0a7cf95d03, type: 3}
   itemName: Blueberries
   description: 
   itemType: 1
+  itemID: blueberry
   resourceType: 8
   isStackable: 1
   maxStack: 20
   hungerRestore: 5
   thirstRestore: 5
   healthRestore: 5
+  staminaRestore: 0
+  radiationAdd: 0
+  radiationRemove: 0
+  causesBleeding: 0
+  causesPoison: 0
+  isConsumable: 1
   inventoryPrefab: {fileID: 6842361655457291128, guid: 8172ec4f3e8fde048929bc355749f05a, type: 3}
   handPrefab: {fileID: 0}
+  noteImage: {fileID: 0}
   weaponAnimator: {fileID: 0}
+  useSound: {fileID: 0}

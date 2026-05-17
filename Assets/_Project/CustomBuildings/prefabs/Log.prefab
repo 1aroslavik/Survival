@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2222755294230589970}
   - component: {fileID: 7187130332457065999}
   - component: {fileID: 378177673026294185}
+  - component: {fileID: -7930610593518330936}
   m_Layer: 18
   m_Name: Log
   m_TagString: Untagged
@@ -130,3 +131,17 @@ MonoBehaviour:
   buildingData: {fileID: 11400000, guid: 32c432ff51d7c87498f31ad57f69e6df, type: 2}
   logPrefab: {fileID: 421135329707430855, guid: 597325a94f6b4a04e982715bb4e5e43b, type: 3}
   holdTime: 2
+--- !u!114 &-7930610593518330936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 421135329707430855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da8a4e49b8edfbb4cbb4fc5e2a50e174, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuildingIdentity
+  buildingID: log
+  isFinished: 1

@@ -19,6 +19,8 @@ public class RadiationSource : MonoBehaviour
 
     private PlayerStats playerStats;
 
+    private GameObject radiationIcon;
+
     void Awake()
     {
         volume = GetComponent<Volume>();
@@ -28,11 +30,15 @@ public class RadiationSource : MonoBehaviour
 
         if (volume != null)
             volume.weight = 0f;
+
+        radiationIcon = GameObject.Find("RadiationIcon");
+
+        if (radiationIcon != null)
+            radiationIcon.SetActive(false);
     }
 
     void Update()
     {
-        // Плавное включение/выключение эффекта
         if (volume != null)
         {
             float targetWeight = playerInside ? 1f : 0f;
@@ -44,7 +50,6 @@ public class RadiationSource : MonoBehaviour
             );
         }
 
-        // Накопление радиации
         if (playerInside && playerStats != null)
         {
             playerStats.AddRadiation(
@@ -62,7 +67,8 @@ public class RadiationSource : MonoBehaviour
 
         playerStats = other.GetComponent<PlayerStats>();
 
-        Debug.Log("☢️ ВОШЕЛ В РАДИАЦИОННУЮ ЗОНУ");
+        if (radiationIcon != null)
+            radiationIcon.SetActive(true);
     }
 
     void OnTriggerExit(Collider other)
@@ -73,6 +79,7 @@ public class RadiationSource : MonoBehaviour
         playerInside = false;
         playerStats = null;
 
-        Debug.Log("🚪 ВЫШЕЛ ИЗ РАДИАЦИОННОЙ ЗОНЫ");
+        if (radiationIcon != null)
+            radiationIcon.SetActive(false);
     }
 }

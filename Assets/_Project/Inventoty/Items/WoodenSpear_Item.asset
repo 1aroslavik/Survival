@@ -12,15 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee068d734ff63ca49864da26bbe487bb, type: 3}
   m_Name: WoodenSpear_Item
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
+  worldPrefab: {fileID: 681920341298687110, guid: 037e269825d8707438c1822285749710, type: 3}
   itemName: WoodenSpear
   description: 
   itemType: 5
+  itemID: spear
   resourceType: 20
   isStackable: 1
   maxStack: 3
   hungerRestore: 0
   thirstRestore: 0
   healthRestore: 0
+  staminaRestore: 0
+  radiationAdd: 0
+  radiationRemove: 0
+  causesBleeding: 0
+  causesPoison: 0
+  isConsumable: 1
   inventoryPrefab: {fileID: 681920341298687110, guid: 1d26b6b577252fd489532e773561ffc7, type: 3}
   handPrefab: {fileID: 3647616786848641024, guid: f3fb95659fe69a44aa84d4632e5f9698, type: 3}
+  noteImage: {fileID: 0}
   weaponAnimator: {fileID: 9100000, guid: 11317c3429ad9174dbe1773224870d24, type: 2}
+  useSound: {fileID: 0}

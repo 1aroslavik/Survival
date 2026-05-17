@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee068d734ff63ca49864da26bbe487bb, type: 3}
   m_Name: Apple_Item
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
+  worldPrefab: {fileID: 3893244131966969671, guid: 0f62215a59e8c4f46a32dfc7db5beac6, type: 3}
   itemName: Apple
   description: Where did the apples come from here?
   itemType: 1
+  itemID: apple
   resourceType: 5
   isStackable: 1
   maxStack: 10

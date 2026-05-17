@@ -14,6 +14,9 @@ public class InventoryModel : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+
+        Instance = this;
+
         if (slots.Count == 0)
         {
             for (int i = 0; i < SlotCount; i++)
@@ -124,5 +127,14 @@ public class InventoryModel : MonoBehaviour
         }
 
         return true;
+    }
+    public void ClearInventory()
+    {
+        foreach (var slot in slots)
+        {
+            slot.Clear();
+        }
+
+        OnInventoryChanged?.Invoke();
     }
 }

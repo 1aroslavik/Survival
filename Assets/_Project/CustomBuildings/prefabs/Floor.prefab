@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5722299389437405061}
   - component: {fileID: 4249989041704113709}
   - component: {fileID: 3272384541561505043}
+  - component: {fileID: -1833654447421844239}
   m_Layer: 18
   m_Name: Floor
   m_TagString: Untagged
@@ -128,3 +129,17 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3.0054202, y: 0.24034125, z: 2.992592}
   m_Center: {x: 0.001119256, y: -0.023112595, z: 0.002042532}
+--- !u!114 &-1833654447421844239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8754072341095139419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da8a4e49b8edfbb4cbb4fc5e2a50e174, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuildingIdentity
+  buildingID: floor
+  isFinished: 1

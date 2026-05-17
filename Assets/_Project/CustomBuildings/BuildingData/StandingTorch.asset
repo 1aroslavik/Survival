@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea7ed53daaa6c4d4180aaa7137eadcf2, type: 3}
   m_Name: StandingTorch
   m_EditorClassIdentifier: Assembly-CSharp::BuildingData
+  buildingID: torch
   constructionPrefab: {fileID: 3365182667391188369, guid: f9338c3ded381aa40b8a52355247914c, type: 3}
   finishedPrefab: {fileID: 3365182667391188369, guid: 88fb3c60e2f87a549a8e5b89e670f23d, type: 3}
   resources:

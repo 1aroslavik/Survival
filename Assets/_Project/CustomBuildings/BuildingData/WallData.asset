@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea7ed53daaa6c4d4180aaa7137eadcf2, type: 3}
   m_Name: WallData
   m_EditorClassIdentifier: Assembly-CSharp::BuildingData
+  buildingID: wall
   constructionPrefab: {fileID: 5873122550803004698, guid: 4979d001f80b8a84fa9d9965190f968c, type: 3}
   finishedPrefab: {fileID: 5873122550803004698, guid: 495f23844eac17b41ac433336876887a, type: 3}
   resources:

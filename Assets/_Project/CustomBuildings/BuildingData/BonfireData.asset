@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea7ed53daaa6c4d4180aaa7137eadcf2, type: 3}
   m_Name: BonfireData
   m_EditorClassIdentifier: Assembly-CSharp::BuildingData
+  buildingID: bonfire
   constructionPrefab: {fileID: 4157539498077675507, guid: 53c39186803168c4aa382bdac1051287, type: 3}
   finishedPrefab: {fileID: 4157539498077675507, guid: fd75b2f39964aa24caa7d5ddbdb9db43, type: 3}
   resources:

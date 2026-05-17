@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3824351849501858339}
   - component: {fileID: 3279904732477558348}
   - component: {fileID: 6908026357307727621}
+  - component: {fileID: -2149666484630452795}
   m_Layer: 18
   m_Name: Doorway
   m_TagString: Untagged
@@ -173,3 +174,17 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.0762157, y: 0.5356622, z: 0.42539155}
   m_Center: {x: 0.024721622, y: 2.731002, z: 0.005328417}
+--- !u!114 &-2149666484630452795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4546319406111970058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da8a4e49b8edfbb4cbb4fc5e2a50e174, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuildingIdentity
+  buildingID: doorway
+  isFinished: 1

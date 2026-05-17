@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea7ed53daaa6c4d4180aaa7137eadcf2, type: 3}
   m_Name: MeatDryerData
   m_EditorClassIdentifier: Assembly-CSharp::BuildingData
+  buildingID: meatdryer
   constructionPrefab: {fileID: 5207883661308511998, guid: daffc4262a79dec47a99cf0df3efa059, type: 3}
   finishedPrefab: {fileID: 5207883661308511998, guid: f2bf53b7fcce3ad4f887fbdbf5c89658, type: 3}
   resources:

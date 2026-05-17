@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5269496701467373252}
   - component: {fileID: 1560726707861099382}
   - component: {fileID: 3426956948077715516}
+  - component: {fileID: 4422491138918572767}
   m_Layer: 18
   m_Name: FlatRoof
   m_TagString: Untagged
@@ -128,3 +129,17 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.988265, y: 0.4093066, z: 2.978208}
   m_Center: {x: 0.0002630949, y: 0.0029140934, z: -0.02276367}
+--- !u!114 &4422491138918572767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9131440607035066883}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da8a4e49b8edfbb4cbb4fc5e2a50e174, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuildingIdentity
+  buildingID: flatroof
+  isFinished: 1

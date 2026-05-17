@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea7ed53daaa6c4d4180aaa7137eadcf2, type: 3}
   m_Name: WallWithWindowData
   m_EditorClassIdentifier: Assembly-CSharp::BuildingData
+  buildingID: wallwithwindow
   constructionPrefab: {fileID: 6787462284637791834, guid: 3b601f779b1667f4b92a788acc8789ab, type: 3}
   finishedPrefab: {fileID: 6787462284637791834, guid: 8cfda01244deebc4c82f5e656d2a6a2f, type: 3}
   resources:

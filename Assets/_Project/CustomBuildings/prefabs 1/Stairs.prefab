@@ -212,6 +212,7 @@ GameObject:
   - component: {fileID: 6910081003474841527}
   - component: {fileID: 3489847923621143864}
   - component: {fileID: 2913533280387358391}
+  - component: {fileID: 3690014194009504534}
   m_Layer: 17
   m_Name: Stairs
   m_TagString: Untagged
@@ -350,6 +351,20 @@ MonoBehaviour:
     - {fileID: 4398535959959651509}
     - {fileID: 9028624703230980711}
   cancelHoldTime: 1.5
+--- !u!114 &3690014194009504534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1607409931038562042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da8a4e49b8edfbb4cbb4fc5e2a50e174, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BuildingIdentity
+  buildingID: stairs
+  isFinished: 0
 --- !u!1 &2490955259731647445
 GameObject:
   m_ObjectHideFlags: 0

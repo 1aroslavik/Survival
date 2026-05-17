@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -7,7 +8,6 @@ public class BuildingSystem : MonoBehaviour
     [Header("Preview Materials")]
     public Material validMaterial;
     public Material invalidMaterial;
-
     [Header("Buildings")]
     public BuildingData[] buildings;
     public BookController bookController;
@@ -32,8 +32,9 @@ public class BuildingSystem : MonoBehaviour
 
         if (bookController != null)
             bookController.CloseBookFromUI();
-    }
 
+         }
+   
     void Update()
     {
         if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
@@ -51,8 +52,7 @@ public class BuildingSystem : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
             Place();
-
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetMouseButtonDown(1))
             CancelBuilding();
     }
 
@@ -203,7 +203,19 @@ public class BuildingSystem : MonoBehaviour
             currentBuilding.constructionPrefab,
             previewObject.transform.position,
             previewObject.transform.rotation);
+        BuildingIdentity identity =
+    obj.GetComponent<BuildingIdentity>();
 
+        if (identity == null)
+        {
+            identity =
+                obj.AddComponent<BuildingIdentity>();
+        }
+
+        identity.buildingID =
+            currentBuilding.buildingID;
+
+        identity.isFinished = false;
         ConstructionSite site = obj.GetComponent<ConstructionSite>();
 
         if (site != null)
@@ -244,5 +256,6 @@ public class BuildingSystem : MonoBehaviour
             Destroy(previewObject);
 
         previewObject = null;
+
     }
 }
