@@ -97,7 +97,10 @@ public class InventoryItemsView : MonoBehaviour
                     InventoryTooltip.Instance.Hide();
 
                 if (NoteReader.Instance != null)
-                    NoteReader.Instance.OpenForItem(slot.data);
+                {
+                    NoteCollection.GetOrCreate().Add(slot.data);
+                    NoteReader.Instance.Open();
+                }
             }
             else
             {

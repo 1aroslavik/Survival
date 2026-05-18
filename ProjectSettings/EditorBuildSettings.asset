@@ -18,7 +18,7 @@ EditorBuildSettings:
     path: Assets/PolymindGames/STP/_Demo/Scenes/Prototype.unity
     guid: 5fa35067fa350d744af436f345a9725c
   - enabled: 1
-    path: Assets/CutScene/CutScene2.unity
+    path: Assets/_Project/CutScene/CutScene2.unity
     guid: 13edc6d3857244e23af1dfb2c8265c25
   - enabled: 1
     path: Assets/_Project/Scenes/SampleScene.unity
