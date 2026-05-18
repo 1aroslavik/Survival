@@ -134,18 +134,15 @@ public class ItemUseSystem : MonoBehaviour
         if (CraftArea.Instance == null)
             return;
 
-        // добавляем предмет на коврик
-        CraftArea.Instance.AddItem(slot.data);
+        ItemData item = slot.data;
 
-        // уменьшаем количество в инвентаре
-        slot.amount--;
+        slot.Remove(1);
 
-        if (slot.amount <= 0)
-            slot.data = null;
+        FindFirstObjectByType<InventoryView>().Render();
+
+        CraftArea.Instance.AddItem(item);
 
         if (InventoryTooltip.Instance != null)
             InventoryTooltip.Instance.Hide();
-
-        FindObjectOfType<InventoryView>().Render();
     }
 }

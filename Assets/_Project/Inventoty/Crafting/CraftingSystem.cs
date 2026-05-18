@@ -19,6 +19,7 @@ public class CraftingSystem : MonoBehaviour
         currentRecipe = null;
 
         Debug.Log("Items in craft area:");
+
         foreach (var i in items)
             Debug.Log(" - " + i.name);
 
@@ -32,8 +33,10 @@ public class CraftingSystem : MonoBehaviour
 
                 currentRecipe = recipe;
 
-                // 🔥 показываем ТЕКСТ вместо предмета
-                CraftUI.Instance.ShowRecipe(recipe);
+                if (CraftUI.Instance != null)
+                {
+                    CraftUI.Instance.ShowRecipe(recipe);
+                }
 
                 return;
             }
@@ -41,7 +44,10 @@ public class CraftingSystem : MonoBehaviour
 
         Debug.Log("No recipe found");
 
-        CraftUI.Instance.HideAll();
+        if (CraftUI.Instance != null)
+        {
+            CraftUI.Instance.HideAll();
+        }
     }
 
     bool MatchRecipe(CraftRecipe recipe, List<ItemData> items)

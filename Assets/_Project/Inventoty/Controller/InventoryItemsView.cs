@@ -63,14 +63,19 @@ public class InventoryItemsView : MonoBehaviour
                 );
             }
 
-            slot.Clear();
+            // Удаляем только 1 предмет
+            slot.Remove(1);
 
             model.OnInventoryChanged?.Invoke();
 
-            isHovering = false;
+            // Если слот опустел
+            if (slot.isEmpty)
+            {
+                isHovering = false;
 
-            if (InventoryTooltip.Instance != null)
-                InventoryTooltip.Instance.Hide();
+                if (InventoryTooltip.Instance != null)
+                    InventoryTooltip.Instance.Hide();
+            }
 
             return;
         }
