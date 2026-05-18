@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee068d734ff63ca49864da26bbe487bb, type: 3}
   m_Name: NoteLetter4
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
+  worldPrefab: {fileID: 5258488427080396938, guid: 31df6af6fab5d4971afe83ee47a5b520, type: 3}
   itemName: Note4
   description: Day23
   itemType: 8
+  itemID: note
   resourceType: 22
   isStackable: 1
   maxStack: 10
