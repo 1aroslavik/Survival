@@ -50,31 +50,6 @@ public class NoteReader : MonoBehaviour
             Prev();
         if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
             Next();
-
-        if (Input.GetMouseButtonDown(0))
-            HandleManualMouseClick();
-    }
-
-    void HandleManualMouseClick()
-    {
-        Vector2 mouse = Input.mousePosition;
-        if (IsMouseOverButton(nextButton, mouse)) { Debug.Log("[NoteReader] Next via manual click"); Next(); return; }
-        if (IsMouseOverButton(prevButton, mouse)) { Debug.Log("[NoteReader] Prev via manual click"); Prev(); return; }
-        if (IsMouseOverButton(closeButton, mouse)) { Debug.Log("[NoteReader] Close via manual click"); Hide(); return; }
-    }
-
-    bool IsMouseOverButton(Button btn, Vector2 screenPos)
-    {
-        if (btn == null) return false;
-        var rect = btn.GetComponent<RectTransform>();
-        if (rect == null) return false;
-
-        var canvas = btn.GetComponentInParent<Canvas>();
-        Camera cam = null;
-        if (canvas != null && canvas.renderMode != RenderMode.ScreenSpaceOverlay)
-            cam = canvas.worldCamera;
-
-        return RectTransformUtility.RectangleContainsScreenPoint(rect, screenPos, cam);
     }
 
     void AutoFindButtons()

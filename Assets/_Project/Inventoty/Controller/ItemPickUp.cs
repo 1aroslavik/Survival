@@ -170,6 +170,9 @@ public class ItemPickUp : MonoBehaviour
 
         Debug.Log("✅ ITEM ADDED SUCCESS");
 
+        if (data.resourceType == ResourceType.Note)
+            NoteCollection.GetOrCreate().Add(data);
+
         Destroy(currentItem.gameObject);
 
         if (inventoryView != null)

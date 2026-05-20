@@ -12,16 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee068d734ff63ca49864da26bbe487bb, type: 3}
   m_Name: NoteSoldier2
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
+  worldPrefab: {fileID: 3131827295499059235, guid: ca2b3928152f94f45812e15568ff3be5, type: 3}
   itemName: Letter
   description: second
   itemType: 8
+  itemID: note
   resourceType: 22
   isStackable: 1
   maxStack: 10
   hungerRestore: 0
   thirstRestore: 0
   healthRestore: 0
+  staminaRestore: 0
+  radiationAdd: 0
+  radiationRemove: 0
+  causesBleeding: 0
+  causesPoison: 0
+  isConsumable: 1
   inventoryPrefab: {fileID: 3131827295499059235, guid: fd04be3143a1c4e77afdbec457251307, type: 3}
   handPrefab: {fileID: 0}
   noteImage: {fileID: 21300000, guid: 4714bc8976c0340149b561842614fa59, type: 3}
   weaponAnimator: {fileID: 0}
+  useSound: {fileID: 0}

@@ -12,18 +12,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee068d734ff63ca49864da26bbe487bb, type: 3}
   m_Name: NoteLetter3
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
+  worldPrefab: {fileID: 668200009312134961, guid: 48a0932443af2470db9ed7e704eae1d3, type: 3}
   itemName: Note3
   description: 'Day14
 
 '
   itemType: 8
+  itemID: note
   resourceType: 22
   isStackable: 1
   maxStack: 10
   hungerRestore: 0
   thirstRestore: 0
   healthRestore: 0
+  staminaRestore: 0
+  radiationAdd: 0
+  radiationRemove: 0
+  causesBleeding: 0
+  causesPoison: 0
+  isConsumable: 1
   inventoryPrefab: {fileID: 668200009312134961, guid: 39224da03ebe244e5bb4339a8b22d6f2, type: 3}
   handPrefab: {fileID: 0}
   noteImage: {fileID: 21300000, guid: 1bfedbca1fe414883aec9728286bca8d, type: 3}
   weaponAnimator: {fileID: 0}
+  useSound: {fileID: 0}

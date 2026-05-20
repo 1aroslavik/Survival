@@ -12,16 +12,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee068d734ff63ca49864da26bbe487bb, type: 3}
   m_Name: NewsPaper
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
+  worldPrefab: {fileID: 7058117444115716226, guid: b66471d586fd34d07941ec63b5432400, type: 3}
   itemName: Newspaper
   description: 
   itemType: 8
+  itemID: note
   resourceType: 22
   isStackable: 1
   maxStack: 10
   hungerRestore: 0
   thirstRestore: 0
   healthRestore: 0
+  staminaRestore: 0
+  radiationAdd: 0
+  radiationRemove: 0
+  causesBleeding: 0
+  causesPoison: 0
+  isConsumable: 1
   inventoryPrefab: {fileID: 5696212276998265700, guid: 1a031a61f7e654b70893907a65b32bb8, type: 3}
   handPrefab: {fileID: 0}
   noteImage: {fileID: 21300000, guid: 4a8c28104221c40ea8357f7e70b39e32, type: 3}
   weaponAnimator: {fileID: 0}
+  useSound: {fileID: 0}
