@@ -9,7 +9,8 @@ public class PlayerStats : MonoBehaviour
     public float thirstCostPerStamina = 0.08f;
 
     // ================= MAX VALUES =================
-
+    [Header("Death")]
+    public GameObject deathScreen;
     [Header("MAX VALUES")]
     public float maxHealth = 100f;
     public float maxHunger = 100f;
@@ -62,7 +63,7 @@ public class PlayerStats : MonoBehaviour
     [Header("Thresholds")]
     public float lowValue = 20f;
 
-    bool isDead;
+    [HideInInspector] public bool isDead;
 
     // =========================================================
 
@@ -218,7 +219,21 @@ public class PlayerStats : MonoBehaviour
         if (health <= 0 && !isDead)
         {
             isDead = true;
+
             Debug.Log("PLAYER DEAD");
+
+            // показать окно смерти
+            if (deathScreen != null)
+            {
+                deathScreen.SetActive(true);
+            }
+
+            // остановить игру
+            Time.timeScale = 0f;
+
+            // показать курсор
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
     }
 

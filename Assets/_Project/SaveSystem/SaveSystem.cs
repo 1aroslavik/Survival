@@ -228,6 +228,21 @@ public class SaveSystem : MonoBehaviour
             identity.isFinished =
                 save.isFinished;
         }
+        // закрыть окно смерти
+        if (stats.deathScreen != null)
+        {
+            stats.deathScreen.SetActive(false);
+        }
+
+        // сброс смерти
+        stats.isDead = false;
+
+        // вернуть игру
+        Time.timeScale = 1f;
+
+        // вернуть курсор
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
         Debug.Log("GAME LOADED");
     }
 }
