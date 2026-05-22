@@ -8,7 +8,9 @@ public class InventoryPresenter : MonoBehaviour
 
     [Header("HUD")]
     public GameObject statsUI;
-    public GameObject infoUI;
+
+    [Header("Extra Object")]
+    public GameObject objectToShow;
 
     [Header("Player")]
     public MonoBehaviour playerController;
@@ -19,6 +21,9 @@ public class InventoryPresenter : MonoBehaviour
     {
         inventoryCamera.gameObject.SetActive(false);
         inventoryRoot.gameObject.SetActive(false);
+
+        if (objectToShow != null)
+            objectToShow.SetActive(false);
     }
 
     void Update()
@@ -40,8 +45,9 @@ public class InventoryPresenter : MonoBehaviour
         if (statsUI != null)
             statsUI.SetActive(!isOpen);
 
-        if (infoUI != null)
-            infoUI.SetActive(!isOpen);
+        // Показываем объект при открытии
+        if (objectToShow != null)
+            objectToShow.SetActive(isOpen);
 
         if (playerController != null)
             playerController.enabled = !isOpen;
