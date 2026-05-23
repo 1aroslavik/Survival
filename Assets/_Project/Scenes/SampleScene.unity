@@ -26642,7 +26642,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2070160063}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
   m_Name: 
@@ -28059,19 +28059,19 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3895828750209066843, guid: 573f3e37c513e854394a0b1c18ff9bbd, type: 3}
-      propertyPath: possibleItems.Array.data[1]
+      propertyPath: 'possibleItems.Array.data[1]'
       value: 
       objectReference: {fileID: 7975998872709633962, guid: 0262d7324b4636e46842a6e56df5b8a7, type: 3}
     - target: {fileID: 3895828750209066843, guid: 573f3e37c513e854394a0b1c18ff9bbd, type: 3}
-      propertyPath: possibleItems.Array.data[2]
+      propertyPath: 'possibleItems.Array.data[2]'
       value: 
       objectReference: {fileID: 5110622010847425887, guid: c706d60358ecadc4394b903f0bf578c7, type: 3}
     - target: {fileID: 3895828750209066843, guid: 573f3e37c513e854394a0b1c18ff9bbd, type: 3}
-      propertyPath: possibleItems.Array.data[3]
+      propertyPath: 'possibleItems.Array.data[3]'
       value: 
       objectReference: {fileID: 2480711523850051260, guid: 565737c5334094c40896bf32b0f32424, type: 3}
     - target: {fileID: 3895828750209066843, guid: 573f3e37c513e854394a0b1c18ff9bbd, type: 3}
-      propertyPath: possibleItems.Array.data[4]
+      propertyPath: 'possibleItems.Array.data[4]'
       value: 
       objectReference: {fileID: 4907392872421600573, guid: c56678f46b5b12b48be7c8b43bafc461, type: 3}
     - target: {fileID: 6084529717564296382, guid: 573f3e37c513e854394a0b1c18ff9bbd, type: 3}
