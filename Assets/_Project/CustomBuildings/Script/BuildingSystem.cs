@@ -5,6 +5,8 @@ using UnityEngine.EventSystems;
 
 public class BuildingSystem : MonoBehaviour
 {
+    [Header("Building UI")]
+    public GameObject buildingUI;
     [Header("Preview Materials")]
     public Material validMaterial;
     public Material invalidMaterial;
@@ -33,8 +35,10 @@ public class BuildingSystem : MonoBehaviour
         if (bookController != null)
             bookController.CloseBookFromUI();
 
-         }
-   
+        if (buildingUI != null)
+            buildingUI.SetActive(true);
+    }
+
     void Update()
     {
         if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject())
@@ -244,7 +248,8 @@ public class BuildingSystem : MonoBehaviour
         {
             Debug.LogError("ConstructionSite not found on prefab!");
         }
-
+        if (buildingUI != null)
+            buildingUI.SetActive(false);
         Destroy(previewObject);
     }
 
@@ -256,6 +261,7 @@ public class BuildingSystem : MonoBehaviour
             Destroy(previewObject);
 
         previewObject = null;
-
+        if (buildingUI != null)
+            buildingUI.SetActive(false);
     }
 }

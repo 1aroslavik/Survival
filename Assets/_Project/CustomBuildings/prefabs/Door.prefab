@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 6864526302755887353}
   - component: {fileID: 4082225766596431686}
   - component: {fileID: 4863287904546849529}
+  - component: {fileID: 8727665829878421737}
   m_Layer: 18
   m_Name: Door
   m_TagString: Untagged
@@ -143,3 +144,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BuildingIdentity
   buildingID: door
   isFinished: 1
+--- !u!114 &8727665829878421737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1945309440466956535}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c1daa0b64326a14ba7de5fbbeab929b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DoorOpen
+  openAngle: 90
+  speed: 2
