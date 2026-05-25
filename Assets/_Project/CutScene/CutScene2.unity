@@ -2236,7 +2236,7 @@ MonoBehaviour:
     LookAtTarget: {fileID: 0}
     CustomLookAtTarget: 0
   Lens:
-    FieldOfView: 9.2
+    FieldOfView: 6.62
     OrthographicSize: 5
     NearClipPlane: 0.01
     FarClipPlane: 1000
@@ -2726,6 +2726,7 @@ GameObject:
   - component: {fileID: 294237081}
   - component: {fileID: 294237080}
   - component: {fileID: 294237079}
+  - component: {fileID: 294237082}
   m_Layer: 0
   m_Name: HelicCamera
   m_TagString: Untagged
@@ -2813,6 +2814,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -25.1, y: 195.2, z: 0.8}
+--- !u!114 &294237082
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 294237078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineBasicMultiChannelPerlin
+  NoiseProfile: {fileID: 11400000, guid: 46965f9cbaf525742a6da4c2172a99cd, type: 2}
+  PivotOffset: {x: 0, y: 0, z: 0}
+  AmplitudeGain: 0.22
+  FrequencyGain: 1
+  m_NoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &302180431
 GameObject:
   m_ObjectHideFlags: 0
@@ -3077,6 +3095,7 @@ GameObject:
   - component: {fileID: 330254311}
   - component: {fileID: 330254309}
   - component: {fileID: 330254310}
+  - component: {fileID: 330254312}
   m_Layer: 0
   m_Name: ForestCamera
   m_TagString: Untagged
@@ -3164,6 +3183,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &330254312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330254308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineBasicMultiChannelPerlin
+  NoiseProfile: {fileID: 11400000, guid: 46965f9cbaf525742a6da4c2172a99cd, type: 2}
+  PivotOffset: {x: 0, y: 0, z: 0}
+  AmplitudeGain: 0.22
+  FrequencyGain: 1
+  m_NoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &330585543
 GameObject:
   m_ObjectHideFlags: 0
@@ -4343,10 +4379,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineBasicMultiChannelPerlin
-  NoiseProfile: {fileID: 0}
+  NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
   PivotOffset: {x: 0, y: 0, z: 0}
-  AmplitudeGain: 1
-  FrequencyGain: 1
+  AmplitudeGain: 0.09
+  FrequencyGain: 0.34
   m_NoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!4 &399421287 stripped
 Transform:
@@ -6702,7 +6738,7 @@ Camera:
     height: 1
   near clip plane: 0.01
   far clip plane: 1000
-  field of view: 52
+  field of view: 65.1
   orthographic: 0
   orthographic size: 5
   m_Depth: 0
@@ -6728,8 +6764,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 663860657}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.36224973, y: 0.3408142, z: 0.13505876, w: 0.85695976}
-  m_LocalPosition: {x: -7.8652644, y: 344.28143, z: -3.5630817}
+  m_LocalRotation: {x: 0.29633015, y: 0.60659397, z: -0.25226936, w: 0.69324774}
+  m_LocalPosition: {x: -35.48773, y: -0.34100342, z: 4.333679}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13257,6 +13293,7 @@ GameObject:
   - component: {fileID: 1340490503}
   - component: {fileID: 1340490501}
   - component: {fileID: 1340490502}
+  - component: {fileID: 1340490504}
   m_Layer: 0
   m_Name: ExtCamera
   m_TagString: Untagged
@@ -13288,7 +13325,7 @@ MonoBehaviour:
     LookAtTarget: {fileID: 0}
     CustomLookAtTarget: 0
   Lens:
-    FieldOfView: 52
+    FieldOfView: 53
     OrthographicSize: 5
     NearClipPlane: 0.01
     FarClipPlane: 1000
@@ -13344,6 +13381,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -0.0004008648, y: -0.003023994, z: -0.003421168}
+--- !u!114 &1340490504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1340490500}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineBasicMultiChannelPerlin
+  NoiseProfile: {fileID: 11400000, guid: 46965f9cbaf525742a6da4c2172a99cd, type: 2}
+  PivotOffset: {x: 0, y: 0, z: 0}
+  AmplitudeGain: 0.22
+  FrequencyGain: 1
+  m_NoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1001 &1364712526
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18823,6 +18877,7 @@ GameObject:
   - component: {fileID: 2028243981}
   - component: {fileID: 2028243979}
   - component: {fileID: 2028243980}
+  - component: {fileID: 2028243982}
   m_Layer: 0
   m_Name: HelicCamera (1)
   m_TagString: Untagged
@@ -18910,6 +18965,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 359.93, y: 0.000975877, z: 0.00000176422}
+--- !u!114 &2028243982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2028243978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineBasicMultiChannelPerlin
+  NoiseProfile: {fileID: 11400000, guid: 46965f9cbaf525742a6da4c2172a99cd, type: 2}
+  PivotOffset: {x: 0, y: 0, z: 0}
+  AmplitudeGain: 0.22
+  FrequencyGain: 1
+  m_NoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &2031146935 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4645435274526253913, guid: 3148e1ec6c3b0a4488e59ca38c53711f, type: 3}

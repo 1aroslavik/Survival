@@ -8,27 +8,46 @@ public class FadeManager : MonoBehaviour
     public CanvasGroup fadeImage;
     public TextMeshProUGUI middleText;
     public float fadeDuration = 1.5f;
+    public GameObject newspaperCanvas;
+    public string mainMenuScene = "MainMenuScene";
 
     public void FadeToBlackWithText(string text)
     {
         StartCoroutine(DoFade(text));
     }
 
+    public void ShowNewspaperAndEnd()
+    {
+        StartCoroutine(DoEnding());
+    }
+
     IEnumerator DoFade(string text)
     {
-        // Темнеем
         yield return StartCoroutine(Fade(0, 1));
         
-        // Показываем текст
         middleText.text = text;
         middleText.gameObject.SetActive(true);
         yield return new WaitForSeconds(2f);
         
-        // Прячем текст и светлеем
         middleText.gameObject.SetActive(false);
         yield return StartCoroutine(Fade(1, 0));
     }
 
+IEnumerator DoEnding()
+{
+    // Темнеем
+    yield return StartCoroutine(Fade(0, 1));
+    
+    // Включаем газету пока экран чёрный
+    newspaperCanvas.SetActive(true);
+    
+    // Газета висит
+    yield return new WaitForSeconds(6f);
+    
+    // Темнеем и уходим
+    yield return StartCoroutine(Fade(0, 1));
+    UnityEngine.SceneManagement.SceneManager.LoadScene(mainMenuScene);
+}
     IEnumerator Fade(float from, float to)
     {
         float t = 0;
