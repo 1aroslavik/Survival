@@ -24,14 +24,6 @@ public class RadioStationInteract : MonoBehaviour
     public float messageDuration = 2.5f;
     [TextArea] public string notReadyMessage = "Im not done yet. I need to find all the notes.";
 
-    [Header("Дополнительные объекты для подсветки")]
-    [Tooltip("Сюда можно перетащить другие Highlightable (например, Radio), чтобы они светились вместе с этим объектом")]
-    public Highlightable[] extraHighlights;
-
-    [Header("Overlay-объекты (включаются при наведении)")]
-    [Tooltip("GameObject'ы, которые включаются при наведении и выключаются при потере фокуса. Например, копия меша с HighlightMat.")]
-    public GameObject[] highlightOverlays;
-
     Collider myCollider;
     Highlightable highlight;
     bool playerLooking;
@@ -41,31 +33,46 @@ public class RadioStationInteract : MonoBehaviour
     {
         if (playerCamera == null) playerCamera = Camera.main;
         myCollider = GetComponent<Collider>();
+        if (myCollider == null) myCollider = GetComponentInChildren<Collider>();
         highlight = GetComponentInChildren<Highlightable>();
 
-        if (interactHint != null) interactHint.SetActive(false);
-        if (messageText != null) messageText.gameObject.SetActive(false);
+        if (playerCamera == null)
+            Debug.LogError($"[RadioStationInteract] {name}: Player Camera не назначена и Camera.main = null (нет камеры с тегом MainCamera).");
+        if (myCollider == null)
+            Debug.LogError($"[RadioStationInteract] {name}: на объекте нет Collider — добавь BoxCollider или MeshCollider.");
+        if (highlight == null)
+            Debug.LogWarning($"[RadioStationInteract] {name}: нет компонента Highlightable — подсветки не будет.");
+
+        if (interactHint != null)
+        {
+            // включаем все дочерние объекты hint (текст внутри должен быть активен)
+            foreach (Transform child in interactHint.transform)
+                child.gameObject.SetActive(true);
+            interactHint.SetActive(false);
+        }
+        // messageText гасим только если он НЕ внутри interactHint
+        if (messageText != null && (interactHint == null || !messageText.transform.IsChildOf(interactHint.transform)))
+            messageText.gameObject.SetActive(false);
+
+        Debug.Log($"[RadioStationInteract] START на объекте '{name}'. Camera={playerCamera}, Collider={myCollider}, Highlight={highlight}");
     }
 
     void Update()
     {
         bool looking = IsPlayerLookingAtMe();
 
+        // ФОРС: каждый кадр выставляем нужное состояние, чтобы никто другой не перебил
+        if (interactHint != null && interactHint.activeSelf != looking)
+        {
+            interactHint.SetActive(looking);
+            Debug.Log($"[RadioStationInteract] {name}: interactHint.SetActive({looking}). hint='{interactHint.name}' activeInHierarchy={interactHint.activeInHierarchy}");
+        }
+
         if (looking != playerLooking)
         {
             playerLooking = looking;
-            if (interactHint != null) interactHint.SetActive(looking);
             if (highlight != null) highlight.Highlight(looking);
-            if (extraHighlights != null)
-            {
-                foreach (var h in extraHighlights)
-                    if (h != null) h.Highlight(looking);
-            }
-            if (highlightOverlays != null)
-            {
-                foreach (var go in highlightOverlays)
-                    if (go != null) go.SetActive(looking);
-            }
+            Debug.Log($"[RadioStationInteract] {name}: playerLooking -> {looking}");
         }
 
         if (playerLooking && Input.GetKeyDown(interactKey))
@@ -74,12 +81,25 @@ public class RadioStationInteract : MonoBehaviour
 
     bool IsPlayerLookingAtMe()
     {
-        if (playerCamera == null || myCollider == null) return false;
+        if (playerCamera == null) return false;
 
         Ray ray = playerCamera.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0f));
-        if (Physics.Raycast(ray, out RaycastHit hit, interactDistance))
-            return hit.collider == myCollider || hit.collider.transform.IsChildOf(transform);
+        Debug.DrawRay(ray.origin, ray.direction * interactDistance, Color.red);
 
+        RaycastHit[] hits = Physics.RaycastAll(ray, interactDistance, ~0, QueryTriggerInteraction.Collide);
+        string log = $"[{name}] hits ({hits.Length}): ";
+        foreach (var h in hits)
+            log += $"'{h.collider.name}'({h.distance:F2}m), ";
+        Debug.Log(log);
+
+        foreach (var h in hits)
+        {
+            if (h.collider.transform == transform) return true;
+            if (h.collider.transform.IsChildOf(transform)) return true;
+            if (transform.IsChildOf(h.collider.transform)) return true;
+            var found = h.collider.GetComponentInParent<RadioStationInteract>();
+            if (found == this) return true;
+        }
         return false;
     }
 
