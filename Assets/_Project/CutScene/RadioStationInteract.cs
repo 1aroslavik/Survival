@@ -22,7 +22,7 @@ public class RadioStationInteract : MonoBehaviour
     [Tooltip("TMP_Text для сообщения 'Im not done yet'")]
     public TMP_Text messageText;
     public float messageDuration = 2.5f;
-    [TextArea] public string notReadyMessage = "Im not done yet. I need to find all the notes.";
+    [TextArea] public string notReadyMessage = "Im not done yet. ";
 
     Collider myCollider;
     Highlightable highlight;
@@ -110,7 +110,7 @@ public class RadioStationInteract : MonoBehaviour
         if (count < requiredNotes)
         {
             int left = requiredNotes - count;
-            ShowMessage($"{notReadyMessage} (left: {left})");
+            ShowMessage($"{notReadyMessage} (notes left: {left})");
             return;
         }
 
