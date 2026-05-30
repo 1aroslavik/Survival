@@ -5807,9 +5807,6 @@ MonoBehaviour:
   messageText: {fileID: 1765961468}
   messageDuration: 2.5
   notReadyMessage: I need to find more evidence.
-  extraHighlights:
-  - {fileID: 1104735845}
-  highlightOverlays: []
 --- !u!1 &356967850
 GameObject:
   m_ObjectHideFlags: 0
@@ -7410,7 +7407,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.Core.Runtime::UnityEngine.Rendering.ProbeVolumePerSceneData
   serializedBakingSet: {fileID: 0}
-  sceneGUID: 99c9720ab356a0642a771bea13969a05
+  sceneGUID: 4c0c2cbd1c1c7444aba682654ac6f6ae
   obsoleteAsset: {fileID: 0}
   obsoleteCellSharedDataAsset: {fileID: 0}
   obsoleteCellSupportDataAsset: {fileID: 0}
@@ -15421,10 +15418,6 @@ MonoBehaviour:
   messageText: {fileID: 1765961468}
   messageDuration: 2.5
   notReadyMessage: I need to find more evidence.
-  extraHighlights:
-  - {fileID: 1104735845}
-  highlightOverlays:
-  - {fileID: 1104735836}
 --- !u!114 &1104735845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15855,6 +15848,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ca34a6148db2d54493f84f379293f33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.TerrainTools::TerrainGroup
+  GroupID: 0
 --- !u!4 &1151277744
 Transform:
   m_ObjectHideFlags: 0
@@ -16808,7 +16802,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1421339023}
-  - {fileID: 2109255933}
   - {fileID: 917334161}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -21463,6 +21456,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21c303a32b7de544087e8472f8457dfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BuildingSystem
+  buildingUI: {fileID: 0}
   validMaterial: {fileID: 2100000, guid: 687cd83d3624def41bfb53c3569288c8, type: 2}
   invalidMaterial: {fileID: 2100000, guid: f5257ae3c970fc948beb0a2a3e56af86, type: 2}
   buildings:
@@ -27686,12 +27680,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2109255932}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 378.22067, y: 190.54443, z: 947.1399}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1244939865}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2109255934
 MonoBehaviour:
@@ -27700,7 +27694,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2109255932}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 74c24b57c09c418428bad13cbd77dc2e, type: 3}
   m_Name: 
@@ -27710,8 +27704,6 @@ MonoBehaviour:
   - {fileID: 458521985419375119, guid: 5069005c16c62b748b1b3b23bedb8bce, type: 3}
   - {fileID: 3243393611864451931, guid: b8553dc7d22c5be4e94f87b5a781351e, type: 3}
   - {fileID: 2139894475784436948, guid: ecad7aaa59cf8694895640be12f5a7d4, type: 3}
-  - {fileID: 118758, guid: 653b027cdeba6ce469d212df11bdb981, type: 3}
-  - {fileID: 185280, guid: 8381f3de86739e84eaadb9ce20bccccb, type: 3}
   spawnRadius: 30
   despawnDistance: 50
   maxObjects: 45
@@ -29134,6 +29126,7 @@ SceneRoots:
   - {fileID: 111618686}
   - {fileID: 274889522}
   - {fileID: 558027308}
+  - {fileID: 2109255933}
   - {fileID: 1030462512}
   - {fileID: 1244939865}
   - {fileID: 425982810}

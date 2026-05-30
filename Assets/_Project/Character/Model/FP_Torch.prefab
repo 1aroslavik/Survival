@@ -74,7 +74,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8907101210516961152, guid: cd80dda723803f34ca22d87798b5caaa, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8907101210516961152, guid: cd80dda723803f34ca22d87798b5caaa, type: 3}
+      propertyPath: m_Intensity
+      value: 2.4522119
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
