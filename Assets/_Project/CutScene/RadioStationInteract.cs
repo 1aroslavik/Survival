@@ -90,7 +90,7 @@ public class RadioStationInteract : MonoBehaviour
         string log = $"[{name}] hits ({hits.Length}): ";
         foreach (var h in hits)
             log += $"'{h.collider.name}'({h.distance:F2}m), ";
-        Debug.Log(log);
+       
 
         foreach (var h in hits)
         {
